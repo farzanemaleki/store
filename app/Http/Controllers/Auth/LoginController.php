@@ -66,11 +66,19 @@ class LoginController extends Controller
         elseif(!Hash::check($request->get('password'),$user->password)){
             return redirect(route('login'))->with('error','پسورد اشتباه است');
         }
-        elseif($user->role!=='user'){
-            return redirect(route('login'))->with('error','شما به این قسمت دسترسی ندارید');
-        };
-        Auth::login($user);
-        return redirect(route('home'));
+        elseif($user->role!=='admin'){
+            Auth::login($user);
+            return redirect(route('home'));
+        }
+        else {
+            Auth::login($user);
+            return redirect(route('dashboard'));
+        }
 
+    }
+    public function logout(Request $request)
+    {
+        auth()->logout();
+        return redirect(route('login'));
     }
 }

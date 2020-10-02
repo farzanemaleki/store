@@ -633,7 +633,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-        <strong>CopyLeft &copy; 2020 <a href="http://github.com/hesammousavi/">فرزانه ملکی</a>.</strong>
+        <strong>CopyLeft &copy; 2020 <a href="http://github.com/farzane.maleki/">فرزانه ملکی</a>.</strong>
     </footer>
 
     <!-- Control Sidebar -->
