@@ -716,77 +716,21 @@
 
                 <div class="cat-blocks-container">
                     <div class="row">
+
+                        @foreach($allProducts as $product)
                         <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
+                            <a href="#" class="cat-block">
                                 <figure>
                                     <span>
-                                        <img src="{{url('site/assets/images/demos/demo-4/cats/1.png')}}" alt="Category image">
+                                        <img src="{{ url('') }}{{$product->image }}" alt="{{$product->title}}">
                                     </span>
                                 </figure>
 
-                                <h3 class="cat-block-title">کامپیوتر و لپ تاپ</h3><!-- End .cat-block-title -->
+                                <h3 class="cat-block-title">{{$product->title}}</h3><!-- End .cat-block-title -->
                             </a>
                         </div><!-- End .col-sm-4 col-lg-2 -->
+                        @endforeach
 
-                        <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
-                                <figure>
-                                    <span>
-                                        <img src="{{url('site/assets/images/demos/demo-4/cats/2.png')}}" alt="Category image">
-                                    </span>
-                                </figure>
-
-                                <h3 class="cat-block-title">دوربین دیجیتال</h3><!-- End .cat-block-title -->
-                            </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
-
-                        <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
-                                <figure>
-                                    <span>
-                                        <img src="{{url('site/assets/images/demos/demo-4/cats/3.png')}}" alt="Category image">
-                                    </span>
-                                </figure>
-
-                                <h3 class="cat-block-title">گوشی هوشمند</h3><!-- End .cat-block-title -->
-                            </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
-
-                        <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
-                                <figure>
-                                    <span>
-                                        <img src="{{url('site/assets/images/demos/demo-4/cats/4.png')}}" alt="Category image">
-                                    </span>
-                                </figure>
-
-                                <h3 class="cat-block-title">تلویزیون</h3><!-- End .cat-block-title -->
-                            </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
-
-                        <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
-                                <figure>
-                                    <span>
-                                        <img src="{{url('site/assets/images/demos/demo-4/cats/5.png')}}" alt="Category image">
-                                    </span>
-                                </figure>
-
-                                <h3 class="cat-block-title">لوازم صوتی</h3><!-- End .cat-block-title -->
-                            </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
-
-                        <div class="col-6 col-sm-4 col-lg-2">
-                            <a href="category.html" class="cat-block">
-                                <figure>
-                                    <span>
-                                        <img src="{{url('site/assets/images/demos/demo-4/cats/6.png')}}" alt="Category image">
-                                    </span>
-                                </figure>
-
-                                <h3 class="cat-block-title">ساعت هوشمند</h3><!-- End .cat-block-title -->
-                            </a>
-                        </div><!-- End .col-sm-4 col-lg-2 -->
                     </div><!-- End .row -->
                 </div><!-- End .cat-blocks-container -->
             </div><!-- End .container -->
