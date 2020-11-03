@@ -8878,8 +8878,8 @@ body,
 }
 
 .nav-sidebar .menu-open > .nav-link .right {
-  -ms-transform: rotate(-90deg);
-  transform: rotate(-90deg);
+  -ms-transform: rotate(0deg);
+  transform: rotate(0deg);
 }
 
 .nav-sidebar > .nav-item {
