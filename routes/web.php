@@ -42,6 +42,7 @@ Route::get('/homepage', 'site\homepageController@index');
             Route::post( '/store', 'productCategoryController@store')->name('dashboard.productCategory.store');
 
         });
+        Route::post('/save_image','productController@uploadImage');
     });
 
 //});

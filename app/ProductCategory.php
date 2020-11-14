@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductCategory extends Model
 {
+//    use Sluggable;
+
     public function product(){
         return $this->hasMany(Product::class);
     }
@@ -15,6 +17,15 @@ class ProductCategory extends Model
     protected $fillable = [
         'title','slug','description','parent_id','status','image'
     ];
+
+    public function slugable(){
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
+
     public function parent_name($id){
         $parent_name = ProductCategory::where( 'id' , $id )->first();
         if (!$parent_name)

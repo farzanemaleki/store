@@ -138,10 +138,10 @@
                         </div>
                     </div>
 {{--                    <----------description--------------}}
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="form-group">
                             <lable> توضیحات محصول</lable>
-                            <textarea rows="5" class="form-control" name="description"
+                            <textarea rows="5" class="form-control" id="description" name="description"
                                       placeholder="توضیحات محصول را وارد کنید ..."></textarea>
                         </div>
                     </div>
@@ -160,6 +160,21 @@
 
 @stop
 @section('footerScripts')
+    <!-- bs-custom-file-input -->
+    <script src="{{ url('adminPanel/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+    <script src="{{ url('adminPanel/plugins/ckeditor/ckeditor.js') }}"></script>
+
+    <script !src="">
+
+            CKEDITOR.replace('description', {
+                filebrowserUploadMethod : 'form',
+                filebrowserUploadUrl: '/dashboard/save_image',
+                filebrowserImageUploadUrl: '/dashboard/save_image',
+
+            });
+
+    </script>
+
     <script !src="">
         $('.nav-link').removeClass('active');
 

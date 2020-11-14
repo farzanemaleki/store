@@ -72,7 +72,7 @@ class productCategoryController extends Controller
             }
         ProductCategory::create([
             'title' =>  $request->get('title'),
-            'slug' => $request->get('title'),
+//            'slug' => $request->get('title'),
             'description' => $description,
             'status' => $request->get('status'),
             'image' =>$image,
