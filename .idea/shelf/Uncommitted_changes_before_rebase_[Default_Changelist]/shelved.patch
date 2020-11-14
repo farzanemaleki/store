@@ -1,0 +1,337 @@
+Index: resources/views/adminpanel/product/index.blade.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><<<<<<< HEAD\r\n@extends('adminpanel.layout')\r\n\r\n@section('pageTitle')\r\n    همه محصولات\r\n@endsection\r\n\r\n@section('mainContent')\r\n    <!-- .content-header -->\r\n    <div class=\"content-header\">\r\n        <div class=\"container-fluid\">\r\n            <div class=\"row mb-2\">\r\n                <div class=\"col-sm-6\">\r\n                    <h1 class=\"m-0 text-dark\">همه محصولات</h1>\r\n                </div><!-- /.col -->\r\n                <div class=\"col-sm-6\">\r\n                    <ol class=\"breadcrumb float-sm-left\">\r\n                        <li class=\"breadcrumb-item\"><a href=\"{{route('dashboard')}}\">داشبورد</a></li>\r\n                        <li class=\"breadcrumb-item active\">محصولات</li>\r\n                    </ol>\r\n                </div><!-- /.col -->\r\n            </div><!-- /.row -->\r\n        </div><!-- /.container-fluid -->\r\n    </div>\r\n    {{--    mainContent--}}\r\n    <section class=\"content\">\r\n        <div class=\"container-fluid\">\r\n            <div class=\"row\">\r\n                                <div class=\"col-sm-12\">\r\n                                    @if(session('message'))\r\n                                        <div class=\"alert alert-success col-sm-3\">\r\n                                            <li>{{Session::get('message')}}</li>\r\n                                        </div>\r\n                                        @endif\r\n                                    @if(session ('error'))\r\n                                        <div class=\"alert alert-danger col-sm-3\">\r\n                                            <li>{{Session::get('error')}}</li>\r\n                                        </div>\r\n                                        @endif\r\n                                    @if(session ('warning'))\r\n                                        <div class=\"alert alert-warning col-sm-3\">\r\n                                            <li>{{Session::get('warning')}}</li>\r\n                                        </div>\r\n                                        @endif\r\n                                </div>\r\n                <div class=\"col-12\">\r\n                    <div class=\"card\">\r\n                        <div class=\"card-header\">\r\n                            <h3 class=\"card-title text-right\">جدول محصولات</h3>\r\n                        </div>\r\n\r\n                        {{--card header--}}\r\n                        <div class=\"card-body\">\r\n                            @if(\\App\\Product::all()->count() > 0)\r\n                                <table id=\"example2\" class=\"table table-bordered table-hover\">\r\n                                    <thead>\r\n                                    <tr>\r\n                                        <th>ردیف</th>\r\n                                        <th>نام محصول</th>\r\n                                        <th>قیمت</th>\r\n                                        <th>توضیحات</th>\r\n                                        <th>کد محصول</th>\r\n                                        <th>تصویر محصول</th>\r\n                                        <th>دسته بندی</th>\r\n                                        <th>تخفیف</th>\r\n                                        <th>تعداد</th>\r\n                                        <th>سایز</th>\r\n                                        <th>وزن</th>\r\n                                        <th>امتیاز</th>\r\n                                        <th>وضعیت</th>\r\n                                        <th>عملیات</th>\r\n                                    </tr>\r\n                                    </thead>\r\n                                    <tbody>\r\n                                    @foreach($allProuduct as $product)\r\n                                        <tr>\r\n                                            <td>{{$product->id}}</td>\r\n                                            <td>{{$product->title}}</td>\r\n                                            <td>\r\n\r\n                                                @if($product->old_price != '')\r\n                                                    {{$product->price}}\r\n                                                @else\r\n                                                    <span class=\"text-secondary\">{{$product->old_price}}</span>\r\n                                                    {{$product->price}}\r\n                                                @endif\r\n                                            </td>\r\n                                            <td>{!! $product->description !!}</td>\r\n                                            <td>{{$product->product_id}}</td>\r\n                                            <td><img width=\"100px\" src=\"{{ url('') }}{{$product->image}}\" alt=\"{{$product->title}}\"></td>\r\n                                            <td>{{$product->category_name($product->category)}}</td>\r\n                                            <td>{{$product->discount}}</td>\r\n                                            <td>{{$product->count}}</td>\r\n                                            <td>{{$product->size}}</td>\r\n                                            <td>{{$product->weight}}</td>\r\n                                            <td>{{$product->rate}}</td>\r\n                                            <td>\r\n                                                @if($product->status == 0)\r\n                                                    پیش نویس\r\n                                                @else\r\n                                                منتشر شده\r\n                                                    @endif\r\n                                            </td>\r\n                                            <td><a href=\"{{route('dashboard.product.edit', $product->id)}}\"><i class=\"fa fa-pencil m-2\" ></i></a>\r\n                                                <a href=\"{{route('dashboard.product.destroy' , $product->id)}}\"><i class=\"fa fa-trash-o text-danger\"></i></a>\r\n                                            </td>\r\n\r\n                                        </tr>\r\n\r\n                                    @endforeach\r\n                                    </tbody>\r\n                                </table>\r\n                            @else\r\n                                <h4>محصولی در سایت موجود نیست</h4>\r\n                                <a type=\"button\" class=\"btn btn-outline-primary\" href=\"{{route('dashboard.product.create')}}\">اولین محصول خود را بسازید</a>\r\n\r\n                            @endif\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n\r\n    </section>\r\n\r\n@stop\r\n@section('footerScripts')\r\n    {{--    dataTables--}}\r\n    <script src=\"{{url('adminPanel/plugins/datatables/jquery.dataTables.js')}}\"></script>\r\n    <script src=\"{{url('adminPanel/plugins/datatables/dataTables.bootstrap4.js')}}\"></script>\r\n\r\n    <script !src=\"\">\r\n        $('.nav-link').removeClass('active');\r\n\r\n        $('#products').addClass('menu-open');\r\n        $('#products> a').addClass('active');\r\n        $('#allProdacts').addClass('active');\r\n\r\n\r\n    </script>\r\n@stop\r\n=======\r\n<?php\r\n>>>>>>> origin/master\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- resources/views/adminpanel/product/index.blade.php	(revision 3d6b97a28b81163c6cde65b1b4ebc5470f2b162d)
++++ resources/views/adminpanel/product/index.blade.php	(date 1606917758345)
+@@ -139,6 +139,4 @@
+ 
+     </script>
+ @stop
+-=======
+-<?php
+->>>>>>> origin/master
++
+Index: database/migrations/2020_10_06_194155_creat_products_table.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nuse Illuminate\\Support\\Facades\\Schema;\r\nuse Illuminate\\Database\\Schema\\Blueprint;\r\nuse Illuminate\\Database\\Migrations\\Migration;\r\n\r\nclass CreatProductsTable extends Migration\r\n{\r\n    /**\r\n     * Run the migrations.\r\n     *\r\n     * @return void\r\n     */\r\n    public function up()\r\n    {\r\n<<<<<<< HEAD\r\n        Schema::create('Products',function (Blueprint $table){\r\n            $table->bigIncrements('id');\r\n            $table->string('title');\r\n            $table->string('slug')->unique();\r\n            $table->double('price');\r\n            $table->double('old_price')->nullable();\r\n            $table->text('description')->nullable();\r\n            $table->string('product_id')->uniqid();\r\n            $table->string('thumbnail');\r\n            $table->string('image');\r\n            $table->integer('category')->default(0)->index();\r\n            $table->string('discount')->nullable();\r\n            $table->integer('count')->nullable();\r\n            $table->string('size')->nullable();\r\n            $table->string('weight')->nullable();\r\n            $table->integer('rate')->default('1');\r\n            $table->integer('status');\r\n            $table->timestamp('created_at')->nullable();\r\n            $table->timestamp('updated_at')->nullable();\r\n        }\r\n        );\r\n=======\r\n        //\r\n>>>>>>> origin/master\r\n    }\r\n\r\n    /**\r\n     * Reverse the migrations.\r\n     *\r\n     * @return void\r\n     */\r\n    public function down()\r\n    {\r\n        //\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- database/migrations/2020_10_06_194155_creat_products_table.php	(revision 3d6b97a28b81163c6cde65b1b4ebc5470f2b162d)
++++ database/migrations/2020_10_06_194155_creat_products_table.php	(date 1606917689571)
+@@ -13,7 +13,7 @@
+      */
+     public function up()
+     {
+-<<<<<<< HEAD
++
+         Schema::create('Products',function (Blueprint $table){
+             $table->bigIncrements('id');
+             $table->string('title');
+@@ -35,9 +35,6 @@
+             $table->timestamp('updated_at')->nullable();
+         }
+         );
+-=======
+-        //
+->>>>>>> origin/master
+     }
+ 
+     /**
+Index: app/Product.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nnamespace App;\r\n\r\n<<<<<<< HEAD\r\nuse Cviebrock\\EloquentSluggable\\Sluggable;\r\nuse Illuminate\\Database\\Eloquent\\Model;\r\n\r\n\r\nclass Product extends Model\r\n{\r\n    use Sluggable;\r\n\r\n    public function productcategory(){\r\n        return $this->belongsTo(ProductCategory::class);\r\n    }\r\n\r\n    protected $fillable = [\r\n        'title','description','slug','price','old_price','category','count','size','weight','discount','product_id','status','image','thumbnail',\r\n        'rate'\r\n    ];\r\n    public function sluggable()\r\n    {\r\n        return [\r\n            'slug' => [\r\n                'source' => 'title'\r\n            ]\r\n        ];\r\n    }\r\n\r\n    public function category_name($id){\r\n        $category = ProductCategory::where( 'id' ,$id)->first();\r\n        if(!$category){\r\n            return 'بدون دسته بندی';\r\n        }else\r\n        {\r\n            return $category->title;\r\n        }\r\n    }\r\n\r\n    public function publishedProduct(){\r\n        $product = Product::all();\r\n        $published_products = [];\r\n        foreach($product as $item){\r\n            if($item->status == 1){\r\n                $published_products[] = $item ;\r\n\r\n            }\r\n        }\r\n    return $published_products;\r\n    }\r\n\r\n=======\r\nuse Illuminate\\Database\\Eloquent\\Model;\r\n\r\nclass Product extends Model\r\n{\r\n    //\r\n>>>>>>> origin/master\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/Product.php	(revision 3d6b97a28b81163c6cde65b1b4ebc5470f2b162d)
++++ app/Product.php	(date 1606917689501)
+@@ -2,7 +2,7 @@
+ 
+ namespace App;
+ 
+-<<<<<<< HEAD
++
+ use Cviebrock\EloquentSluggable\Sluggable;
+ use Illuminate\Database\Eloquent\Model;
+ 
+@@ -11,14 +11,16 @@
+ {
+     use Sluggable;
+ 
+-    public function productcategory(){
++    public function productcategory()
++    {
+         return $this->belongsTo(ProductCategory::class);
+     }
+ 
+     protected $fillable = [
+-        'title','description','slug','price','old_price','category','count','size','weight','discount','product_id','status','image','thumbnail',
++        'title', 'description', 'slug', 'price', 'old_price', 'category', 'count', 'size', 'weight', 'discount', 'product_id', 'status', 'image', 'thumbnail',
+         'rate'
+     ];
++
+     public function sluggable()
+     {
+         return [
+@@ -28,33 +30,30 @@
+         ];
+     }
+ 
+-    public function category_name($id){
+-        $category = ProductCategory::where( 'id' ,$id)->first();
+-        if(!$category){
++    public function category_name($id)
++    {
++        $category = ProductCategory::where('id', $id)->first();
++        if (!$category) {
+             return 'بدون دسته بندی';
+-        }else
+-        {
++        } else {
+             return $category->title;
+         }
+     }
+ 
+-    public function publishedProduct(){
++    public function publishedProduct()
++    {
+         $product = Product::all();
+         $published_products = [];
+-        foreach($product as $item){
+-            if($item->status == 1){
+-                $published_products[] = $item ;
++        foreach ($product as $item) {
++            if ($item->status == 1) {
++                $published_products[] = $item;
+ 
+             }
+         }
+-    return $published_products;
++        return $published_products;
+     }
+ 
+-=======
+-use Illuminate\Database\Eloquent\Model;
++
+ 
+-class Product extends Model
+-{
+-    //
+->>>>>>> origin/master
++
+ }
+Index: app/ProductCategory.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nnamespace App;\r\n\r\n<<<<<<< HEAD\r\nuse Cviebrock\\EloquentSluggable\\Sluggable;\r\nuse Illuminate\\Database\\Eloquent\\Model;\r\n\r\n\r\nclass ProductCategory extends Model\r\n{\r\n    use Sluggable;\r\n\r\n    public function product(){\r\n        return $this->hasMany(Product::class);\r\n    }\r\n\r\n    protected $table = 'productcategory';\r\n\r\n    protected $fillable = [\r\n        'title','slug','description','parent_id','status','image'\r\n    ];\r\n\r\n    public function sluggable(){\r\n        return [\r\n            'slug' => [\r\n                'source' => 'title'\r\n            ]\r\n        ];\r\n    }\r\n\r\n    public function parent_name($id){\r\n        $parent_name = ProductCategory::where( 'id' , $id )->first();\r\n        if (!$parent_name)\r\n        {\r\n            return 'دسته بندی مادر';\r\n        }else\r\n        {\r\n            $parent_name = $parent_name->title;\r\n            return $parent_name;\r\n        }\r\n\r\n    }\r\n    public function countsProducts($id)\r\n    {\r\n        $allpro =Product::where( 'category' , '=' , $id )->get();\r\n        return $allpro->count();\r\n    }\r\n\r\n=======\r\nuse Illuminate\\Database\\Eloquent\\Model;\r\n\r\nclass ProductCategory extends Model\r\n{\r\n    //\r\n>>>>>>> origin/master\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/ProductCategory.php	(revision 3d6b97a28b81163c6cde65b1b4ebc5470f2b162d)
++++ app/ProductCategory.php	(date 1606917689474)
+@@ -2,7 +2,6 @@
+ 
+ namespace App;
+ 
+-<<<<<<< HEAD
+ use Cviebrock\EloquentSluggable\Sluggable;
+ use Illuminate\Database\Eloquent\Model;
+ 
+@@ -11,17 +10,19 @@
+ {
+     use Sluggable;
+ 
+-    public function product(){
++    public function product()
++    {
+         return $this->hasMany(Product::class);
+     }
+ 
+     protected $table = 'productcategory';
+ 
+     protected $fillable = [
+-        'title','slug','description','parent_id','status','image'
++        'title', 'slug', 'description', 'parent_id', 'status', 'image'
+     ];
+ 
+-    public function sluggable(){
++    public function sluggable()
++    {
+         return [
+             'slug' => [
+                 'source' => 'title'
+@@ -29,29 +30,21 @@
+         ];
+     }
+ 
+-    public function parent_name($id){
+-        $parent_name = ProductCategory::where( 'id' , $id )->first();
+-        if (!$parent_name)
+-        {
++    public function parent_name($id)
++    {
++        $parent_name = ProductCategory::where('id', $id)->first();
++        if (!$parent_name) {
+             return 'دسته بندی مادر';
+-        }else
+-        {
++        } else {
+             $parent_name = $parent_name->title;
+             return $parent_name;
+         }
+ 
+     }
++
+     public function countsProducts($id)
+     {
+-        $allpro =Product::where( 'category' , '=' , $id )->get();
++        $allpro = Product::where('category', '=', $id)->get();
+         return $allpro->count();
+     }
+-
+-=======
+-use Illuminate\Database\Eloquent\Model;
+-
+-class ProductCategory extends Model
+-{
+-    //
+->>>>>>> origin/master
+ }
+Index: app/Http/Controllers/adminpanel/productController.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?php\r\n\r\nnamespace App\\Http\\Controllers\\adminpanel;\r\n\r\n<<<<<<< HEAD\r\nuse App\\Product;\r\nuse App\\ProductCategory;\r\nuse Illuminate\\Http\\Request;\r\nuse App\\Http\\Controllers\\Controller;\r\nuse Carbon\\Carbon;\r\n=======\r\nuse Illuminate\\Http\\Request;\r\nuse App\\Http\\Controllers\\Controller;\r\n>>>>>>> origin/master\r\n\r\nclass productController extends Controller\r\n{\r\n    /**\r\n     * Display a listing of the resource.\r\n     *\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function index()\r\n    {\r\n<<<<<<< HEAD\r\n        $allProuduct = Product::all();\r\n        return view(\"adminpanel.product.index\", compact('allProuduct'));\r\n\r\n\r\n=======\r\n        //\r\n>>>>>>> origin/master\r\n    }\r\n\r\n    /**\r\n     * Show the form for creating a new resource.\r\n     *\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function create()\r\n    {\r\n<<<<<<< HEAD\r\n        $allcategories = ProductCategory::all();\r\n        return view('adminpanel.product.create', compact('allcategories'));\r\n=======\r\n        //\r\n>>>>>>> origin/master\r\n    }\r\n\r\n    /**\r\n     * Store a newly created resource in storage.\r\n     *\r\n<<<<<<< HEAD\r\n     * @param \\Illuminate\\Http\\Request $request\r\n=======\r\n     * @param  \\Illuminate\\Http\\Request  $request\r\n>>>>>>> origin/master\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function store(Request $request)\r\n    {\r\n<<<<<<< HEAD\r\n        $this->validate($request, [\r\n            'title' => ['required', 'min:3', 'max:255'],\r\n            'category' => ['required'],\r\n            'price' => ['required'],\r\n            'product_id' => ['required'],\r\n            'image' => ['required'],\r\n            'status' => ['required'],\r\n        ],\r\n            [\r\n                'title.required' => 'عنوان محصول الزامی است',\r\n                'title.min' => 'عنوان محصول نمیتواند کمتر از سه کارکتر باشد',\r\n                'title.max' => 'عنوان محصول نمیتواند بیشتر از 255 کارکتر باشد',\r\n                'category.required' => 'دسته بندی محصول الزامی است',\r\n                'price.required' => 'قیمت محصول الزامی است',\r\n                'product_id.required' => 'کد محصول الزامی است',\r\n                'image.required' => 'تصویر محصول الزامی است',\r\n                'status.required' => 'وضعیت محصول الزامی است',\r\n\r\n            ]);\r\n\r\n        if ($request->hasFile('image')) {\r\n            $image = '';\r\n            $destination = public_path() . config('cms-setting.url');\r\n            if (!is_dir($destination)) {\r\n                mkdir($destination, '0777', true);\r\n            }\r\n            $destination = $destination . '/';\r\n            $file = $request->file('image');\r\n            $filename = time() . $file->getClientOriginalName();\r\n            $file->move($destination, $filename);\r\n            $image = config('cms-setting.url') . '/' . $filename;\r\n            $thumbnail = $image;\r\n\r\n\r\n            Product::create([\r\n                'title' => $request->get('title'),\r\n                'slug' => $request->get('title'),\r\n                'description' => $request->get('description'),\r\n                'price' => $request->get('price'),\r\n                'old_price' => $request->get('old_price'),\r\n                'category' => $request->get('category'),\r\n                'count' => $request->get('count'),\r\n                'size' => $request->get('size'),\r\n                'weight' => $request->get('weight'),\r\n                'discount' => $request->get('discount'),\r\n                'product_id' => $request->get('product_id'),\r\n                'status' => $request->get('status'),\r\n                'image' => $image,\r\n                'thumbnail' => $thumbnail,\r\n                'rate' => 1,\r\n            ]);\r\n            return redirect(route('dashboard.product.index'))->with('message', 'محصول شما با موفقیت ثبت شد');\r\n        } else\r\n            return redirect(route('dashboard.product.index'))->with('error', 'مشکلی در ثبت محصول وجود دارد');\r\n=======\r\n        //\r\n>>>>>>> origin/master\r\n    }\r\n\r\n    /**\r\n     * Display the specified resource.\r\n     *\r\n<<<<<<< HEAD\r\n     * @param int $id\r\n=======\r\n     * @param  int  $id\r\n>>>>>>> origin/master\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function show($id)\r\n    {\r\n        //\r\n    }\r\n\r\n    /**\r\n     * Show the form for editing the specified resource.\r\n     *\r\n<<<<<<< HEAD\r\n     * @param int $id\r\n=======\r\n     * @param  int  $id\r\n>>>>>>> origin/master\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function edit($id)\r\n    {\r\n<<<<<<< HEAD\r\n        $product = Product::findorfail($id);\r\n        $allcategories = ProductCategory::all();\r\n        return view('adminpanel/product/edit', compact(['product', 'allcategories']));\r\n=======\r\n        //\r\n>>>>>>> origin/master\r\n    }\r\n\r\n    /**\r\n     * Update the specified resource in storage.\r\n     *\r\n<<<<<<< HEAD\r\n     * @param \\Illuminate\\Http\\Request $request\r\n     * @param int $id\r\n=======\r\n     * @param  \\Illuminate\\Http\\Request  $request\r\n     * @param  int  $id\r\n>>>>>>> origin/master\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function update(Request $request, $id)\r\n    {\r\n<<<<<<< HEAD\r\n        $this->validate($request, [\r\n            'title' => ['required', 'min:3', 'max:255'],\r\n            'category' => ['required'],\r\n            'price' => ['required'],\r\n//            'product_id'=>['required'],\r\n//            'image'=>['required'],\r\n            'status' => ['required'],\r\n        ],\r\n            [\r\n                'title.required' => 'عنوان محصول الزامی است',\r\n                'title.min' => 'عنوان محصول نمیتواند کمتر از سه کارکتر باشد',\r\n                'title.max' => 'عنوان محصول نمیتواند بیشتر از 255 کارکتر باشد',\r\n                'category.required' => 'دسته بندی محصول الزامی است',\r\n                'price.required' => 'قیمت محصول الزامی است',\r\n                'product_id.required' => 'کد محصول الزامی است',\r\n                'image.required' => 'تصویر محصول الزامی است',\r\n                'status.required' => 'وضعیت محصول الزامی است',\r\n\r\n            ]);\r\n        $product = Product::findorfail($id);\r\n\r\n        if ($request->hasFile('image')) {\r\n            $image = '';\r\n            $destination = public_path() . config('cms-setting.url');\r\n            if (!is_dir($destination)) {\r\n                mkdir($destination, '0777', true);\r\n            }\r\n            $destination = $destination . '/';\r\n            $file = $request->file('image');\r\n            $filename = time() . $file->getClientOriginalName();\r\n            $file->move($destination, $filename);\r\n            $image = config('cms-setting.url') . '/' . $filename;\r\n            $thumbnail = $image;\r\n\r\n        } else {\r\n            $image = $product->image;\r\n            $thumbnail = $image;\r\n        }\r\n        $product->update([\r\n            'title' => $request->get('title'),\r\n            'slug' => $request->get('title'),\r\n            'description' => $request->get('description'),\r\n            'price' => $request->get('price'),\r\n            'old_price' => $request->get('old_price'),\r\n            'category' => $request->get('category'),\r\n            'count' => $request->get('count'),\r\n            'size' => $request->get('size'),\r\n            'weight' => $request->get('weight'),\r\n            'discount' => $request->get('discount'),\r\n            'product_id' => $product->product_id,\r\n            'status' => $request->get('status'),\r\n            'image' => $image,\r\n            'thumbnail' => $thumbnail,\r\n//                'rate'=>1,\r\n        ]);\r\n        $product->save();\r\n        return redirect(route('dashboard.product.index'))->with('message', 'محصول ' . $product->title . ' با موفقیت ویرایش شد');\r\n=======\r\n        //\r\n>>>>>>> origin/master\r\n    }\r\n\r\n    /**\r\n     * Remove the specified resource from storage.\r\n     *\r\n<<<<<<< HEAD\r\n     * @param int $id\r\n=======\r\n     * @param  int  $id\r\n>>>>>>> origin/master\r\n     * @return \\Illuminate\\Http\\Response\r\n     */\r\n    public function destroy($id)\r\n    {\r\n<<<<<<< HEAD\r\n        $product = Product::findOrFail($id);\r\n\r\n        if (!$product) {\r\n            return redirect(route('dashboard.product.index'))->with('error', 'محصول مورد نظر موجود نمی باشد');\r\n        } else {\r\n            $product->delete();\r\n            return redirect(route('dashboard.product.index'))->with('warning', 'محصول ' . $product->title . ' با موفقیت حذف شد');\r\n        }\r\n    }\r\n\r\n    public function uploadImage()\r\n    {\r\n        $this->validate(request(), [\r\n            'upload' => 'required'\r\n        ]);\r\n        $image = '';\r\n\r\n        $imagePath = \"/upload/images/2020/\";\r\n        $file = request()->file('upload');\r\n        $filename = $file->getClientOriginalName();\r\n        if (file_exists(public_path($imagePath) . $filename)) {\r\n            $filename = Carbon::now()->timestamp . $filename;\r\n        }\r\n        $file->move(public_path($imagePath), $filename);\r\n        $url = $imagePath . $filename;\r\n        $function_number = $_GET['CKEditorFuncNum'];\r\n        $message = '';\r\n        return \"<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction( '$function_number' , '$url' , '$message' );</script>\";\r\n\r\n=======\r\n        //\r\n>>>>>>> origin/master\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/Http/Controllers/adminpanel/productController.php	(revision 3d6b97a28b81163c6cde65b1b4ebc5470f2b162d)
++++ app/Http/Controllers/adminpanel/productController.php	(date 1606917689533)
+@@ -2,16 +2,14 @@
+ 
+ namespace App\Http\Controllers\adminpanel;
+ 
+-<<<<<<< HEAD
++
+ use App\Product;
+ use App\ProductCategory;
+ use Illuminate\Http\Request;
+ use App\Http\Controllers\Controller;
+ use Carbon\Carbon;
+-=======
+-use Illuminate\Http\Request;
+-use App\Http\Controllers\Controller;
+->>>>>>> origin/master
++
++
+ 
+ class productController extends Controller
+ {
+@@ -22,14 +20,9 @@
+      */
+     public function index()
+     {
+-<<<<<<< HEAD
+         $allProuduct = Product::all();
+         return view("adminpanel.product.index", compact('allProuduct'));
+ 
+-
+-=======
+-        //
+->>>>>>> origin/master
+     }
+ 
+     /**
+@@ -39,12 +32,8 @@
+      */
+     public function create()
+     {
+-<<<<<<< HEAD
+         $allcategories = ProductCategory::all();
+         return view('adminpanel.product.create', compact('allcategories'));
+-=======
+-        //
+->>>>>>> origin/master
+     }
+ 
+     /**
+@@ -59,7 +48,7 @@
+      */
+     public function store(Request $request)
+     {
+-<<<<<<< HEAD
++
+         $this->validate($request, [
+             'title' => ['required', 'min:3', 'max:255'],
+             'category' => ['required'],
+@@ -114,9 +103,7 @@
+             return redirect(route('dashboard.product.index'))->with('message', 'محصول شما با موفقیت ثبت شد');
+         } else
+             return redirect(route('dashboard.product.index'))->with('error', 'مشکلی در ثبت محصول وجود دارد');
+-=======
+-        //
+->>>>>>> origin/master
++
+     }
+ 
+     /**
+@@ -146,13 +133,11 @@
+      */
+     public function edit($id)
+     {
+-<<<<<<< HEAD
++
+         $product = Product::findorfail($id);
+         $allcategories = ProductCategory::all();
+         return view('adminpanel/product/edit', compact(['product', 'allcategories']));
+-=======
+-        //
+->>>>>>> origin/master
++
+     }
+ 
+     /**
+@@ -169,7 +154,7 @@
+      */
+     public function update(Request $request, $id)
+     {
+-<<<<<<< HEAD
++
+         $this->validate($request, [
+             'title' => ['required', 'min:3', 'max:255'],
+             'category' => ['required'],
+@@ -227,9 +212,7 @@
+         ]);
+         $product->save();
+         return redirect(route('dashboard.product.index'))->with('message', 'محصول ' . $product->title . ' با موفقیت ویرایش شد');
+-=======
+-        //
+->>>>>>> origin/master
++
+     }
+ 
+     /**
+@@ -244,7 +227,7 @@
+      */
+     public function destroy($id)
+     {
+-<<<<<<< HEAD
++
+         $product = Product::findOrFail($id);
+ 
+         if (!$product) {
+@@ -274,8 +257,5 @@
+         $message = '';
+         return "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction( '$function_number' , '$url' , '$message' );</script>";
+ 
+-=======
+-        //
+->>>>>>> origin/master
+     }
+ }
