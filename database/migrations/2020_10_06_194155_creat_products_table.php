@@ -13,6 +13,7 @@ class CreatProductsTable extends Migration
      */
     public function up()
     {
+<<<<<<< HEAD
         Schema::create('Products',function (Blueprint $table){
             $table->bigIncrements('id');
             $table->string('title');
@@ -34,6 +35,9 @@ class CreatProductsTable extends Migration
             $table->timestamp('updated_at')->nullable();
         }
         );
+=======
+        //
+>>>>>>> origin/master
     }
 
     /**

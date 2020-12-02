@@ -2,6 +2,7 @@
 
 namespace App;
 
+<<<<<<< HEAD
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -46,4 +47,11 @@ class ProductCategory extends Model
         return $allpro->count();
     }
 
+=======
+use Illuminate\Database\Eloquent\Model;
+
+class ProductCategory extends Model
+{
+    //
+>>>>>>> origin/master
 }

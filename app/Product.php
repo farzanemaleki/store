@@ -2,6 +2,7 @@
 
 namespace App;
 
+<<<<<<< HEAD
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -49,4 +50,11 @@ class Product extends Model
     return $published_products;
     }
 
+=======
+use Illuminate\Database\Eloquent\Model;
+
+class Product extends Model
+{
+    //
+>>>>>>> origin/master
 }
