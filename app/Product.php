@@ -2,12 +2,13 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
 
 class Product extends Model
 {
-//    use Sluggable;
+    use Sluggable;
 
     public function productcategory(){
         return $this->belongsTo(ProductCategory::class);
@@ -17,7 +18,8 @@ class Product extends Model
         'title','description','slug','price','old_price','category','count','size','weight','discount','product_id','status','image','thumbnail',
         'rate'
     ];
-    public function slugable(){
+    public function sluggable()
+    {
         return [
             'slug' => [
                 'source' => 'title'
@@ -26,13 +28,12 @@ class Product extends Model
     }
 
     public function category_name($id){
-        $category_name = ProductCategory::where( 'id' ,$id)->first();
-        if(!$category_name){
+        $category = ProductCategory::where( 'id' ,$id)->first();
+        if(!$category){
             return 'بدون دسته بندی';
         }else
         {
-            $category_name = $category_name->title;
-            return $category_name;
+            return $category->title;
         }
     }
 
@@ -47,6 +48,5 @@ class Product extends Model
         }
     return $published_products;
     }
-
 
 }

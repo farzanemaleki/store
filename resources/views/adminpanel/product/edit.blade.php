@@ -152,7 +152,7 @@
                         <div class="form-group">
                             <lable> توضیحات محصول</lable>
                             <textarea rows="5" class="form-control" name="description"
-                                      placeholder="توضیحات محصول را وارد کنید ...">{{$product->description}}</textarea>
+                                      placeholder="توضیحات محصول را وارد کنید ...">{!! $product->description !!}</textarea>
                         </div>
                     </div>
                     <div class="col-sm-12">

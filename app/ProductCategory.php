@@ -2,11 +2,13 @@
 
 namespace App;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
+
 
 class ProductCategory extends Model
 {
-//    use Sluggable;
+    use Sluggable;
 
     public function product(){
         return $this->hasMany(Product::class);
@@ -18,7 +20,7 @@ class ProductCategory extends Model
         'title','slug','description','parent_id','status','image'
     ];
 
-    public function slugable(){
+    public function sluggable(){
         return [
             'slug' => [
                 'source' => 'title'
@@ -38,4 +40,10 @@ class ProductCategory extends Model
         }
 
     }
+    public function countsProducts($id)
+    {
+        $allpro =Product::where( 'category' , '=' , $id )->get();
+        return $allpro->count();
+    }
+
 }

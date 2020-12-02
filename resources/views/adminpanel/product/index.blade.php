@@ -84,7 +84,7 @@
                                                     {{$product->price}}
                                                 @endif
                                             </td>
-                                            <td>{{$product->description}}</td>
+                                            <td>{!! $product->description !!}</td>
                                             <td>{{$product->product_id}}</td>
                                             <td><img width="100px" src="{{ url('') }}{{$product->image}}" alt="{{$product->title}}"></td>
                                             <td>{{$product->category_name($product->category)}}</td>

@@ -21,6 +21,6 @@ class admin
             return $next($request);
         }
 
-        return redirect('home');
+        return redirect('/homepage');
     }
 }
