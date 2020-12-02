@@ -33,7 +33,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/homepage';
 
     /**
      * Create a new controller instance.
@@ -68,7 +68,7 @@ class LoginController extends Controller
         }
         elseif($user->role!=='admin'){
             Auth::login($user);
-            return redirect(route('home'));
+            return redirect(route('user.account.index'));
         }
         else {
             Auth::login($user);
@@ -79,6 +79,6 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         auth()->logout();
-        return redirect(route('login'));
+        return redirect(route('homepage'));
     }
 }

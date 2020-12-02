@@ -21,8 +21,12 @@ class ProductCategory extends Model
         'title', 'slug', 'description', 'parent_id', 'status', 'image'
     ];
 
+<<<<<<< HEAD
     public function sluggable()
     {
+=======
+    public function sluggable(){
+>>>>>>> create cart,shop,singleProduct,category Pages
         return [
             'slug' => [
                 'source' => 'title'
@@ -41,10 +45,19 @@ class ProductCategory extends Model
         }
 
     }
+<<<<<<< HEAD
 
     public function countsProducts($id)
     {
         $allpro = Product::where('category', '=', $id)->get();
         return $allpro->count();
     }
+=======
+    public function countsProducts($id)
+    {
+        $allpro =Product::where( 'category' , '=' , $id )->get();
+        return $allpro->count();
+    }
+
+>>>>>>> create cart,shop,singleProduct,category Pages
 }

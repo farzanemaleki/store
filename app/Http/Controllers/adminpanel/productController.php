@@ -22,6 +22,10 @@ class productController extends Controller
     {
         $allProuduct = Product::all();
         return view("adminpanel.product.index", compact('allProuduct'));
+<<<<<<< HEAD
+=======
+
+>>>>>>> create cart,shop,singleProduct,category Pages
 
     }
 

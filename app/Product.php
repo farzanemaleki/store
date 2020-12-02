@@ -2,7 +2,10 @@
 
 namespace App;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> create cart,shop,singleProduct,category Pages
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -20,7 +23,10 @@ class Product extends Model
         'title', 'description', 'slug', 'price', 'old_price', 'category', 'count', 'size', 'weight', 'discount', 'product_id', 'status', 'image', 'thumbnail',
         'rate'
     ];
+<<<<<<< HEAD
 
+=======
+>>>>>>> create cart,shop,singleProduct,category Pages
     public function sluggable()
     {
         return [
@@ -30,12 +36,21 @@ class Product extends Model
         ];
     }
 
+<<<<<<< HEAD
     public function category_name($id)
     {
         $category = ProductCategory::where('id', $id)->first();
         if (!$category) {
             return 'بدون دسته بندی';
         } else {
+=======
+    public function category_name($id){
+        $category = ProductCategory::where( 'id' ,$id)->first();
+        if(!$category){
+            return 'بدون دسته بندی';
+        }else
+        {
+>>>>>>> create cart,shop,singleProduct,category Pages
             return $category->title;
         }
     }
@@ -53,7 +68,10 @@ class Product extends Model
         return $published_products;
     }
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> create cart,shop,singleProduct,category Pages
 }

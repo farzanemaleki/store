@@ -286,6 +286,14 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="nav-item has-treeview">
+                        <a href="/logoutUser" class="nav-link">
+                            <i class="fa fa-sign-out right"></i>
+                            <p>
+                                خروج
+                            </p>
+                        </a>
+                    </li>
                     {{--                    <li class="nav-item has-treeview">--}}
                     {{--                        <a href="#" class="nav-link">--}}
                     {{--                            <i class="nav-icon fa fa-plus-square-o"></i>--}}

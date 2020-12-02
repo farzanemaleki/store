@@ -20,21 +20,43 @@
     <meta name="msapplication-TileColor" content="#cc9966">
     <meta name="msapplication-config" content="assets/images/icons/browserconfig.xml">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="{{url('site/assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css')}}">
+    <link rel="stylesheet"
+          href="{{url('site/assets/vendor/line-awesome/line-awesome/line-awesome/css/line-awesome.min.css')}}">
     <!-- Plugins CSS File -->
     <link rel="stylesheet" href="{{url('site/assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{url('site/assets/css/bootstrap-rtl.min.css')}}">
     <link rel="stylesheet" href="{{url('site/assets/css/plugins/owl-carousel/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{url('site/assets/css/plugins/magnific-popup/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{url('site/assets/css/plugins/jquery.countdown.css')}}">
-    <!-- Main CSS File -->
+@yield('header_styles')
+<!-- Main CSS File -->
     <link rel="stylesheet" href="{{url('site/assets/css/style.css')}}">
     <link rel="stylesheet" href="{{url('site/assets/css/skins/skin-demo-4.css')}}">
     <link rel="stylesheet" href="{{url('site/assets/css/demos/demo-4.css')}}">
 </head>
 <body>
-@yield('main-content')
+<div class="page-wrapper">
+    <header class="header header-intro-clearance header-4">
+        @include('site.layout.header.header-top')
 
+        @include('site.layout.header.header-middle')
+
+        @include('site.layout.header.header-bottom')
+    </header>
+    <!-- End .header -->
+
+    <main class="main">
+        @yield('main-content')
+    </main>
+</div>
+
+@include('site.layout.widgets.scrollToTop')
+
+@include('site.layout.widgets.mobileMenu')
+
+@include('site.layout.widgets.signInSignUpModal')
+
+@include('site.layout.footer.footer')
 {{--<div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">--}}
 {{--    <div class="row justify-content-center">--}}
 {{--        <div class="col-10">--}}
@@ -80,6 +102,7 @@
 <script src="{{url('site/assets/js/jquery.plugin.min.js')}}"></script>
 <script src="{{url('site/assets/js/jquery.magnific-popup.min.js')}}"></script>
 <script src="{{url('site/assets/js/jquery.countdown.min.js')}}"></script>
+@yield('footer_scripts')
 <!-- Main JS File -->
 <script src="{{url('site/assets/js/main.js')}}"></script>
 <script src="{{url('site/assets/js/demos/demo-4.js')}}"></script>
