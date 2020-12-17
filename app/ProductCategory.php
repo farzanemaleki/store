@@ -2,31 +2,26 @@
 
 namespace App;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
-
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class ProductCategory extends Model
 {
     use Sluggable;
 
-    public function product()
+    public function products()
     {
         return $this->hasMany(Product::class);
     }
 
-    protected $table = 'productcategory';
+    protected $table = 'ProductCategory';
 
     protected $fillable = [
-        'title', 'slug', 'description', 'parent_id', 'status', 'image'
+        'title', 'description' , 'parent_id' , 'image' , 'status'
     ];
 
-<<<<<<< HEAD
     public function sluggable()
     {
-=======
-    public function sluggable(){
->>>>>>> create cart,shop,singleProduct,category Pages
         return [
             'slug' => [
                 'source' => 'title'
@@ -45,19 +40,11 @@ class ProductCategory extends Model
         }
 
     }
-<<<<<<< HEAD
 
     public function countsProducts($id)
     {
         $allpro = Product::where('category', '=', $id)->get();
         return $allpro->count();
     }
-=======
-    public function countsProducts($id)
-    {
-        $allpro =Product::where( 'category' , '=' , $id )->get();
-        return $allpro->count();
-    }
 
->>>>>>> create cart,shop,singleProduct,category Pages
 }

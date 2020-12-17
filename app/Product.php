@@ -2,13 +2,8 @@
 
 namespace App;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> create cart,shop,singleProduct,category Pages
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
-
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Product extends Model
 {
@@ -19,14 +14,12 @@ class Product extends Model
         return $this->belongsTo(ProductCategory::class);
     }
 
-    protected $fillable = [
-        'title', 'description', 'slug', 'price', 'old_price', 'category', 'count', 'size', 'weight', 'discount', 'product_id', 'status', 'image', 'thumbnail',
-        'rate'
+    protected $fillable =[
+        'title', 'description', 'size', 'price', 'old_price' , 'discount' , 'category' , 'rate' , 'weight' , 'count' ,
+        'image' , 'thumbnail' , 'product_id' ,
+        'status'
     ];
-<<<<<<< HEAD
 
-=======
->>>>>>> create cart,shop,singleProduct,category Pages
     public function sluggable()
     {
         return [
@@ -36,42 +29,32 @@ class Product extends Model
         ];
     }
 
-<<<<<<< HEAD
     public function category_name($id)
     {
-        $category = ProductCategory::where('id', $id)->first();
-        if (!$category) {
+        $category = ProductCategory::where('id',$id)->first();
+        if (!$category){
             return 'بدون دسته بندی';
-        } else {
-=======
-    public function category_name($id){
-        $category = ProductCategory::where( 'id' ,$id)->first();
-        if(!$category){
-            return 'بدون دسته بندی';
-        }else
-        {
->>>>>>> create cart,shop,singleProduct,category Pages
-            return $category->title;
+        }
+        else{
+            return $category->topic;
         }
     }
 
     public function publishedProduct()
     {
-        $product = Product::all();
+        $products = Product::all();
         $published_products = [];
-        foreach ($product as $item) {
-            if ($item->status == 1) {
-                $published_products[] = $item;
-
+        foreach ($products as $pro){
+            if ($pro->status == 1){
+                $published_products [] = $pro;
             }
         }
         return $published_products;
     }
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> create cart,shop,singleProduct,category Pages
+    public function more_product($id)
+    {
+        $randomMoreProducts = Product::where('category', '=', $id)->inRandomOrder(8)->get();
+        return $randomMoreProducts ;
+    }
 }
