@@ -36,7 +36,7 @@ class Product extends Model
             return 'بدون دسته بندی';
         }
         else{
-            return $category->topic;
+            return $category->title;
         }
     }
 

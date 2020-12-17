@@ -59,6 +59,7 @@
                                     @foreach($allproductAttr as $attr)
                                         <tr>
                                             <td>{{$attr->id}}</td>
+                                            <td>{{$attr->product_name($attr->product_id)}}</td>
                                             <td>{{$attr->key}}</td>
                                             <td>{{$attr->value}}</td>
                                             <td>
@@ -93,9 +94,9 @@
     <script !src="">
         $('.nav-link').removeClass('active');
 
-        $('#categories').addClass('menu-open');
-        $('#categories> a').addClass('active');
-        $('#allCategory').addClass('active');
+        $('#attribiutes').addClass('menu-open');
+        $('#attribiutes> a').addClass('active');
+        $('#allAttr').addClass('active');
 
 
     </script>

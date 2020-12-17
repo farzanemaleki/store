@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<?php
-=======
 @extends('adminpanel.layout')
 
 @section('pageTitle')
@@ -141,4 +138,3 @@
 
     </script>
 @stop
->>>>>>> creat product and category and store and update and edite and delete

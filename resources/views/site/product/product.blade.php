@@ -102,24 +102,19 @@
                 <div class="tab-pane fade" id="product-info-tab" role="tabpanel"
                      aria-labelledby="product-info-link">
                     <div class="product-desc-content">
-                        <h3>اطلاعات</h3>
-                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید
-                            سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوملورم ایپسوم متن
-                            ساختگی با تولید سادگی نامفهوملورم ایپسوم متن ساختگی با تولید سادگی نامفهوملورم
-                            ایپسوم متن ساختگی با تولید سادگی نامفهوم. </p>
-
                         <h3>اطلاعات بیشتر</h3>
                         <ul>
-                            <li>لورم ایپسوم متن ساختگی</li>
-                            <li>لورم ایپسوم متن ساختگی با تولید سادگی</li>
-                            <li>لورم ایپسوم</li>
-                            <li>لورم ایپسوم متن ساختگی</li>
-                            <li>لورم ایپسوم متن ساختگی با تولید سادگی</li>
-                            <li> ارتفاع: 31سانتی متر; عرض: 32سانتی متر; عمق: 12سانتی متر</li>
+                            @foreach($allAttr as $attre)
+                                <li class="row">
+                                    <div class="col-sm-12 col-md-3 bg-gray m-1 pt-1">{{$attre->key}}</div>
+
+                                    <div class="col-sm-12 col-md-8 bg-gray m-1 pt-1">{{$attre->value}}</div>
+                                </li>
+{{--                                    <li>{{$attre->key}} : {{$attre->value}}</li>--}}
+
+                            @endforeach
                         </ul>
 
-                        <h3>سایز</h3>
-                        <p>تک سایز</p>
                     </div><!-- End .product-desc-content -->
                 </div><!-- .End .tab-pane -->
                 <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel"

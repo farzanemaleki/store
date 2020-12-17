@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\adminpanel;
 
+use App\Product;
+use App\productAttribiutes;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +16,8 @@ class productAttribiutesController extends Controller
      */
     public function index()
     {
-        //
+        $allproductAttr = productAttribiutes::all();
+        return view('adminpanel.productAttr.index' , compact('allproductAttr'));
     }
 
     /**
@@ -24,7 +27,8 @@ class productAttribiutesController extends Controller
      */
     public function create()
     {
-        //
+        $allProduct = Product::all();
+        return view('adminpanel.productAttr.create' , compact('allProduct'));
     }
 
     /**
@@ -35,7 +39,23 @@ class productAttribiutesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request , [
+            'product_id' => 'required',
+            'key' => 'required',
+            'value' => 'required',
+        ] , [
+            'product_id.required' => 'انتخاب محصول الزامی است.',
+            'key.required' => 'عنوان ویژگی الزامی است.',
+            'value.required' => 'مقدار ویزگی الزامی است.'
+        ]);
+
+        productAttribiutes::create([
+            'product_id' => $request->get('product_id'),
+            'key' => $request->get('key'),
+            'value' => $request->get('value')
+        ]);
+        return redirect()->route('dashboard.productAttribiutes.index')->with('message' , 'ویژگی مدنظر شما با موفقیت ثبت شد.');
+
     }
 
     /**
@@ -57,7 +77,8 @@ class productAttribiutesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Atrr = productAttribiutes::findOrFail($id);
+        return view('adminpanel.productAttr.edit' , compact('Atrr'));
     }
 
     /**

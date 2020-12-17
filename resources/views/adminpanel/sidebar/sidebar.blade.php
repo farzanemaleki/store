@@ -90,35 +90,83 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item has-treeview">
+                    <!-----        product Attribiutes   ------>
+                    <li class="nav-item has-treeview" id="attribiutes">
                         <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-pie-chart"></i>
+                            <i class="nav-icon fa fa-th"></i>
                             <p>
-                                چارت‌ها
+                                ویژگی محصولات
                                 <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\productAttribiutes::all()->count()}}</span>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item">
-                                <a href="pages/charts/chartjs.html" class="nav-link">
+                            <li class="nav-item" >
+                                <a href="{{ route('dashboard.productAttribiutes.index')}}" id="allAttr" class="nav-link" >
                                     <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>نمودار ChartJS</p>
+                                    <p>لیست همه ویژگی ها</p>
                                 </a>
                             </li>
-                            <li class="nav-item">
-                                <a href="pages/charts/flot.html" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>نمودار Flot</p>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="pages/charts/inline.html" class="nav-link">
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>نمودار Inline</p>
+                            <li class="nav-item" >
+                                <a href="{{ route('dashboard.productAttribiutes.create')}}" class="nav-link" id="newAttr">
+                                    <i class="fa fa-circle nav-icon"></i>
+                                    <p>افزودن ویژگی جدید</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
+
+                    <!-----        blogs   ------>
+                    <li class="nav-item has-treeview" id="blogs">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                نوشته ها
+                                <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\Blog::all()->count()}}</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item" >
+                                <a href="{{ route('dashboard.blog.index')}}" id="allblog" class="nav-link" >
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>لیست همه نوشته ها</p>
+                                </a>
+                            </li>
+                            <li class="nav-item" >
+                                <a href="{{ route('dashboard.blog.create')}}" class="nav-link" id="newblog">
+                                    <i class="fa fa-circle nav-icon"></i>
+                                    <p>افزودن نوشته جدید</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                 <!-----        Members   ------>
+                    <li class="nav-item has-treeview" id="members">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                کاربران سایت
+                                <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\User::all()->count()}}</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item" >
+                                <a href="{{ route('dashboard.members.index')}}" id="allmembers" class="nav-link" >
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>لیست همه  کاربران سایت</p>
+                                </a>
+                            </li>
+{{--                            <li class="nav-item" >--}}
+{{--                                <a href="{{ route('dashboard.productAttribiutes.create')}}" class="nav-link" id="new-member">--}}
+{{--                                    <i class="fa fa-circle nav-icon"></i>--}}
+{{--                                    <p>افزودن ویژگی جدید</p>--}}
+{{--                                </a>--}}
+{{--                            </li>--}}
+                        </ul>
+                    </li>
+
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-tree"></i>

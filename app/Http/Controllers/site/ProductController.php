@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Product;
+use App\productAttribiutes;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -50,7 +51,8 @@ class ProductController extends Controller
     {
         $allcategory = ProductCategory::all();
         $product = Product::FindOrFail($id);
-        return view('site.product.product',compact(['product' , 'allcategory']));
+        $allAttr = productAttribiutes::all()->where('product_id' , '=' , $id);
+        return view('site.product.product',compact(['product' , 'allcategory' , 'allAttr']));
     }
 
     /**

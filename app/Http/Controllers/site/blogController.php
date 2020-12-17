@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\site;
 
+use App\Blog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,7 @@ class blogController extends Controller
      */
     public function index()
     {
-        //
+        return view('site.blog.categoryBlog');
     }
 
     /**
@@ -46,7 +47,8 @@ class blogController extends Controller
      */
     public function show($id)
     {
-        //
+        $blog = Blog::findOrFail($id);
+        return view('site.blog.singleBlog' , compact('blog'));
     }
 
     /**

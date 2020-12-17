@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\site;
 
 use App\Product;
+use App\ProductCategory;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +17,8 @@ class cartController extends Controller
      */
     public function index()
     {
-        return view('site.cart.cart');
+        $allcategory = ProductCategory::all();
+        return view('site.cart.cart' , compact('allcategory'));
     }
 
     /**
@@ -67,12 +69,33 @@ class cartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $newQty = $request->get('newQty');
+        $rowId = $request->get('rowId');
+        $procount = $request->get('productCount');
+
+        if ($procount == null || $procount >= $newQty+1){
+            Cart::update($rowId , $newQty + 1);
+            return redirect()->route('site.cart.index')->with('message' , 'سبد خرید با موفقیت به روز رسانی شد');
+        }else
+        {
+            return redirect()->route('site.cart.index')->with('alert-message' , 'درخواست شما بیشتر از موجودی انبار می باشد');
+        }
+
+
+
+    }
+
+    public function update2(Request $request)
+    {
+        $newQty = $request->get('newQty');
+        $rowId = $request->get('rowId');
+
+        Cart::update($rowId , $newQty - 1);
+        return redirect()->route('site.cart.index')->with('message' , 'سبد خرید با موفقیت به روز رسانی شد');
     }
 
     /**

@@ -71,8 +71,37 @@
                                     <td class="price-col">{{number_format(intdiv((int)$item->model->price , 10)). ' '}}تومان</td>
                                     <td class="quantity-col">
                                         <div class="cart-product-quantity">
-                                            <input type="number" class="form-control" value="{{$item->qty}}" min="1" max="10"
-                                                   step="1" data-decimals="0" required>
+                                            <input type="hidden" class="form-control" style="display: none;">
+                                            <div class="input-group  input-spinner">
+                                                <div class="input-group-prepend">
+                                                    @if($item->qty < 1)
+                                                        <form action="{{ route('site.cart.destroy' , $item->rowId) }}" method="POST">
+                                                            @csrf
+                                                            {{ method_field('DELETE') }}
+                                                            <button type="submit" class="btn"><i class="icon-close"></i></button>
+                                                        </form>
+                                                    @else
+                                                        <form action="{{ route('site.cart.update.d') }}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="newQty" id="qty" value="{{ $item->qty }}">
+                                                            <input type="hidden" name="rowId" id="rowId" value="{{ $item->rowId }}">
+                                                            <input type="hidden" name="productCount" id="rowId" value="{{ $item->model->count }}">
+                                                            <button style="min-width: 26px" class="btn btn-decrement btn-spinner" type="submit"><i class="icon-minus"></i></button>
+                                                        </form>
+                                                    @endif
+                                                </div>
+                                                <input type="text" id="upCart{{$item->id}}" value="{{ $item->qty }}" min="1" max="{{ $item->count ? $item->count : 10 }}" step="1" data-decimals="0" required=""  style="text-align: center" class="form-control " >
+
+                                                <div class="input-group-append">
+                                                    <form action="{{ route('site.cart.update.i') }}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="newQty" id="qty" value="{{ $item->qty }}">
+                                                        <input type="hidden" name="rowId" id="rowId" value="{{ $item->rowId }}">
+                                                        <input type="hidden" name="productCount" id="productCount" value="{{ $item->model->count }}">
+                                                        <button style="min-width: 26px" class="btn btn-increment btn-spinner" type="submit"><i class="icon-plus"></i></button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div><!-- End .cart-product-quantity -->
                                     </td>
                                     <td class="total-col">{{ number_format( intdiv((int)$item->model->price , 10 ) * $item->qty ). ' '}}تومان</td>

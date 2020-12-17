@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\adminpanel;
 
+use App\Blog;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class blogController extends Controller
      */
     public function index()
     {
-        //
+        $blogs = Blog::latest();
+        return view('adminpanel.blog.index' , compact('blogs'));
     }
 
     /**
@@ -24,7 +26,7 @@ class blogController extends Controller
      */
     public function create()
     {
-        //
+        return view('');
     }
 
     /**

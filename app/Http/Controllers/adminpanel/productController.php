@@ -22,10 +22,6 @@ class productController extends Controller
     {
         $allProuduct = Product::all();
         return view("adminpanel.product.index", compact('allProuduct'));
-<<<<<<< HEAD
-=======
-
->>>>>>> create cart,shop,singleProduct,category Pages
 
     }
 
@@ -40,16 +36,6 @@ class productController extends Controller
         return view('adminpanel.product.create', compact('allcategories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-<<<<<<< HEAD
-     * @param \Illuminate\Http\Request $request
-=======
-     * @param  \Illuminate\Http\Request  $request
->>>>>>> origin/master
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -110,31 +96,11 @@ class productController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-<<<<<<< HEAD
-     * @param int $id
-=======
-     * @param  int  $id
->>>>>>> origin/master
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-<<<<<<< HEAD
-     * @param int $id
-=======
-     * @param  int  $id
->>>>>>> origin/master
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
 
@@ -144,18 +110,6 @@ class productController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-<<<<<<< HEAD
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-=======
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
->>>>>>> origin/master
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
 
@@ -219,16 +173,7 @@ class productController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-<<<<<<< HEAD
-     * @param int $id
-=======
-     * @param  int  $id
->>>>>>> origin/master
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
 

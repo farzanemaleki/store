@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\adminpanel;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,8 @@ class MembersController extends Controller
      */
     public function index()
     {
-        //
+        $allmembers = User::all();
+        return view('adminpanel.members.members' , compact('allmembers'));
     }
 
     /**

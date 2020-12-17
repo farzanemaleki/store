@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\adminpanel;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -20,7 +21,8 @@ class dashboardController extends Controller
 
     public function index()
     {
-       return view('adminpanel.dashboard');
+       $Members = User::all()->count();
+       return view('adminpanel.dashboard' , compact('Members'));
     }
 
     /**

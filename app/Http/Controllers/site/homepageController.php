@@ -15,13 +15,13 @@ class homepageController extends Controller
 //       $allProducts = $product->publishedProduct();
 
 
-       $allcategory = ProductCategory::all();
+//       $allcategory = ProductCategory::all();
        if(cache('allProducts')){
            $allProducts = cache('allProducts');
        }else{
            $allProducts = Product::latest()->take(8)->get();
            cache(['allProducts'=>$allProducts], carbon::now()->addMinute(5));
        }
-       return view('site.homePage.homePage', compact(['allProducts' , 'allcategory']));
+       return view('site.homePage.homePage', compact('allProducts' ));
    }
 }
