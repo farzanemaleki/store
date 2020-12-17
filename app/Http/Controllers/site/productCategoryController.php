@@ -50,7 +50,8 @@ class productCategoryController extends Controller
     {
         $category = ProductCategory::findOrFail($id);
         $allproductCount = Product::where('category' , '=' , $id)->count();
-        $allproduct = Product::paginate(3)->where('category' , '=' , $id)->all();
+        $allproduct = Product::where('category' , '=' , $id)->get();
+//        $allproduct = Product::paginate(3)->where('category' , '=' , $id)->all();
         $allcategory = ProductCategory::all();
         return view('site.category.productCategory' , compact(['category' , 'allproductCount' , 'allproduct' , 'allcategory']));
     }

@@ -51,7 +51,7 @@
                             <lable> دسته بندی محصول</lable>
                             <select class="form-control" name="category">
                                 <option value=""><span class=" text-darkwhite">انتخاب دسته بندی محصول...</span></option>
-                                <option value="0">دسته بندی نشده ها</option>
+{{--                                <option value="0">دسته بندی نشده ها</option>--}}
                                 @foreach($allcategories as $category)
                                     <option value="{{$category->id}}">{{$category->title}}</option>
                                 @endforeach

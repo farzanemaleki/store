@@ -34,7 +34,7 @@
 
                         <div class="products mb-3">
                             <div class="row justify-content-center">
-                                @if($allproductCount)
+                                @if($allproductCount >0)
                                     @foreach($allproduct as $product)
                                         <div class="col-6 col-md-4 col-lg-4 col-xl-3">
                                             <div class="product product-7 text-center">
