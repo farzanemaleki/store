@@ -42,7 +42,7 @@ Route::group(['prefix' => '/dashboard', 'namespace' => 'adminpanel'], function (
         Route::post('/store', 'productCategoryController@store')->name('dashboard.productCategory.store');
 
     });
-<<<<<<< HEAD
+
     Route::group(['prefix' => '/productAttr'], function () {
         Route::get('/', 'productAttribiutesController@index')->name('dashboard.productAttribiutes.index');
         Route::get('/create', 'productAttribiutesController@create')->name('dashboard.productAttribiutes.create');
@@ -72,9 +72,8 @@ Route::group(['prefix' => '/dashboard', 'namespace' => 'adminpanel'], function (
 Route::group(['prefix' => '/account', 'namespace' => 'userpanel'], function () {
 
     Route::get('/', 'dashboardController@index')->name('user.account.index');
-=======
+
     Route::post('/save_image', 'productController@uploadImage');
->>>>>>> c0a5a9f384955196b200fb275c7a0c937da3cd41
 });
 //});
 
@@ -96,7 +95,6 @@ Route::group(['namespace'=>'site'] , function (){
 Route::get('/logoutUser', 'Auth\LoginController@logout')->name('logoutUser');
 
 
-<<<<<<< HEAD
 Route::group(['namespace'=>'site'] , function (){
     Route::get('/product/{id}' , 'productController@show')->name('site.product.show');
     Route::get('/productCategory/{id}' , 'productCategoryController@show')->name('site.productCategory.show');
@@ -118,6 +116,3 @@ Route::group(['namespace'=>'site'] , function (){
 
 Route::get('/logoutUser', 'Auth\LoginController@logout')->name('logoutUser');
 
-
-=======
->>>>>>> c0a5a9f384955196b200fb275c7a0c937da3cd41

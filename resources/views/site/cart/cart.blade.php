@@ -71,7 +71,6 @@
                                     <td class="price-col">{{number_format(intdiv((int)$item->model->price , 10)). ' '}}تومان</td>
                                     <td class="quantity-col">
                                         <div class="cart-product-quantity">
-<<<<<<< HEAD
                                             <input type="hidden" class="form-control" style="display: none;">
                                             <div class="input-group  input-spinner">
                                                 <div class="input-group-prepend">
@@ -103,10 +102,9 @@
                                                     </form>
                                                 </div>
                                             </div>
-=======
                                             <input type="number" class="form-control" value="{{$item->qty}}" min="1" max="10"
                                                    step="1" data-decimals="0" required>
->>>>>>> c0a5a9f384955196b200fb275c7a0c937da3cd41
+
                                         </div><!-- End .cart-product-quantity -->
                                     </td>
                                     <td class="total-col">{{ number_format( intdiv((int)$item->model->price , 10 ) * $item->qty ). ' '}}تومان</td>

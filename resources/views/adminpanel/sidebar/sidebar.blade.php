@@ -35,7 +35,6 @@
                     <li class="nav-item" id="dashboard">
                         <a href="{{route('dashboard')}}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
-<<<<<<< HEAD
                             <p>
                                 داشبورد
                             </p>
@@ -45,20 +44,7 @@
                     <li class="nav-item has-treeview" id="products">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-list-alt"></i>
-                            <p>
-=======
-                            <p>
-                                داشبورد
-                            </p>
-                        </a>
-                    </li>
-                    <!-----        products   ------>
-                    <li class="nav-item has-treeview" id="products">
-                        <a href="#" class="nav-link">
-                            <i class="nav-icon fa fa-list-alt"></i>
-                            <p>
->>>>>>> c0a5a9f384955196b200fb275c7a0c937da3cd41
-                                محصولات
+                            <p>محصولات
                                 <i class="right fa fa-angle-left"></i>
                                 <span class="badge badge-info right">{{ \App\Product::all()->count()}}</span>
                             </p>
@@ -74,7 +60,6 @@
                                 <a href="{{ route('dashboard.product.create')}}" class="nav-link" id="new-products">
                                     <i class="fa fa-circle nav-icon"></i>
                                     <p>افزودن محصول جدید</p>
-<<<<<<< HEAD
                                 </a>
                             </li>
                         </ul>
@@ -100,14 +85,11 @@
                                 <a href="{{ route('dashboard.productCategory.create')}}" class="nav-link" id="new-Category">
                                     <i class="fa fa-circle nav-icon"></i>
                                     <p>افزودن دسته بندی جدید</p>
-=======
->>>>>>> c0a5a9f384955196b200fb275c7a0c937da3cd41
                                 </a>
                             </li>
                         </ul>
                     </li>
-<<<<<<< HEAD
-                    <!-----        product Attribiutes   ------>
+                 <!-----        product Attribiutes   ------>
                     <li class="nav-item has-treeview" id="attribiutes">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fa fa-th"></i>
@@ -115,7 +97,7 @@
                                 ویژگی محصولات
                                 <i class="right fa fa-angle-left"></i>
                                 <span class="badge badge-info right">{{ \App\productAttribiutes::all()->count()}}</span>
-=======
+
                     <!-----        product categories   ------>
                     <li class="nav-item has-treeview" id="categories">
                         <a href="#" class="nav-link">
@@ -124,12 +106,10 @@
                                 دسته بندی محصولات
                                 <i class="right fa fa-angle-left"></i>
                                 <span class="badge badge-info right">{{ \App\ProductCategory::all()->count()}}</span>
->>>>>>> c0a5a9f384955196b200fb275c7a0c937da3cd41
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item" >
-<<<<<<< HEAD
                                 <a href="{{ route('dashboard.productAttribiutes.index')}}" id="allAttr" class="nav-link" >
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>لیست همه ویژگی ها</p>
@@ -139,17 +119,6 @@
                                 <a href="{{ route('dashboard.productAttribiutes.create')}}" class="nav-link" id="newAttr">
                                     <i class="fa fa-circle nav-icon"></i>
                                     <p>افزودن ویژگی جدید</p>
-=======
-                                <a href="{{ route('dashboard.productCategory.index')}}" id="allCategory" class="nav-link" >
-                                    <i class="fa fa-circle-o nav-icon"></i>
-                                    <p>لیست همه دسته بندی ها</p>
-                                </a>
-                            </li>
-                            <li class="nav-item" >
-                                <a href="{{ route('dashboard.productCategory.create')}}" class="nav-link" id="new-Category">
-                                    <i class="fa fa-circle nav-icon"></i>
-                                    <p>افزودن دسته بندی جدید</p>
->>>>>>> c0a5a9f384955196b200fb275c7a0c937da3cd41
                                 </a>
                             </li>
                         </ul>

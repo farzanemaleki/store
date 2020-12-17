@@ -87,16 +87,10 @@
                                             </div><!-- End .product -->
                                         </div><!-- End .col-sm-6 col-lg-4 col-xl-3 -->
                                     @endforeach
-<<<<<<< HEAD
                                     <div class="col-sm-12">
 {{--                                        {{ $allproduct->links() }}--}}
                                         {!! $allproduct->render() !!}
                                     </div>
-=======
-{{--                                    <div>--}}
-{{--                                        {!! page->render() !!}--}}
-{{--                                    </div>--}}
->>>>>>> c0a5a9f384955196b200fb275c7a0c937da3cd41
                                 @else
                                     <h4>هیچ محصولی در سایت موجود نیست</h4>
                                 @endif
