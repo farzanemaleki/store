@@ -51,7 +51,8 @@
                         {{--card header--}}
                         <div class="card-body">
                             @if(\App\Product::all()->count() > 0)
-                                <table id="example2" class="table table-bordered table-hover">
+                                    <div class="table-responsive">
+                                        <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>ردیف</th>
@@ -109,6 +110,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                    </div>
                             @else
                                 <h4>محصولی در سایت موجود نیست</h4>
                                 <a type="button" class="btn btn-outline-primary" href="{{route('dashboard.product.create')}}">اولین محصول خود را بسازید</a>

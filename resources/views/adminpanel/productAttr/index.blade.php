@@ -45,6 +45,7 @@
                         {{--card header--}}
                         <div class="card-body">
                             @if(\App\productAttribiutes::all()->count() > 0)
+                                <div class="table-responsive">
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
@@ -71,6 +72,7 @@
                                     @endforeach
                                     </tbody>
                                 </table>
+                                </div>
                             @else
                                 <h4>ویژگی محصول در سایت موجود نیست</h4>
                                 <a type="button" class="btn btn-outline-primary" href="{{route('dashboard.productAttribiutes.create')}}">اولین ویژگی محصول  خود را بسازید</a>
