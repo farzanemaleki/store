@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\site;
 
 use App\Product;
-<<<<<<< HEAD
+
 use App\ProductCategory;
-=======
->>>>>>> c0a5a9f384955196b200fb275c7a0c937da3cd41
+
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -20,12 +19,11 @@ class cartController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
+
         $allcategory = ProductCategory::all();
         return view('site.cart.cart' , compact('allcategory'));
-=======
-        return view('site.cart.cart');
->>>>>>> c0a5a9f384955196b200fb275c7a0c937da3cd41
+
+
     }
 
     /**
@@ -102,17 +100,14 @@ class cartController extends Controller
         $newQty = $request->get('newQty');
         $rowId = $request->get('rowId');
 
-        Cart::update($rowId , $newQty - 1);
-        return redirect()->route('site.cart.index')->with('message' , 'سبد خرید با موفقیت به روز رسانی شد');
-=======
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
->>>>>>> c0a5a9f384955196b200fb275c7a0c937da3cd41
+        Cart::update($rowId, $newQty - 1);
+        return redirect()->route('site.cart.index')->with('message', 'سبد خرید با موفقیت به روز رسانی شد');
+
     }
+//    public function update(Request $request, $id)
+//    {
+//
+//    }
 
     /**
      * Remove the specified resource from storage.
