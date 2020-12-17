@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('adminpanel.layout')
 
 @section('pageTitle')
@@ -139,6 +138,3 @@
 
     </script>
 @stop
-=======
-<?php
->>>>>>> origin/master
