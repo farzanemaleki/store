@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\adminpanel;
 
-<<<<<<< HEAD
+
 use App\Product;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Carbon\Carbon;
-=======
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
->>>>>>> origin/master
+
+
 
 class productController extends Controller
 {
@@ -22,14 +20,9 @@ class productController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $allProuduct = Product::all();
         return view("adminpanel.product.index", compact('allProuduct'));
 
-
-=======
-        //
->>>>>>> origin/master
     }
 
     /**
@@ -39,27 +32,13 @@ class productController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
         $allcategories = ProductCategory::all();
         return view('adminpanel.product.create', compact('allcategories'));
-=======
-        //
->>>>>>> origin/master
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-<<<<<<< HEAD
-     * @param \Illuminate\Http\Request $request
-=======
-     * @param  \Illuminate\Http\Request  $request
->>>>>>> origin/master
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-<<<<<<< HEAD
+
         $this->validate($request, [
             'title' => ['required', 'min:3', 'max:255'],
             'category' => ['required'],
@@ -114,62 +93,26 @@ class productController extends Controller
             return redirect(route('dashboard.product.index'))->with('message', 'محصول شما با موفقیت ثبت شد');
         } else
             return redirect(route('dashboard.product.index'))->with('error', 'مشکلی در ثبت محصول وجود دارد');
-=======
-        //
->>>>>>> origin/master
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-<<<<<<< HEAD
-     * @param int $id
-=======
-     * @param  int  $id
->>>>>>> origin/master
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-<<<<<<< HEAD
-     * @param int $id
-=======
-     * @param  int  $id
->>>>>>> origin/master
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-<<<<<<< HEAD
+
         $product = Product::findorfail($id);
         $allcategories = ProductCategory::all();
         return view('adminpanel/product/edit', compact(['product', 'allcategories']));
-=======
-        //
->>>>>>> origin/master
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-<<<<<<< HEAD
-     * @param \Illuminate\Http\Request $request
-     * @param int $id
-=======
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
->>>>>>> origin/master
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
+
         $this->validate($request, [
             'title' => ['required', 'min:3', 'max:255'],
             'category' => ['required'],
@@ -227,24 +170,13 @@ class productController extends Controller
         ]);
         $product->save();
         return redirect(route('dashboard.product.index'))->with('message', 'محصول ' . $product->title . ' با موفقیت ویرایش شد');
-=======
-        //
->>>>>>> origin/master
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-<<<<<<< HEAD
-     * @param int $id
-=======
-     * @param  int  $id
->>>>>>> origin/master
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
-<<<<<<< HEAD
+
         $product = Product::findOrFail($id);
 
         if (!$product) {
@@ -274,8 +206,5 @@ class productController extends Controller
         $message = '';
         return "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction( '$function_number' , '$url' , '$message' );</script>";
 
-=======
-        //
->>>>>>> origin/master
     }
 }
