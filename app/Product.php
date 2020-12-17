@@ -2,23 +2,24 @@
 
 namespace App;
 
-<<<<<<< HEAD
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
-
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Product extends Model
 {
     use Sluggable;
 
-    public function productcategory(){
+    public function productcategory()
+    {
         return $this->belongsTo(ProductCategory::class);
     }
 
-    protected $fillable = [
-        'title','description','slug','price','old_price','category','count','size','weight','discount','product_id','status','image','thumbnail',
-        'rate'
+    protected $fillable =[
+        'title', 'description', 'size', 'price', 'old_price' , 'discount' , 'category' , 'rate' , 'weight' , 'count' ,
+        'image' , 'thumbnail' , 'product_id' ,
+        'status'
     ];
+
     public function sluggable()
     {
         return [
@@ -28,33 +29,32 @@ class Product extends Model
         ];
     }
 
-    public function category_name($id){
-        $category = ProductCategory::where( 'id' ,$id)->first();
-        if(!$category){
+    public function category_name($id)
+    {
+        $category = ProductCategory::where('id',$id)->first();
+        if (!$category){
             return 'بدون دسته بندی';
-        }else
-        {
+        }
+        else{
             return $category->title;
         }
     }
 
-    public function publishedProduct(){
-        $product = Product::all();
+    public function publishedProduct()
+    {
+        $products = Product::all();
         $published_products = [];
-        foreach($product as $item){
-            if($item->status == 1){
-                $published_products[] = $item ;
-
+        foreach ($products as $pro){
+            if ($pro->status == 1){
+                $published_products [] = $pro;
             }
         }
-    return $published_products;
+        return $published_products;
     }
 
-=======
-use Illuminate\Database\Eloquent\Model;
-
-class Product extends Model
-{
-    //
->>>>>>> origin/master
+    public function more_product($id)
+    {
+        $randomMoreProducts = Product::where('category', '=', $id)->inRandomOrder(8)->get();
+        return $randomMoreProducts ;
+    }
 }
