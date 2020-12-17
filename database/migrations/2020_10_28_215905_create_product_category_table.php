@@ -21,8 +21,8 @@ class CreateProductCategoryTable extends Migration
             $table->integer('parent_id')->default(0);
             $table->string('image')->nullable();
             $table->integer('status');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
+
         });
     }
 

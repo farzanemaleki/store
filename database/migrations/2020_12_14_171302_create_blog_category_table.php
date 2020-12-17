@@ -22,7 +22,6 @@ class CreateBlogCategoryTable extends Migration
             $table->string('image')->nullable();
             $table->string('thumbnail')->nullable();
             $table->integer('status');
-
             $table->timestamps();
         });
     }

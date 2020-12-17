@@ -20,18 +20,17 @@ class CreatProductsTable extends Migration
             $table->double('price');
             $table->double('old_price')->nullable();
             $table->text('description')->nullable();
-            $table->string('product_id')->uniqid();
+            $table->string('product_id')->index();
             $table->string('thumbnail');
             $table->string('image');
-            $table->integer('category')->default(0)->index();
+            $table->integer('category')->default(1)->index();
             $table->string('discount')->nullable();
             $table->integer('count')->nullable();
             $table->string('size')->nullable();
             $table->string('weight')->nullable();
             $table->integer('rate')->default('1');
             $table->integer('status');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
+            $table->timestamps();
         }
         );
     }

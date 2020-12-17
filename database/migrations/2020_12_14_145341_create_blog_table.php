@@ -17,7 +17,7 @@ class CreateBlogTable extends Migration
             $table->bigIncrements('id');
             $table->string('topic');
             $table->string('slug');
-            $table->integer('category')->default(0);
+            $table->integer('category')->default(1);
             $table->text('body');
             $table->string('image');
             $table->integer('status');

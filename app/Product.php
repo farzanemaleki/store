@@ -8,7 +8,6 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Product extends Model
 {
     use Sluggable;
-
     public function productcategory()
     {
         return $this->belongsTo(ProductCategory::class);
@@ -32,12 +31,7 @@ class Product extends Model
     public function category_name($id)
     {
         $category = ProductCategory::where('id',$id)->first();
-//        if (!$category){
-//            return 'بدون دسته بندی';
-//        }
-//        else{
             return $category->title;
-//        }
     }
 
     public function publishedProduct()

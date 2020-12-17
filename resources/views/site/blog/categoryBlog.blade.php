@@ -6,7 +6,7 @@
     <main class="main">
         <div class="page-header text-center" style="background-image: url('{{url('site/assets/images/page-header-bg.jpg')}}')">
             <div class="container">
-                <h1 class="page-title">لیست<span>اخبار</span></h1>
+                <h1 class="page-title">نام دسته بندی<span>اخبار</span></h1>
             </div><!-- End .container -->
         </div><!-- End .page-header -->
         <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
@@ -14,7 +14,7 @@
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('homepage')}}">خانه</a></li>
                     <li class="breadcrumb-item"><a href="#">اخبار</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">لیست</li>
+                    <li class="breadcrumb-item active" aria-current="page">نام دسته بندی</li>
                 </ol>
             </div><!-- End .container -->
         </nav><!-- End .breadcrumb-nav -->
@@ -31,7 +31,7 @@
                         <li><a href="#" data-filter=".hobbies">سرگرمی<span>2</span></a></li>
                     </ul><!-- End .blog-menu -->
                 </nav><!-- End .blog-nav -->
-
+                <!---------blog category content -------->
                 <div class="entry-container max-col-3" data-layout="fitRows" style="position: relative; height: 4369.07px;">
                     <div class="entry-item lifestyle shopping col-sm-6 col-lg-4" style="position: absolute; right: 0px; top: 0px;">
                         <article class="entry entry-grid text-center">
@@ -404,7 +404,7 @@
                         </article><!-- End .entry -->
                     </div><!-- End .entry-item -->
                 </div><!-- End .entry-container -->
-<!---------------------pagination----------->
+                <!---------------------pagination----------->
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-center">
                         <li class="page-item disabled">

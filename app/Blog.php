@@ -15,7 +15,7 @@ class Blog extends Model
 
     public function sluggable()
     {
-        return[
+        return [
             'slug' => [
                 'source' => 'topic'
             ]

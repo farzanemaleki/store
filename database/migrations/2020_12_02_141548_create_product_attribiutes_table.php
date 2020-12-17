@@ -18,7 +18,6 @@ class CreateProductAttribiutesTable extends Migration
             $table->string('product_id');
             $table->string('key');
             $table->string('value');
-
             $table->timestamps();
         });
     }

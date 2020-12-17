@@ -74,7 +74,6 @@ class cartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-<<<<<<< HEAD
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request)

@@ -6,7 +6,7 @@ use App\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use phpDocumentor\Reflection\Types\This;
-
+use Rny\SlugUtf8\SlugUtf8;
 class productCategoryController extends Controller
 {
     /**
