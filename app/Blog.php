@@ -24,12 +24,7 @@ class Blog extends Model
     public function category_name($id)
     {
         $category = ProductCategory::where('id',$id)->first();
-        if (!$category){
-            return 'بدون دسته بندی';
-        }
-        else{
-            return $category->title;
-        }
+        return $category->title;
 
     }
 }

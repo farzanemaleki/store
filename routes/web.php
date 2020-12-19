@@ -108,7 +108,7 @@ Route::group(['namespace'=>'site'] , function (){
     Route::get('/shop','shopController@index')->name('site.shop.index');
 
 
-    Route::get('/blog/{category}','blogController@index')->name('site.blog');
+    Route::get('/blog/{category}','blogController@index')->name('site.blog.category');
     Route::get('/blog/{category}/{id}','blogController@show')->name('site.blog.single');
 
 
