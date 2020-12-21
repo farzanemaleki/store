@@ -34,100 +34,49 @@
 
         {{--    <-----------card body ------->--}}
         <div class="card-body">
-            <form action="{{route('dashboard.product.store')}}" role="form" method="post" enctype="multipart/form-data">
+            <form action="{{route('dashboard.blog.store')}}" role="form" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    {{--                    //--------product--}}
-                    <div class="col-sm-4">
+                    <!-------------------topic---------------->
+                    <div class="col-sm-12 col-md-4">
                         <div class="form-group">
-                            <lable> نام محصول</lable>
-                            <input type="text" class="form-control" name="title"
-                                   placeholder="نام محصول را وارد کنید ..." value="{{old('title')}}">
+                            <lable> عنوان نوشته</lable>
+                            <input type="text" class="form-control" name="topic" placeholder="نام نوشته خود را وارد کنید ..." value="{{old('topic')}}">
                         </div>
                     </div>
-                    {{--                    //--------category--}}
-                    <div class="col-sm-4">
+                    <!-------------------tags---------------->
+                    <div class="col-sm-12 col-md-4">
                         <div class="form-group">
-                            <lable> دسته بندی محصول</lable>
+                            <lable>تگ های نوشته</lable>
+                            <input class="form-control" id="tags" name="tags" placeholder="تگ نوشته را وارد کنید ..." />
+                        </div>
+                    </div>
+                    <!-------------------category---------------->
+                    <div class="col-sm-12 col-md-4">
+                        <div class="form-group">
+                            <lable> دسته بندی نوشته</lable>
                             <select class="form-control" name="category">
-                                <option value=""><span class=" text-darkwhite">انتخاب دسته بندی محصول...</span></option>
-                                <option value="0">دسته بندی نشده ها</option>
-                                @foreach($allcategories as $category)
-                                    <option value="{{$category->id}}">{{$category->title}}</option>
+                                <option value=""><span class=" text-darkwhite">انتخاب دسته بندی نوشته...</span></option>
+                                @foreach($allBlogCategory as $category)
+                                    <option value="{{$category->id}}">{{$category->topic}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    {{--                    //------------------price--}}
-                    <div class="col-sm-4">
+                    <!-------------------image---------------->
+                    <div class="col-sm-12 col-md-4">
                         <div class="form-group">
-                            <lable> قیمت محصول بدون تخفیف به ریال </lable>
-                            <input type="number" class="form-control" name="price"
-                                   placeholder="قیمت محصول را وارد کنید ..." value="{{old('price')}}">
-                        </div>
-                    </div>
-                    {{--                          //------------------old price --}}
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <lable> قیمت محصول با تخفیف به ریال </lable>
-                            <input type="number" class="form-control" name="old_price"
-                                   placeholder="قیمت محصول را وارد کنید ..." value="{{old('old_price')}}">
-                        </div>
-                    </div>
-                    {{--                    //------------------product_id --}}
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <lable> کد محصول </lable>
-                            <input type="text" class="form-control" name="product_id"
-                                   placeholder="کد محصول را وارد کنید ..." value="{{old('product_id')}}">
-                        </div>
-                    </div>
-                    {{--                    <-------image---->--}}
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <lable for="image"> عکس محصول</lable>
+                            <lable for="image"> عکس نوشته</lable>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" name="image">
-                                    <lable class="custom-file-label" for="image ">انتخاب عکس</lable>
+                                    <lable class="custom-file-label" for="image ">عکس موردنظر خود راانتخاب کنید </lable>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    {{--                    <-----------discount-------------}}
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <lable> درصد تخفیف محصول</lable>
-                            <input type="text" class="form-control" name="discount"
-                                   placeholder="درصد تخفیف محصول را وارد کنید ..." value="{{old('discount')}}">
-                        </div>
-                    </div>
-                    {{--                    <------------count --------------}}
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <lable> تعداد محصول</lable>
-                            <input type="number" class="form-control" name="count"
-                                   placeholder="تعداد محصول را وارد کنید ..." value="{{old('count')}}">
-                        </div>
-                    </div>
-                    {{--                    <---------size------------>--}}
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <lable> سایز محصول</lable>
-                            <input type="text" class="form-control" name="size"
-                                   placeholder="سایز محصول را وارد کنید ..." value="{{old('size')}}">
-                        </div>
-                    </div>
-                    {{--                    <-----------weight------------->--}}
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <lable> وزن محصول</lable>
-                            <input type="text" class="form-control" name="weight"
-                                   placeholder="وزن محصول را وارد کنید ..." value="{{old('weight')}}">
-                        </div>
-                    </div>
-                    {{--                    <-----------status------------->--}}
-                    <div class="col-sm-4">
+                    <!-------------------status---------------->
+                    <div class="col-sm-12 col-md-4">
                         <div class="form-group">
                             <lable> وضعیت نمایش محصول</lable>
                             <select class="form-control" name="status">
@@ -137,18 +86,25 @@
                             </select>
                         </div>
                     </div>
-                    {{--                    <----------description--------------}}
+                    <!-------------------body---------------->
+                    <div class="col-sm-12 col-md-8">
+                        <div class="form-group">
+                            <lable>توضیح کوتاه نوشته</lable>
+                            <textarea rows="2" class="form-control" id="body" name="body" placeholder="توضیح کوتاه نوشته را وارد کنید ..."></textarea>
+                        </div>
+                    </div>
+                    <!-------------------description---------------->
                     <div class="col-sm-12">
                         <div class="form-group">
                             <lable> توضیحات محصول</lable>
-                            <textarea rows="5" class="form-control" id="description" name="description"
+                            <textarea rows="10" class="form-control" id="description" name="description"
                                       placeholder="توضیحات محصول را وارد کنید ..."></textarea>
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="ذخیره">
-                            <a class="btn btn-danger" href="{{ route('dashboard') }}">لغو عملیات</a>
+                            <a class="btn btn-danger" href="{{ route('dashboard.blog.index') }}">لغو عملیات</a>
                         </div>
                     </div>
                 </div>
@@ -168,8 +124,8 @@
 
         CKEDITOR.replace('description', {
             filebrowserUploadMethod : 'form',
-            filebrowserUploadUrl: '/dashboard/save_image',
-            filebrowserImageUploadUrl: '/dashboard/save_image',
+            filebrowserUploadUrl: '/dashboard/save_blog_image',
+            filebrowserImageUploadUrl: '/dashboard/save_blog_image',
 
         });
 

@@ -53,8 +53,9 @@
                                     <thead>
                                     <tr>
                                         <th>ردیف</th>
-                                        <th>نام </th>
+                                        <th>نام نوشته</th>
                                         <th>دسته بندی</th>
+                                        <th>توضیحات کوتاه</th>
                                         <th>توضیحات</th>
                                         <th>تصویر نوشته</th>
                                         <th>وضعیت</th>
@@ -69,8 +70,9 @@
                                             <td>{{$blog->topic}}</td>
                                             <td>{{$blog->category_name($blog->category)}}</td>
                                             <td>{!! $blog->body !!}</td>
+                                            <td>{!! $blog->description !!}</td>
+
                                             <td><img width="100px" src="{{ url('') }}{{$blog->image}}" alt="{{$blog->topic}}"></td>
-                                            <td>{{$blog->count}}</td>
                                             <td>
                                                 @if($blog->status == 0)
                                                     پیش نویس
@@ -78,6 +80,7 @@
                                                     منتشر شده
                                                 @endif
                                             </td>
+                                            <td>{{$blog->author_name($blog->author)}}</td>
                                             <td><a href="{{route('dashboard.blog.edit', $blog->id)}}"><i class="fa fa-pencil m-2" ></i></a>
                                                 <a href="{{route('dashboard.blog.destroy' , $blog->id)}}"><i class="fa fa-trash-o text-danger"></i></a>
                                             </td>
@@ -90,7 +93,7 @@
                                 </div>
                             @else
                                 <h4>نوشته ای در سایت موجود نیست</h4>
-{{--                                <a type="button" class="btn btn-outline-primary" href="{{route('dashboard.product.create')}}">اولین محصول خود را بسازید</a>--}}
+                                <a type="button" class="btn btn-outline-primary" href="{{route('dashboard.blog.create')}}">اولین نوشته خود را بسازید</a>
 
                             @endif
                         </div>

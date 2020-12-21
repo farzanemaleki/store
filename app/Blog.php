@@ -10,7 +10,7 @@ class Blog extends Model
     protected $table = 'blog';
     use Sluggable;
     protected $fillable = [
-        'topic' , 'category' , 'body' , 'status' , 'author' , 'countView' , 'tags' , 'image'
+        'topic' , 'category' , 'body' , 'status' , 'author' , 'countView' , 'tags' , 'image' , 'description'
     ];
 
     public function sluggable()
@@ -23,8 +23,12 @@ class Blog extends Model
     }
     public function category_name($id)
     {
-        $category = ProductCategory::where('id',$id)->first();
-        return $category->title;
+        $category = BlogCategory::where('id',$id)->first();
+        return $category->topic;
 
+    }
+    public function author_name($id){
+        $author = User::where('id', '=' , $id)->first();
+        return $author->name;
     }
 }

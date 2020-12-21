@@ -59,13 +59,14 @@ Route::group(['prefix' => '/dashboard', 'namespace' => 'adminpanel'], function (
     Route::group(['prefix' => '/blog'], function () {
         Route::get('/', 'blogController@index')->name('dashboard.blog.index');
         Route::get('/create', 'blogController@create')->name('dashboard.blog.create');
-        Route::get('/store', 'blogController@store')->name('dashboard.blog.store');
+        Route::post('/store', 'blogController@store')->name('dashboard.blog.store');
         Route::get('/edit/{id}', 'blogController@edit')->name('dashboard.blog.edit');
-        Route::get('/update/{id}', 'blogController@update')->name('dashboard.blog.update');
+        Route::post('/update/{id}', 'blogController@update')->name('dashboard.blog.update');
         Route::get('/destroy/{id}', 'blogController@destroy')->name('dashboard.blog.destroy');
     });
 
     Route::post('/save_image', 'productController@uploadImage');
+    Route::post('/save_blog_image', 'blogController@uploadImage');
 });
 //});
 

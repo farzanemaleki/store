@@ -19,6 +19,7 @@ class CreateBlogTable extends Migration
             $table->string('slug');
             $table->integer('category')->default(1);
             $table->text('body');
+            $table->text('description');
             $table->string('image');
             $table->integer('status');
             $table->integer('author');

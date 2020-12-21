@@ -77,8 +77,6 @@
                                 </table>
                             @else
                                 <h4>کاربری در سایت موجود نیست</h4>
-                                <a type="button" class="btn btn-outline-primary" href="{{route('dashboard.productAttribiutes.create')}}">اولین ویژگی محصول  خود را بسازید</a>
-
                             @endif
                         </div>
                     </div>
