@@ -78,9 +78,9 @@
                     <!-------------------status---------------->
                     <div class="col-sm-12 col-md-4">
                         <div class="form-group">
-                            <lable> وضعیت نمایش محصول</lable>
+                            <lable> وضعیت نمایش نوشته</lable>
                             <select class="form-control" name="status">
-                                <option value=""><span class=" text-darkwhite">انتخاب وضعیت محصول...</span></option>
+                                <option value=""><span class=" text-darkwhite">انتخاب وضعیت نوشته...</span></option>
                                 <option value="0">پیش نویس</option>
                                 <option value="1">انتشار</option>
                             </select>
@@ -124,8 +124,8 @@
 
         CKEDITOR.replace('description', {
             filebrowserUploadMethod : 'form',
-            filebrowserUploadUrl: '/dashboard/save_blog_image',
-            filebrowserImageUploadUrl: '/dashboard/save_blog_image',
+            filebrowserUploadUrl: '/dashboard/blog/save_image',
+            filebrowserImageUploadUrl: '/dashboard/blog/save_image',
 
         });
 

@@ -126,9 +126,9 @@ class productController extends Controller
                 'title.min' => 'عنوان محصول نمیتواند کمتر از سه کارکتر باشد',
                 'title.max' => 'عنوان محصول نمیتواند بیشتر از 255 کارکتر باشد',
                 'category.required' => 'دسته بندی محصول الزامی است',
-//                'price.required' => 'قیمت محصول الزامی است',
+                'price.required' => 'قیمت محصول الزامی است',
 //                'product_id.required' => 'کد محصول الزامی است',
-                'image.required' => 'تصویر محصول الزامی است',
+//                'image.required' => 'تصویر محصول الزامی است',
                 'status.required' => 'وضعیت محصول الزامی است',
 
             ]);

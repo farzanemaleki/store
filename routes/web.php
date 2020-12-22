@@ -26,20 +26,24 @@ Route::get('/homepage', 'site\homepageController@index')->name('homepage');
 Route::get('/dashboard', 'adminpanel\dashboardController@index')->name('dashboard');
 
 Route::group(['prefix' => '/dashboard', 'namespace' => 'adminpanel'], function () {
-
     Route::group(['prefix' => '/products'], function () {
-
         Route::get('/', 'productController@index')->name('dashboard.product.index');
         Route::get('/create', 'productController@create')->name('dashboard.product.create');
         Route::post('/store', 'productController@store')->name('dashboard.product.store');
         Route::get('/edit/{id}', 'productController@edit')->name('dashboard.product.edit');
         Route::post('/update/{id}', 'productController@update')->name('dashboard.product.update');
         Route::get('/destroy/{id}', 'productController@destroy')->name('dashboard.product.destroy');
+        Route::post('/save_image', 'productController@uploadImage');
     });
+
     Route::group(['prefix' => '/productCategory'], function () {
         Route::get('/', 'productCategoryController@index')->name('dashboard.productCategory.index');
         Route::get('/create', 'productCategoryController@create')->name('dashboard.productCategory.create');
         Route::post('/store', 'productCategoryController@store')->name('dashboard.productCategory.store');
+        Route::get('/edit/{id}', 'productCategoryController@edit')->name('dashboard.productCategory.edit');
+        Route::post('/update/{id}', 'productCategoryController@update')->name('dashboard.productCategory.update');
+        Route::get('/destroy/{id}', 'productCategoryController@destroy')->name('dashboard.productCategory.destroy');
+        Route::post('/save_image', 'productCategoryController@uploadImage');
 
     });
 
@@ -50,8 +54,8 @@ Route::group(['prefix' => '/dashboard', 'namespace' => 'adminpanel'], function (
         Route::get('/edit/{id}', 'productAttribiutesController@edit')->name('dashboard.productAttribiutes.edit');
         Route::post('/update/{id}', 'productAttribiutesController@update')->name('dashboard.productAttribiutes.update');
         Route::get('/destroy/{id}', 'productAttribiutesController@destroy')->name('dashboard.productAttribiutes.destroy');
-
     });
+
     Route::group(['prefix' => '/members'], function () {
         Route::get('/', 'MembersController@index')->name('dashboard.members.index');
     });
@@ -63,37 +67,26 @@ Route::group(['prefix' => '/dashboard', 'namespace' => 'adminpanel'], function (
         Route::get('/edit/{id}', 'blogController@edit')->name('dashboard.blog.edit');
         Route::post('/update/{id}', 'blogController@update')->name('dashboard.blog.update');
         Route::get('/destroy/{id}', 'blogController@destroy')->name('dashboard.blog.destroy');
+        Route::post('/save_image', 'productController@uploadImage');
     });
 
-    Route::post('/save_image', 'productController@uploadImage');
-    Route::post('/save_blog_image', 'blogController@uploadImage');
+    Route::group(['prefix' => '/blogCategory'], function () {
+        Route::get('/', 'blogCategoryController@index')->name('dashboard.blogCategory.index');
+        Route::get('/create', 'blogCategoryController@create')->name('dashboard.blogCategory.create');
+        Route::post('/store', 'blogCategoryController@store')->name('dashboard.blogCategory.store');
+        Route::get('/edit/{id}', 'blogCategoryController@edit')->name('dashboard.blogCategory.edit');
+        Route::post('/update/{id}', 'blogCategoryController@update')->name('dashboard.blogCategory.update');
+        Route::get('/destroy/{id}', 'blogCategoryController@destroy')->name('dashboard.blogCategory.destroy');
+        Route::post('/save_image', 'blogController@uploadImage');
+    });
 });
 //});
-
-Route::group(['prefix' => '/account', 'namespace' => 'userpanel'], function () {
-
-    Route::get('/', 'dashboardController@index')->name('user.account.index');
-
-    Route::post('/save_image', 'productController@uploadImage');
-});
 //});
 
-Route::group(['prefix' => '/account', 'namespace' => 'userpanel'], function () {
 
+Route::group(['prefix' => '/account', 'namespace' => 'userpanel'], function () {
     Route::get('/', 'dashboardController@index')->name('user.account.index');
 });
-Route::group(['namespace'=>'site'] , function (){
-    Route::get('/product/{id}' , 'productController@show')->name('site.product.show');
-    Route::get('/productCategory/{id}' , 'productCategoryController@show')->name('site.productCategory.show');
-
-    Route::get('/cart' , 'cartController@index')->name('site.cart.index');
-    Route::post('/cart/{product}' , 'cartController@store')->name('site.cart.store');
-    Route::delete('/cart/{product}' , 'cartController@destroy')->name('site.cart.destroy');
-
-    Route::get('/shop','shopController@index')->name('site.shop.index');
-});
-
-Route::get('/logoutUser', 'Auth\LoginController@logout')->name('logoutUser');
 
 
 Route::group(['namespace'=>'site'] , function (){
@@ -108,12 +101,10 @@ Route::group(['namespace'=>'site'] , function (){
 
     Route::get('/shop','shopController@index')->name('site.shop.index');
 
-
     Route::get('/blog/{category}','blogController@index')->name('site.blog.category');
     Route::get('/blog/{category}/{id}','blogController@show')->name('site.blog.single');
-
-
 });
+
 
 Route::get('/logoutUser', 'Auth\LoginController@logout')->name('logoutUser');
 

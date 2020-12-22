@@ -1,6 +1,6 @@
 @extends('adminpanel.layout')
 @section('pageTitle')
-    افزودن دسته بندی محصولات
+    ویرایش دسته بندی محصولات
 @stop
 
 @section('mainContent')
@@ -9,12 +9,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">افزودن دسته بندی جدید</h1>
+                    <h1 class="m-0 text-dark">ویرایش دسته بندی جدید</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">داشبورد</a></li>
-                        <li class="breadcrumb-item active">دسته بندی جدید</li>
+                        <li class="breadcrumb-item"><a href="{{route('dashboard.productCategory.index')}}">دسته بندی</a></li>
+                        <li class="breadcrumb-item active">ویرایش دسته بندی</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -30,55 +31,87 @@
     <!---------card header------>
     <div class="card">
         <div class="card-header">
-            <div class="card-title">مشخصات دسته بندی جدید</div>
+            <div class="card-title">مشخصات دسته بندی</div>
         </div>
-
         <!-----------card body ------->
         <div class="card-body">
-            <form action="{{route('dashboard.productCategory.store')}}" role="form" method="post" enctype="multipart/form-data">
+            <form action="{{route('dashboard.productCategory.update' , $productcategory->id )}}" role="form" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <!-----------category------------->
                     <div class="col-sm-4">
                         <div class="form-group">
                             <lable> نام دسته بندی</lable>
-                            <input type="text" class="form-control" name="title"
-                                   placeholder="نام دسته بندی را وارد کنید ..." value="{{old('title')}}">
+                            <input type="text" class="form-control" name="title" value="{{$productcategory->title}}">
                         </div>
                     </div>
                     <!------------------parent_id----------->
                     <div class="col-sm-4">
                         <div class="form-group">
                             <lable> انتخاب دسته بندی</lable>
-                            <select class="form-control" name="parent_id">
-                                <option value=""><span class=" text-darkwhite">انتخاب دسته بندی...</span></option>
+{{--                            <select class="form-control" name="parent_id">--}}
+{{--                                <option value="">--}}
+{{--                                @if(!$productcategory->parent_id)--}}
+{{--                                        دسته بندی مادر--}}
+{{--                                    @else--}}
+{{--                                    {{$productcategory->title}}--}}
+{{--                                    @endif--}}
+{{--                                </option>--}}
+{{--                                @foreach($allcategories as $category)--}}
+{{--                                    <option value="0">دسته بندی مادر</option>--}}
+{{--                                    <option value="{{$category->id}}">{{$category->title}}</option>--}}
+{{--                                @endforeach--}}
+{{--                            </select>--}}
+                            <select class="form-control js-example-basic-single" name="parent_id">
                                 <option value="0">دسته بندی مادر</option>
                                 @foreach($allcategories as $category)
-                                    <option value="{{$category->id}}">{{$category->title}}</option>
+                                    @if($category->id == $productcategory->id)
+                                        <option value="{{ $category->id }}" selected>{{ $category->title }}</option>
+                                    @else
+                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                    @endif
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <!---------------image-------------->
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <lable for="image"> عکس دسته بندی</lable>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" name="image">
-                                    <lable class="custom-file-label" for="image ">انتخاب عکس</lable>
+                                    <lable class="custom-file-label" for="image ">{{ url('') }}{{ $productcategory->image }}</lable>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @if($productcategory->image != null && $productcategory->image != '')
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="thumbnail">عکس قبلی دسته بندی</label>
+                                <img name="thumbnail" style="width: 100%" src="{{ url('') }}{{ $productcategory->image }}"
+                                     alt="{{ $productcategory->title }}">
+                            </div>
+                        </div>
+                    @else
+                        <div class="col-md-4 col-sm-12">
+                            <label for="thumbnail">عکس قبلی دسته بندی: </label>
+                            <span class="text-danger mr-1">بدون تصویر</span>
+                        </div>
+                @endif
                     <!-----------status------------->
                     <div class="col-sm-4">
                         <div class="form-group">
                             <lable> وضعیت نمایش دسته بندی</lable>
                             <select class="form-control" name="status">
-                                <option value=""><span class=" text-darkwhite">انتخاب وضعیت دسته بندی...</span></option>
-                                <option value="0">پیش نویس</option>
-                                <option value="1">انتشار</option>
+                                @if($productcategory->status == 0)
+                                    <option value="0" selected >پیش نویس</option>
+                                    <option value="1" >انتشار</option>
+                                @else
+                                    <option value="0">پیش نویس</option>
+                                    <option value="1" selected >انتشار</option>
+                                @endif
                             </select>
                         </div>
                     </div>
@@ -86,8 +119,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <lable> توضیحات دسته بندی</lable>
-                            <textarea rows="5" class="form-control" name="description"
-                                      placeholder="توضیحات دسته بندی را وارد کنید ..."></textarea>
+                            <textarea rows="5" class="form-control" name="description">{{$productcategory->description}}</textarea>
                         </div>
                     </div>
                     <!----------------sumit Button  ---------->

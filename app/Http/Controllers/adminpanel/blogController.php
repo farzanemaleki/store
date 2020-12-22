@@ -78,6 +78,7 @@ class blogController extends Controller
                 'topic' => $request->get('topic'),
                 'category' => $request->get('category'),
                 'body' => $request->get('body'),
+// if you have error Auth you should sign in then add blog
                 'author' => Auth::user()->id,
                 'tags' => $request->get('tags'),
                 'description' => $request->get('description'),

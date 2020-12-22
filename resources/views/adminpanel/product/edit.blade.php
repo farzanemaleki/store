@@ -26,13 +26,13 @@
             </div>
         @endforeach
     </div>
-    {{--    <---------card header------>--}}
+    <!---------card header------>
     <div class="card">
         <div class="card-header">
             <div class="card-title">مشخصات محصول</div>
         </div>
 
-        {{--    <-----------card body ------->--}}
+        <!-----------card body ------->
         <div class="card-body">
             <form action="{{route('dashboard.product.update' , $product->id )}}" role="form" method="post"
                   enctype="multipart/form-data">
@@ -148,7 +148,7 @@
                         </div>
                     </div>
                     {{--                    <----------description--------------}}
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <div class="form-group">
                             <lable> توضیحات محصول</lable>
                             <textarea rows="5" class="form-control" name="description"
@@ -165,11 +165,19 @@
             </form>
         </div>
     </div>
-
-
-
 @stop
 @section('footerScripts')
+    <!-- bs-custom-file-input -->
+    <script src="{{ url('adminPanel/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+    <script src="{{ url('adminPanel/plugins/ckeditor/ckeditor.js') }}"></script>
+
+    <script !src="">
+        CKEDITOR.replace('description', {
+            filebrowserUploadMethod : 'form',
+            filebrowserUploadUrl: '/dashboard/products/save_image',
+            filebrowserImageUploadUrl: '/dashboard/products/save_image',
+        });
+    </script>
     <script !src="">
         $('.nav-link').removeClass('active');
 

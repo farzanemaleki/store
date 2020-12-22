@@ -74,9 +74,9 @@
                                                     منتشر شده
                                                 @endif
                                             </td>
-                                            <td>{{$category->description}}</td>
-                                            <td><a href="#"><i class="fa fa-pencil m-2" ></i></a>
-                                                <a href="#"><i class="fa fa-trash-o text-danger"></i></a>
+                                            <td>{!! $category->description!!}</td>
+                                            <td><a href="{{route('dashboard.productCategory.edit' , $category->id)}}"><i class="fa fa-pencil m-2" ></i></a>
+                                                <a href="{{route('dashboard.productCategory.destroy', $category->id)}}"><i class="fa fa-trash-o text-danger"></i></a>
                                             </td>
 
                                         </tr>

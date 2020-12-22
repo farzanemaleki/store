@@ -30,7 +30,7 @@ class Product extends Model
 
     public function category_name($id)
     {
-        $category = ProductCategory::where('id',$id)->first();
+        $category = ProductCategory::where('id' , '='  ,$id)->first();
             return $category->title;
     }
 

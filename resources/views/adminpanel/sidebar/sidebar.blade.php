@@ -161,6 +161,31 @@
                         </li>
                     </ul>
                 </li>
+                    <!-----        blogs category   ------>
+                    <li class="nav-item has-treeview" id="blogCategory">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                دسته بندی نوشته ها
+                                <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\BlogCategory::all()->count()}}</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.blogCategory.index')}}" id="allBlogCategory" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>لیست دسته بندی نوشته ها</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.blogCategory.create')}}" class="nav-link" id="newBlogCategory">
+                                    <i class="fa fa-circle nav-icon"></i>
+                                    <p>افزودن دسته بندی جدید</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <!------------Exit ------------->
                 <li class="nav-item has-treeview">
                     <a href="/logoutUser" class="nav-link">

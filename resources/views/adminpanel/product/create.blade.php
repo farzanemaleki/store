@@ -168,11 +168,10 @@
 
             CKEDITOR.replace('description', {
                 filebrowserUploadMethod : 'form',
-                filebrowserUploadUrl: '/dashboard/save_image',
-                filebrowserImageUploadUrl: '/dashboard/save_image',
+                filebrowserUploadUrl: '/dashboard/products/save_image',
+                filebrowserImageUploadUrl: '/dashboard/products/save_image',
 
             });
-
     </script>
 
     <script !src="">

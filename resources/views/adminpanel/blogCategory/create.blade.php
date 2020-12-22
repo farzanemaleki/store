@@ -1,8 +1,7 @@
 @extends('adminpanel.layout')
 @section('pageTitle')
-    افزودن دسته بندی محصولات
-@stop
-
+    افزودن دسته بندی جدید
+@endsection
 @section('mainContent')
     <!-- .content-header -->
     <div class="content-header">
@@ -27,52 +26,58 @@
             </div>
         @endforeach
     </div>
-    <!---------card header------>
+    {{--    <---------card header------>--}}
     <div class="card">
         <div class="card-header">
             <div class="card-title">مشخصات دسته بندی جدید</div>
         </div>
 
-        <!-----------card body ------->
+        {{--    <-----------card body ------->--}}
         <div class="card-body">
-            <form action="{{route('dashboard.productCategory.store')}}" role="form" method="post" enctype="multipart/form-data">
+            <form action="{{route('dashboard.blogCategory.store')}}" role="form" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <!-----------category------------->
-                    <div class="col-sm-4">
+                    <!-------------------topic---------------->
+                    <div class="col-sm-12 col-md-4">
                         <div class="form-group">
                             <lable> نام دسته بندی</lable>
-                            <input type="text" class="form-control" name="title"
-                                   placeholder="نام دسته بندی را وارد کنید ..." value="{{old('title')}}">
+                            <input type="text" class="form-control" name="topic" placeholder="نام دسته بندی خود را وارد کنید ..." value="{{old('topic')}}" />
                         </div>
                     </div>
-                    <!------------------parent_id----------->
+                    <!-------------------tags---------------->
+                    <div class="col-sm-12 col-md-4">
+                        <div class="form-group">
+                            <lable>تگ های دسته بندی</lable>
+                            <input class="form-control" id="tags" name="tags" placeholder="تگ دسته بندی را وارد کنید ..." value="{{old('tags')}}" />
+                        </div>
+                    </div>
+                    <!-------------------parent_id---------------->
                     <div class="col-sm-4">
                         <div class="form-group">
                             <lable> انتخاب دسته بندی</lable>
                             <select class="form-control" name="parent_id">
                                 <option value=""><span class=" text-darkwhite">انتخاب دسته بندی...</span></option>
                                 <option value="0">دسته بندی مادر</option>
-                                @foreach($allcategories as $category)
-                                    <option value="{{$category->id}}">{{$category->title}}</option>
+                                @foreach($allblogCategory as $category)
+                                    <option value="{{$category->id}}">{{$category->topic}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
-                    <!---------------image-------------->
-                    <div class="col-sm-4">
+                    <!-------------------image---------------->
+                    <div class="col-sm-12 col-md-4">
                         <div class="form-group">
                             <lable for="image"> عکس دسته بندی</lable>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" name="image">
-                                    <lable class="custom-file-label" for="image ">انتخاب عکس</lable>
+                                    <lable class="custom-file-label" for="image ">عکس موردنظر خود راانتخاب کنید </lable>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-----------status------------->
-                    <div class="col-sm-4">
+                    <!-------------------status---------------->
+                    <div class="col-sm-12 col-md-4">
                         <div class="form-group">
                             <lable> وضعیت نمایش دسته بندی</lable>
                             <select class="form-control" name="status">
@@ -82,19 +87,17 @@
                             </select>
                         </div>
                     </div>
-                    <!----------description-------------->
-                    <div class="col-sm-12">
+                    <!-------------------body---------------->
+                    <div class="col-sm-12 col-md-10">
                         <div class="form-group">
-                            <lable> توضیحات دسته بندی</lable>
-                            <textarea rows="5" class="form-control" name="description"
-                                      placeholder="توضیحات دسته بندی را وارد کنید ..."></textarea>
+                            <lable>توضیح کوتاه دسته بندی</lable>
+                            <textarea rows="2" class="form-control" id="body" name="body" placeholder="توضیح کوتاه دسته بندی را وارد کنید ..."></textarea>
                         </div>
                     </div>
-                    <!----------------sumit Button  ---------->
                     <div class="col-sm-12">
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="ذخیره">
-                            <a class="btn btn-danger" href="{{ route('dashboard.productCategory.index') }}">لغو عملیات</a>
+                            <a class="btn btn-danger" href="{{ route('dashboard.blogCategory.index') }}">لغو عملیات</a>
                         </div>
                     </div>
                 </div>
@@ -105,33 +108,27 @@
 
 
 @stop
-
-
 @section('footerScripts')
-    {{--    dataTables--}}
-    <script src="{{url('adminPanel/plugins/datatables/jquery.dataTables.js')}}"></script>
-    <script src="{{url('adminPanel/plugins/datatables/dataTables.bootstrap4.js')}}"></script>
     <!-- bs-custom-file-input -->
     <script src="{{ url('adminPanel/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script src="{{ url('adminPanel/plugins/ckeditor/ckeditor.js') }}"></script>
 
     <script !src="">
 
-        CKEDITOR.replace('description', {
+        CKEDITOR.replace('body', {
             filebrowserUploadMethod : 'form',
-            filebrowserUploadUrl: '/dashboard/productCategory/save_image',
-            filebrowserImageUploadUrl: '/dashboard/productCategory/save_image',
+            filebrowserUploadUrl: '/dashboard/blogCategory/save_image',
+            filebrowserImageUploadUrl: '/dashboard/blogCategory/save_image',
 
         });
+
     </script>
+
     <script !src="">
         $('.nav-link').removeClass('active');
 
-        $('#categories').addClass('menu-open');
-        $('#categories> a').addClass('active');
-        $('#new-Category').addClass('active');
-
-
-    </script>
+        $('#blogCategory').addClass('menu-open');
+        $('#blogCategory> a').addClass('active');
+        $('#newBlogCategory').addClass('active');
 @stop
 
