@@ -88,17 +88,31 @@
                         </div>
                     </div>
                     {{--                    <-------image---->--}}
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <lable for="image"> عکس محصول</lable>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" name="image">
-                                    <lable class="custom-file-label" for="image ">انتخاب عکس</lable>
+                                    <lable class="custom-file-label" for="image ">{{ url('') }}{{ $product->image }}</lable>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @if($product->image != null && $product->image != '')
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="thumbnail">عکس قبلی محصول:</label>
+                                <img name="thumbnail" style="width: 100%" src="{{ url('') }}{{ $product->image }}"
+                                     alt="{{ $product->title }}">
+                            </div>
+                        </div>
+                    @else
+                        <div class="col-md-4 col-sm-12">
+                            <label for="thumbnail">عکس قبلی محصول: </label>
+                            <span class="text-danger mr-1">بدون تصویر</span>
+                        </div>
+                    @endif
                     {{--                    <-----------discount-------------}}
                     <div class="col-sm-4">
                         <div class="form-group">

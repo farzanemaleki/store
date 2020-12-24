@@ -21,14 +21,17 @@ class Blog extends Model
             ]
         ];
     }
+
     public function category_name($id)
     {
         $category = BlogCategory::where('id',$id)->first();
         return $category->topic;
-
     }
+
     public function author_name($id){
         $author = User::where('id', '=' , $id)->first();
         return $author->name;
     }
+
+
 }

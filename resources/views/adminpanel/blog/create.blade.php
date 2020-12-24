@@ -2,6 +2,9 @@
 @section('pageTitle')
     افزودن نوشته جدید
 @endsection
+@section('headerStyles')
+    <link href="{{url('node_modules/select2/dist/css/select2.min.css')}}" rel="stylesheet"/>
+@endsection
 @section('mainContent')
     <!-- .content-header -->
     <div class="content-header">
@@ -41,21 +44,22 @@
                     <div class="col-sm-12 col-md-4">
                         <div class="form-group">
                             <lable> عنوان نوشته</lable>
-                            <input type="text" class="form-control" name="topic" placeholder="نام نوشته خود را وارد کنید ..." value="{{old('topic')}}">
+                            <input type="text" class="form-control" name="topic"
+                                   placeholder="نام نوشته خود را وارد کنید ..." value="{{old('topic')}}">
                         </div>
                     </div>
                     <!-------------------tags---------------->
                     <div class="col-sm-12 col-md-4">
                         <div class="form-group">
                             <lable>تگ های نوشته</lable>
-                            <input class="form-control" id="tags" name="tags" placeholder="تگ نوشته را وارد کنید ..." />
+                            <input class="form-control" id="tags" name="tags" placeholder="تگ نوشته را وارد کنید ..."/>
                         </div>
                     </div>
                     <!-------------------category---------------->
                     <div class="col-sm-12 col-md-4">
                         <div class="form-group">
                             <lable> دسته بندی نوشته</lable>
-                            <select class="form-control" name="category">
+                            <select class="form-control js-example-basic-single" name="category">
                                 <option value=""><span class=" text-darkwhite">انتخاب دسته بندی نوشته...</span></option>
                                 @foreach($allBlogCategory as $category)
                                     <option value="{{$category->id}}">{{$category->topic}}</option>
@@ -70,7 +74,7 @@
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" name="image">
-                                    <lable class="custom-file-label" for="image ">عکس موردنظر خود راانتخاب کنید </lable>
+                                    <lable class="custom-file-label" for="image ">عکس موردنظر خود راانتخاب کنید</lable>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +94,8 @@
                     <div class="col-sm-12 col-md-8">
                         <div class="form-group">
                             <lable>توضیح کوتاه نوشته</lable>
-                            <textarea rows="2" class="form-control" id="body" name="body" placeholder="توضیح کوتاه نوشته را وارد کنید ..."></textarea>
+                            <textarea rows="2" class="form-control" id="body" name="body"
+                                      placeholder="توضیح کوتاه نوشته را وارد کنید ..."></textarea>
                         </div>
                     </div>
                     <!-------------------description---------------->
@@ -119,18 +124,24 @@
     <!-- bs-custom-file-input -->
     <script src="{{ url('adminPanel/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script src="{{ url('adminPanel/plugins/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ url('node_modules/select2/dist/js/select2.js') }}"></script>
 
     <script !src="">
 
         CKEDITOR.replace('description', {
-            filebrowserUploadMethod : 'form',
+            filebrowserUploadMethod: 'form',
             filebrowserUploadUrl: '/dashboard/blog/save_image',
             filebrowserImageUploadUrl: '/dashboard/blog/save_image',
 
         });
 
     </script>
-
+    <!--- In your Javascript (external .js resource or <script> tag)--->
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
     <script !src="">
         $('.nav-link').removeClass('active');
 

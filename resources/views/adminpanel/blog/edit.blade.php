@@ -65,17 +65,31 @@
                         </div>
                     </div>
                     <!-------------------image---------------->
-                    <div class="col-sm-12 col-md-6">
+                    <div class="col-sm-6">
                         <div class="form-group">
                             <lable for="image"> عکس نوشته</lable>
                             <div class="input-group">
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" name="image">
-                                    <lable class="custom-file-label" for="image ">{{$blog->image}} </lable>
+                                    <lable class="custom-file-label" for="image ">{{ url('') }}{{ $blog->image }}</lable>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @if($blog->image != null && $blog->image != '')
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="thumbnail">عکس قبلی نوشته:</label>
+                                <img name="thumbnail" style="width: 100%" src="{{ url('') }}{{ $blog->image }}"
+                                     alt="{{ $blog->title }}">
+                            </div>
+                        </div>
+                    @else
+                        <div class="col-md-4 col-sm-12">
+                            <label for="thumbnail">عکس قبلی نوشته: </label>
+                            <span class="text-danger mr-1">بدون تصویر</span>
+                        </div>
+                @endif
                     <!-------------------status---------------->
                     <div class="col-sm-12 col-md-4">
                         <div class="form-group">

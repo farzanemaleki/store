@@ -23,4 +23,8 @@ class BlogCategory extends Model
         ];
     }
 
+    public function count_blog($id){
+        $allBlog = Blog::where('category' , '=' , $id)->get();
+        return $allBlog->count();
+    }
 }

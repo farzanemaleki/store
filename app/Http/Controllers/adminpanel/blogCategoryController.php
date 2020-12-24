@@ -15,8 +15,8 @@ class blogCategoryController extends Controller
      */
     public function index()
     {
-        $allblogCategory = BlogCategory::all();
-        return view('adminpanel.blogCategory.index' , compact('allblogCategory'));
+        $allBlogCategory = BlogCategory::all();
+        return view('adminpanel.blogCategory.index' , compact('allBlogCategory'));
     }
 
     /**
@@ -26,8 +26,8 @@ class blogCategoryController extends Controller
      */
     public function create()
     {
-        $allblogCategory = BlogCategory::all();
-        return view('adminpanel.blogCategory.create', compact('allblogCategory'));
+        $allBlogCategory = BlogCategory::all();
+        return view('adminpanel.blogCategory.create', compact('allBlogCategory'));
     }
 
     /**
@@ -98,9 +98,9 @@ class blogCategoryController extends Controller
      */
     public function edit($id)
     {
-        $allblogCategory = BlogCategory::all();
+        $allBlogCategory = BlogCategory::all();
         $blogcategory = BlogCategory::findOrFail($id);
-        return view('adminpanel.blogCategory.edit' , compact(['blogcategory' , 'allblogCategory']));
+        return view('adminpanel.blogCategory.edit' , compact(['blogcategory' , 'allBlogCategory']));
     }
 
     /**
@@ -146,7 +146,7 @@ class blogCategoryController extends Controller
             'body' => $request->get('body'),
             'status' => $request->get('status'),
             'image' => $image,
-            'thumbnail' => $thumbnail,
+            'thumbnail' => $image,
         ]);
         $blogcategory->save();
         return redirect(route('dashboard.blogCategory.index'))->with('message', 'دسته بندی نوشته ' . $blogcategory->topic . ' با موفقیت ویرایش شد');

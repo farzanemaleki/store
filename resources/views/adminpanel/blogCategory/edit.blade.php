@@ -58,7 +58,7 @@
                             <lable> انتخاب دسته بندی</lable>
                             <select class="form-control js-example-basic-single" name="parent_id">
                                 <option value="0">دسته بندی مادر</option>
-                                @foreach($allblogCategory as $category)
+                                @foreach($allBlogCategory as $category)
                                     @if($category->id == $blogcategory->id)
                                         <option value="{{ $category->id }}" selected>{{ $category->topic }}</option>
                                     @else

@@ -62,7 +62,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($allblogCategory as $blogcat)
+                                        @foreach($allBlogCategory as $blogcat)
                                             <tr>
                                                 <td>{{$blogcat->id}}</td>
                                                 <td>{{$blogcat->topic}}</td>

@@ -58,7 +58,7 @@
                             <select class="form-control" name="parent_id">
                                 <option value=""><span class=" text-darkwhite">انتخاب دسته بندی...</span></option>
                                 <option value="0">دسته بندی مادر</option>
-                                @foreach($allblogCategory as $category)
+                                @foreach($allBlogCategory as $category)
                                     <option value="{{$category->id}}">{{$category->topic}}</option>
                                 @endforeach
                             </select>

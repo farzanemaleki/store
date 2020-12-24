@@ -55,6 +55,7 @@
                                         <th>ردیف</th>
                                         <th>نام نوشته</th>
                                         <th>دسته بندی</th>
+                                        <th>برچسب ها</th>
                                         <th>توضیحات کوتاه</th>
                                         <th>توضیحات</th>
                                         <th>تصویر نوشته</th>
@@ -69,6 +70,7 @@
                                             <td>{{$blog->id}}</td>
                                             <td>{{$blog->topic}}</td>
                                             <td>{{$blog->category_name($blog->category)}}</td>
+                                            <td>{{$blog->tags}}</td>
                                             <td>{!! $blog->body !!}</td>
                                             <td>{!! $blog->description !!}</td>
 
