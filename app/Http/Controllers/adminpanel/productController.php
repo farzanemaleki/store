@@ -72,7 +72,6 @@ class productController extends Controller
             $image = config('cms-setting.url') . '/' . $filename;
             $thumbnail = $image;
 
-
             Product::create([
                 'title' => $request->get('title'),
                 'slug' => $request->get('title'),

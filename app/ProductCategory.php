@@ -10,7 +10,7 @@ class ProductCategory extends Model
 {
     use Sluggable;
 
-    public function product(){
+    public function products(){
         return $this->hasMany(Product::class);
     }
 

@@ -5,7 +5,7 @@
 @section('main-content')
 
     <main class="main">
-        <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        <div class="page-header text-center" style="background-image:  url({{url('site/assets/images/page-header-bg.jpg')}})">
             <div class="container">
                 <h1 class="page-title">سبد خرید<span>فروشگاه</span></h1>
             </div><!-- End .container -->
@@ -13,8 +13,8 @@
         <nav aria-label="breadcrumb" class="breadcrumb-nav">
             <div class="container">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index10.html">خانه</a></li>
-                    <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('homepage')}}">خانه</a></li>
+                    <li class="breadcrumb-item"><a href="{{route('site.shop.index')}}">فروشگاه</a></li>
                     <li class="breadcrumb-item active" aria-current="page">سبد خرید</li>
                 </ol>
             </div><!-- End .container -->
@@ -47,7 +47,7 @@
                                     <th>قیمت</th>
                                     <th>تعداد</th>
                                     <th>مجموع</th>
-                                    <th></th>
+                                    <th> </th>
                                 </tr>
                                 </thead>
 
@@ -90,8 +90,6 @@
                                                         </form>
                                                     @endif
                                                 </div>
-                                                <input type="text" id="upCart{{$item->id}}" value="{{ $item->qty }}" min="1" max="{{ $item->count ? $item->count : 10 }}" step="1" data-decimals="0" required=""  style="text-align: center" class="form-control " >
-
                                                 <div class="input-group-append">
                                                     <form action="{{ route('site.cart.update.i') }}" method="post">
                                                         @csrf
@@ -101,9 +99,9 @@
                                                         <button style="min-width: 26px" class="btn btn-increment btn-spinner" type="submit"><i class="icon-plus"></i></button>
                                                     </form>
                                                 </div>
+                                                <input type="text" id="upCart{{$item->id}}" value="{{ $item->qty }}" min="1" max="{{ $item->count ? $item->count : 10 }}" step="1" data-decimals="0" required=""  style="text-align: center" class="form-control " >
+
                                             </div>
-                                            <input type="number" class="form-control" value="{{$item->qty}}" min="1" max="10"
-                                                   step="1" data-decimals="0" required>
 
                                         </div><!-- End .cart-product-quantity -->
                                     </td>
@@ -147,12 +145,10 @@
                                     </tbody>
                                 </table><!-- End .table table-summary -->
 
-                                <a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">رفتن
-                                    به صفحه پرداخت</a>
+                                <a href="{{route('site.checkout.index')}}" class="btn btn-outline-primary-2 btn-order btn-block">رفتن به صفحه پرداخت</a>
                             </div><!-- End .summary -->
 
-                            <a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>ادامه
-                                        خرید</span><i class="icon-refresh"></i></a>
+                            <a href="{{route('site.shop.index')}}" class="btn btn-outline-dark-2 btn-block mb-3"><span>ادامه خرید</span><i class="icon-refresh"></i></a>
                         </aside><!-- End .col-lg-3 -->
                         @endif
                     </div><!-- End .row -->

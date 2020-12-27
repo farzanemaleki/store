@@ -6,7 +6,7 @@
                 <i class="icon-bars"></i>
             </button>
 
-            <a href="index10.html" class="logo">
+            <a href="{{route('homepage')}}" class="logo">
                 <img src="{{ url('site/assets/images/demos/demo-4/logo.png') }}" alt="Molla Logo" width="105" height="25">
             </a>
         </div>
@@ -15,7 +15,7 @@
         <div class="header-center">
             <div class="header-search header-search-extended header-search-visible d-none d-lg-block">
                 <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                <form action="#" method="get">
+                <form action="{{route('site.product.search')}}" method="get">
                     @csrf
                     <div class="header-search-wrapper search-wrapper-wide">
                         <label for="q" class="sr-only">جستجو</label>

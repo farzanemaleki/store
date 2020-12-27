@@ -8,9 +8,9 @@ use Cviebrock\EloquentSluggable\Sluggable;
 class Product extends Model
 {
     use Sluggable;
-    public function productcategory()
+    public function product_category()
     {
-        return $this->belongsTo(ProductCategory::class);
+        return $this->belongsTo(ProductCategory::class  , 'category' , 'id');
     }
 
     protected $fillable =[

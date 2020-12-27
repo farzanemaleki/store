@@ -91,6 +91,7 @@ Route::group(['prefix' => '/account', 'namespace' => 'userpanel'], function () {
 
 Route::group(['namespace'=>'site'] , function (){
     Route::get('/product/{id}' , 'productController@show')->name('site.product.show');
+    Route::get('/search' , 'productController@search')->name('site.product.search');
     Route::get('/productCategory/{id}' , 'productCategoryController@show')->name('site.productCategory.show');
 
     Route::get('/cart' , 'cartController@index')->name('site.cart.index');
@@ -103,6 +104,15 @@ Route::group(['namespace'=>'site'] , function (){
 
     Route::get('/blog','blogController@index')->name('site.blog.index');
     Route::get('/blog/{id}','blogController@show')->name('site.blog.category.index');
+
+    Route::group(['middleware' => 'auth:web'] , function (){
+        Route::get('/checkout' , 'checkOutController@index')->name('site.checkout.index');
+        Route::post('/checkout' , 'checkOutController@store')->name('site.checkout.store');
+
+    });
+
+    Route::get('/checkout/verify' , 'checkOutController@verifycheck');
+
 });
 
 

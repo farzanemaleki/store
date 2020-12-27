@@ -1,30 +1,33 @@
 <div class="header-top">
     <div class="container">
         <div class="header-left">
-            <a href="tel:#"><i class="icon-phone"></i>تلفن تماس : 02155667788</a>
+            <a href="tel:#"><i class="icon-phone"></i>تلفن تماس : {{$adminPhone->mobile}}</a>
         </div>
         <!-- End .header-left -->
 
         <div class="header-right">
 
-            <ul class="top-menu">
+            <ul class="top-menu pl-5">
                 <li>
                     <a href="#">لینک ها</a>
                     <ul>
+                        @if(Auth::user())
                         <li>
                             <div class="header-dropdown">
-                                <a href="#">فارسی</a>
+                                <a href="#">{{Auth::user()->name}}</a>
                                 <div class="header-menu">
                                     <ul>
-                                        <li><a href="#">انگلیسی</a></li>
-                                        <li><a href="#">فرانسوی</a></li>
-                                        <li><a href="#">ترکی استانبولی</a></li>
+                                        <li><a href="{{route('user.account.index')}}">صفحه کاربری شما</a></li>
+                                        <li><a href="{{route('logoutUser')}}">خروج</a></li>
                                     </ul>
                                 </div>
                                 <!-- End .header-menu -->
                             </div>
                         </li>
+                        @else
+                        <li><a href="#signin-modal" data-toggle="modal">کاربر مهمان</a></li>
                         <li><a href="#signin-modal" data-toggle="modal">ورود / ثبت نام</a></li>
+                        @endif
                     </ul>
                 </li>
             </ul>

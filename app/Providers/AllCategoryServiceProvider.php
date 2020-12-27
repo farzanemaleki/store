@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Blog;
 use App\BlogCategory;
 use App\ProductCategory;
+use App\User;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
 
@@ -43,5 +44,10 @@ class AllCategoryServiceProvider extends ServiceProvider
             $allBlog = Blog::where('tags' , '!=' , null)->orderBy('id', 'desc')->limit(30)->get();
             return $view->with('allBlog' , $allBlog);
         });
+        view()->composer('*', function ($view) {
+            $adminPhone = User::where('role' , '=' , 'admin')->first();
+            return $view->with('adminPhone' , $adminPhone);
+        });
+
     }
 }

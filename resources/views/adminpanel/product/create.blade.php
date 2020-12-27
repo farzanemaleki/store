@@ -2,6 +2,9 @@
 @section('pageTitle')
     افزودن محصول جدید
 @endsection
+@section('headerStyles')
+    <link href="{{url('node_modules/select2/dist/css/select2.min.css')}}" rel="stylesheet"/>
+@endsection
 @section('mainContent')
     <!-- .content-header -->
     <div class="content-header">
@@ -49,7 +52,7 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <lable> دسته بندی محصول</lable>
-                            <select class="form-control" name="category">
+                            <select class="form-control js-example-basic-single" name="category">
                                 <option value=""><span class=" text-darkwhite">انتخاب دسته بندی محصول...</span></option>
 {{--                                <option value="0">دسته بندی نشده ها</option>--}}
                                 @foreach($allcategories as $category)
@@ -163,15 +166,20 @@
     <!-- bs-custom-file-input -->
     <script src="{{ url('adminPanel/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
     <script src="{{ url('adminPanel/plugins/ckeditor/ckeditor.js') }}"></script>
+    <script src="{{ url('node_modules/select2/dist/js/select2.js') }}"></script>
 
     <script !src="">
-
             CKEDITOR.replace('description', {
                 filebrowserUploadMethod : 'form',
                 filebrowserUploadUrl: '/dashboard/products/save_image',
                 filebrowserImageUploadUrl: '/dashboard/products/save_image',
-
             });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
     </script>
 
     <script !src="">

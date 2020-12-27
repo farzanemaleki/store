@@ -4,6 +4,7 @@ namespace App\Http\Controllers\site;
 
 use App\Product;
 use App\ProductCategory;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -14,6 +15,7 @@ class homepageController extends Controller
 //       $product = new Product();
 //       $allProducts = $product->publishedProduct();
 //       $allcategory = ProductCategory::all();
+
 
        $allcategory = ProductCategory::all();
        if(cache('allProducts')){

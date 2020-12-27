@@ -91,4 +91,9 @@ class ProductController extends Controller
     {
         //
     }
+    public function search(Request $request){
+        $text = $request->get('q');
+        $result = Product::where('title' , 'LIKE' , '%' .$text. '%' )->get();
+        return view('site.search.search', compact(['result' , 'text']));
+    }
 }
