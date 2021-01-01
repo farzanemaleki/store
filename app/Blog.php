@@ -12,6 +12,10 @@ class Blog extends Model
     protected $fillable = [
         'topic' , 'category' , 'body' , 'status' , 'author' , 'countView' , 'tags' , 'image' , 'description'
     ];
+    public function comments()
+    {
+        return $this->morphMany(comment::class , 'commentable');
+    }
 
     public function sluggable()
     {

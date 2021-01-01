@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\site;
 
+use App\Comment;
 use App\Product;
+use App\helper;
 
 use App\productAttribiutes;
 use App\ProductCategory;
@@ -54,7 +56,9 @@ class ProductController extends Controller
         $product = Product::FindOrFail($id);
 
         $allAttr = productAttribiutes::all()->where('product_id' , '=' , $id);
-        return view('site.product.product',compact(['product' , 'allcategory' , 'allAttr']));
+
+        $comments = $product->comments()->where('confirmed' , 1)->where('parent_id' , 0)->latest()->get();
+        return view('site.product.product',compact(['product' , 'allcategory' , 'allAttr' , 'comments']));
 
     }
 

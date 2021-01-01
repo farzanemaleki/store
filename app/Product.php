@@ -2,6 +2,7 @@
 
 namespace App;
 
+use http\Env\Request;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 
@@ -11,6 +12,11 @@ class Product extends Model
     public function product_category()
     {
         return $this->belongsTo(ProductCategory::class  , 'category' , 'id');
+    }
+
+    public function comments()
+    {
+        return $this->morphMany(comment::class , 'commentable');
     }
 
     protected $fillable =[
@@ -51,4 +57,7 @@ class Product extends Model
         $randomMoreProducts = Product::where('category', '=', $id)->inRandomOrder(8)->get();
         return $randomMoreProducts ;
     }
+
+
+
 }
