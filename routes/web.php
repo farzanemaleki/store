@@ -94,6 +94,7 @@ Route::group(['namespace'=>'site'] , function (){
     Route::get('/search' , 'productController@search')->name('site.product.search');
     Route::get('/productCategory/{id}' , 'productCategoryController@show')->name('site.productCategory.show');
     Route::post('/comment' , 'homepageController@comment')->name('site.comment');
+    Route::post('/comment/replay' , 'homepageController@comment')->name('site.comment.replay');
 
     Route::get('/cart' , 'cartController@index')->name('site.cart.index');
     Route::post('/cart/{product}' , 'cartController@store')->name('site.cart.store');

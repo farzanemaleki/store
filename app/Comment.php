@@ -41,4 +41,19 @@ class Comment extends Model
 
         return $set_fa;
     }
+
+    public function setCommentBodyAttribute($value)
+    {
+        $this->attributes['comment_body'] = str_replace(PHP_EOL, '<br>' , $value);
+    }
+
+    public function comments(){
+        return $this->hasMany(Comment::class , 'parent_id' , 'id')->where('confirmed' , '=' , 1);
+
+    }
+    public function replies()
+    {
+        return $this->hasMany(Comment::class, 'parent_id');
+    }
+
 }

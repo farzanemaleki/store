@@ -30,7 +30,7 @@ $(document).ready(function () {
         e.stopPropagation();
     });
 
-    // Sticky header 
+    // Sticky header
     var catDropdown = $('.category-dropdown'),
         catInitVal = catDropdown.data('visible');
 
@@ -209,7 +209,7 @@ $(document).ready(function () {
 
             var newDate;
 
-            // Split and created again for ie and edge 
+            // Split and created again for ie and edge
             if (!$this.data('relative')) {
                 var untilDateArr = untilDate.split(", "), // data-until 2019, 10, 8 - yy,mm,dd
                     newDate = new Date(untilDateArr[0], untilDateArr[1] - 1, untilDateArr[2]);
@@ -329,7 +329,7 @@ $(document).ready(function () {
         });
     }
 
-    // Product Gallery - product-gallery.html 
+    // Product Gallery - product-gallery.html
     if ($.fn.owlCarousel && $.fn.elevateZoom) {
         var owlProductGallery = $('.product-gallery-carousel');
 
@@ -384,7 +384,7 @@ $(document).ready(function () {
         });
     }
 
-    // Product Gallery Separeted- product-sticky.html 
+    // Product Gallery Separeted- product-sticky.html
     if ($.fn.elevateZoom) {
         $('.product-separated-item').find('img').elevateZoom({
             zoomType: "inner",
@@ -787,4 +787,12 @@ $(document).ready(function () {
             }, 500)
         }, 10000)
     }
+});
+$('#SendReplyCommentModal').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    var parentId = button.data('parent_id'); // Extract info from data-* attributes
+    // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+    // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+    var modal = $(this); // Current Modal
+    modal.find("[name='parent_id']").val(parentId);
 });

@@ -57,8 +57,8 @@ class ProductController extends Controller
 
         $allAttr = productAttribiutes::all()->where('product_id' , '=' , $id);
 
-        $comments = $product->comments()->where('confirmed' , 1)->where('parent_id' , 0)->latest()->get();
-        return view('site.product.product',compact(['product' , 'allcategory' , 'allAttr' , 'comments']));
+        $allcomments = $product->comments()->where('confirmed' , 1)->where('parent_id' , 0)->latest()->with('comments')->get();
+        return view('site.product.product',compact(['product' , 'allcategory' , 'allAttr' , 'allcomments']));
 
     }
 

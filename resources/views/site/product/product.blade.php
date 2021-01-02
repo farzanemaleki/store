@@ -96,7 +96,7 @@
                     <li class="nav-item">
                         <a class="nav-link" id="product-review-link" data-toggle="tab"
                            href="#product-review-tab" role="tab" aria-controls="product-review-tab"
-                           aria-selected="false">نظرات ({{$comments->count()}})</a>
+                           aria-selected="false">نظرات ({{$allcomments->count()}})</a>
                     </li>
                 </ul>
                 <div class="tab-content" style="border: lightgray solid thin;margin-right: 2%;margin-left: 2%">
@@ -139,73 +139,7 @@
                         </div><!-- End .product-desc-content -->
                     </div><!-- .End .tab-pane -->
                     <div class="tab-pane fade" id="product-review-tab" role="tabpanel" aria-labelledby="product-review-link">
-                        <div class="reviews">
-                        @if($comments->count() > 0)
-
-                            <h3>نظر {{$comments->count()}}</h3>
-                            @foreach($comments as $comment)
-                            <div class="review">
-                                <div class="row no-gutters">
-                                    <div class="col-auto">
-                                        <h4><a href="#">کاربر {{$comment->user->name}}</a></h4>
-                                        <div class="ratings-container">
-                                            <div class="ratings">
-                                                <div class="ratings-val" style="width: 80%;"></div>
-                                                <!-- End .ratings-val -->
-                                            </div><!-- End .ratings -->
-                                        </div><!-- End .rating-container -->
-                                        <span class="review-date"> {{ $comment->diffForHumans($comment->updated_at) }} </span>
-                                    </div><!-- End .col -->
-                                    <div class="col-12">
-                                        <div class="review-content">
-                                            <p>{!! $comment->comment_body !!}</p>
-                                        </div><!-- End .review-content -->
-
-                                        <div class="review-action">
-                                            <a href="#"><i class="icon-thumbs-up"></i>مثبت (2)</a>
-                                            <a href="#"><i class="icon-thumbs-down"></i>منفی (0)</a>
-                                        </div><!-- End .review-action -->
-                                    </div><!-- End .col-auto -->
-                                </div><!-- End .row -->
-                            </div><!-- End .review -->
-                                @endforeach
-                            @else
-                            <div style="margin: 30px">
-                                هیچ نظری تا به حال درباره این محصول ثبت نشده است.
-                            </div>
-                            @endif
-                        </div><!-- End .نظر -->
-
-
-
-                        @if(auth()->check())
-                            <div class="reviews">
-                                <div class="reply">
-                                    <div class="heading">
-                                        <h3 class="title">ارسال دیدگاه</h3>
-                                    </div>
-                                    <form action="{{route('site.comment')}}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="parent_id" value="0">
-                                        <input type="hidden" name="commentable_id" value="{{$product->id}}">
-                                        <input type="hidden" name="commentable_type" value="{{ get_class($product) }}">
-                                        <lable for="comment_body" class="sr-only">دیدگاه</lable>
-                                        <textarea name="comment_body" id="comment_body" cols="30" rows="4"
-                                                  class="form-control" placeholder="دیدگاه شما"></textarea>
-                                        <button type="submit" class="btn btn-outline-primary-2 float-right">
-                                            <span>ارسال دیدگاه</span>
-                                            <i class="icon-long-arrow-left"></i>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        @else
-                            <div class="alert alert-warning col-sm-12 m-2">
-                                <li>
-                                برای ثبت نظر لطفا ابتدا وارد حساب کابری خود شوید
-                                </li>
-                            </div>
-                        @endif
+                       @include('site.layout.comment.comment' , ['allcomments' => $allcomments,'subject' => $product])
 
                     </div><!-- .End .tab-pane -->
                 </div><!-- End .tab-content -->
