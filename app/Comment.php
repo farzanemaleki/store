@@ -9,10 +9,12 @@ class Comment extends Model
     protected $fillable =[
         'user_id' , 'comment_body' , 'confirmed' , 'commentable_id' , 'commentable_type' , 'parent_id'
     ];
-//    public function commenttable()
-//    {
-//        return $this->morphTo();
-//    }
+
+    public function commentable()
+    {
+        return $this->morphTo();
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class  , 'user_id' , 'id');
@@ -51,9 +53,13 @@ class Comment extends Model
         return $this->hasMany(Comment::class , 'parent_id' , 'id')->where('confirmed' , '=' , 1);
 
     }
-    public function replies()
-    {
-        return $this->hasMany(Comment::class, 'parent_id');
-    }
 
+    public function commentType($str){
+
+        if ($str == 'App\Product'){
+            return str_replace('App\Product' , 'دسته محصولات' , 'App\Product');
+        }else{
+            return str_replace('App\Blog' , 'دسته بلاگ' , 'App\Product');
+        }
+    }
 }

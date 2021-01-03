@@ -1,7 +1,7 @@
 <div class="reviews">
     @if($allcomments->count() > 0)
 
-{{--        <h3>نظر {{$allcomments->count()}}</h3>--}}
+        {{--        <h3>نظر {{$allcomments->count()}}</h3>--}}
         @foreach($allcomments as $comment)
             <div class="review">
                 <div class="row no-gutters">
@@ -28,92 +28,108 @@
                                data-parent_id="{{ $comment->id }}">پاسخ
                             </a>
                         </div><!-- End .review-action -->
-                    </div><!-- End .col-auto -->
-                </div><!-- End .row -->
-                <hr/>
-                <ul class="javab">
-                    @foreach($comment->comments as $child)
-                        <li>
-                            <div class="comment">
-                                <div class="comment-body">
-                                    <div class="comment-user">
-                                        <h4><a href="#">{{ $child->user->name }}</a></h4>
-                                        <span
-                                            class="comment-date">{{ $child->diffForHumans($child->created_at) }}</span>
-                                    </div><!-- End .comment-user -->
+                        @if($comment->comments->count()>0)
+                        <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample{{$comment->id }}" role="button"
+                           aria-expanded="false" aria-controls="multiCollapseExample{{$comment->id }}">
+                            <i class="icon-mail-reply"></i>پاسخ های مرتبط
+                        </a>
+                        @endif
 
-                                    <div class="comment-content">
-                                        <p>{!! $child->comment_body !!}</p>
-                                    </div><!-- End .comment-content -->
-                                </div><!-- End .comment-body -->
-                                <div class="review-action col-md-3">
-                                    <a href="#"><i class="icon-thumbs-up"></i>مثبت (2)</a>
-                                    <a href="#"><i class="icon-thumbs-down"></i>منفی (0)</a>
-                                    <a type="button" class="comment-reply d-inline-block" data-toggle="modal"
-                                       data-target="#SendReplyCommentModal2"
-                                       data-parent_id="{{ $child->id }}">پاسخ
-                                    </a>
-                                </div><!-- End .review-action -->
-                            </div><!-- End\  .comment -->
+                        <div class="collapse multi-collapse" id="multiCollapseExample{{$comment->id }}">
+                            <div class="card card-body">
+                                <hr/>
+                                <ul class="javab">
+                                    @foreach($comment->comments as $child)
+                                        <li>
+                                            <div class="comment">
+                                                <div class="comment-body">
+                                                    <div class="comment-user">
+                                                        <h4><a href="#">{{ $child->user->name }}</a></h4>
+                                                        <span
+                                                            class="comment-date">{{ $child->diffForHumans($child->created_at) }}</span>
+                                                    </div><!-- End .comment-user -->
 
-                            <hr/>
-                            @foreach($child->comments  as $chi)
-                                <div class="comment pr-5">
-                                    <div class="comment-body">
-                                        <div class="comment-user">
-                                            <h4><a href="#">{{ $chi->user->name }}</a></h4>
-                                            <span
-                                                class="comment-date">{{ $chi->diffForHumans($chi->created_at) }}</span>
-                                        </div><!-- End .comment-user -->
+                                                    <div class="comment-content">
+                                                        <p>{!! $child->comment_body !!}</p>
+                                                    </div><!-- End .comment-content -->
+                                                </div><!-- End .comment-body -->
+                                                <div class="review-action col-md-3">
+                                                    <a href="#"><i class="icon-thumbs-up"></i>مثبت (2)</a>
+                                                    <a href="#"><i class="icon-thumbs-down"></i>منفی (0)</a>
+                                                    <a type="button" class="comment-reply d-inline-block"
+                                                       data-toggle="modal"
+                                                       data-target="#SendReplyCommentModal2"
+                                                       data-parent_id="{{ $child->id }}">پاسخ
+                                                    </a>
+                                                </div><!-- End .review-action -->
+                                            </div><!-- End\  .comment -->
 
-                                        <div class="comment-content">
-                                            <p>{!! $chi->comment_body !!}</p>
-                                        </div><!-- End .comment-content -->
-                                    </div><!-- End .comment-body -->
-                                    <div class="review-action col-md-3">
-                                        <a href="#"><i class="icon-thumbs-up"></i>مثبت (2)</a>
-                                        <a href="#"><i class="icon-thumbs-down"></i>منفی (0)</a>
+                                            <hr/>
+                                            @foreach($child->comments  as $chi)
+                                                <div class="comment pr-5">
+                                                    <div class="comment-body">
+                                                        <div class="comment-user">
+                                                            <h4><a href="#">{{ $chi->user->name }}</a></h4>
+                                                            <span
+                                                                class="comment-date">{{ $chi->diffForHumans($chi->created_at) }}</span>
+                                                        </div><!-- End .comment-user -->
 
-                                    </div><!-- End .review-action -->
-                                </div><!-- End .comment -->
-                            @endforeach
-                        </li>
+                                                        <div class="comment-content">
+                                                            <p>{!! $chi->comment_body !!}</p>
+                                                        </div><!-- End .comment-content -->
+                                                    </div><!-- End .comment-body -->
+                                                    <div class="review-action col-md-3">
+                                                        <a href="#"><i class="icon-thumbs-up"></i>مثبت (2)</a>
+                                                        <a href="#"><i class="icon-thumbs-down"></i>منفی (0)</a>
+
+                                                    </div><!-- End .review-action -->
+                                                </div><!-- End .comment -->
+                                            @endforeach
+                                        </li>
 
 
-                        <div class="modal fade" id="SendReplyCommentModal2" tabindex="-1"
-                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">پاسخ به نظر</h5>
-                                    </div>
-                                    <form method="post" action="{{ route('site.comment') }}">
-                                        <div class="modal-body">
-                                            <div class="col-sm-12">
-                                                @csrf
-                                                <input type="hidden" name="parent_id" value="{{ $child->id }}">
-                                                <input type="hidden" name="commentable_id" value="{{ $subject->id }}">
-                                                <input type="hidden" name="commentable_type"
-                                                       value="{{ get_class($subject) }}">
-                                                <div class="form-group">
-                                                    <label for="message-text" class="col-form-label">متن پیام:</label>
-                                                    <textarea class="form-control" name="comment_body"
-                                                              id="comment_body"></textarea>
+                                        <div class="modal fade" id="SendReplyCommentModal2" tabindex="-1"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">پاسخ به نظر</h5>
+                                                    </div>
+                                                    <form method="post" action="{{ route('site.comment') }}">
+                                                        <div class="modal-body">
+                                                            <div class="col-sm-12">
+                                                                @csrf
+                                                                <input type="hidden" name="parent_id"
+                                                                       value="{{ $child->id }}">
+                                                                <input type="hidden" name="commentable_id"
+                                                                       value="{{ $subject->id }}">
+                                                                <input type="hidden" name="commentable_type"
+                                                                       value="{{ get_class($subject) }}">
+                                                                <div class="form-group">
+                                                                    <label for="message-text" class="col-form-label">متن
+                                                                        پیام:</label>
+                                                                    <textarea class="form-control" name="comment_body"
+                                                                              id="comment_body"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-danger"
+                                                                    data-dismiss="modal">انصراف
+                                                            </button>
+                                                            <button type="submit" class="btn btn-primary">ارسال پاسخ
+                                                            </button>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">انصراف
-                                            </button>
-                                            <button type="submit" class="btn btn-primary">ارسال پاسخ</button>
-                                        </div>
-                                    </form>
-                                </div>
+                                    @endforeach
+                                </ul>
                             </div>
                         </div>
-                    @endforeach
-                </ul>
-
+                    </div><!-- End .col-auto -->
+                </div><!-- End .row -->
             </div><!-- End .review -->
         @endforeach
     @else

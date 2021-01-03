@@ -271,3 +271,5 @@ ul {
 .datepicker-plot-area {
     font-family: 'Vazir', sans-serif;
 }
+.show-order {list-style: none}
+.show-order li span {color: #00a65a}

@@ -1,7 +1,7 @@
 @extends('adminpanel.layout')
 
 @section('pageTitle')
-   کاربران سایت
+    سفارشات کاربران
 @stop
 @section('mainContent')
     <!-- .content-header -->
@@ -9,12 +9,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">همه کاربران سایت</h1>
+                    <h1 class="m-0 text-dark">همه سفارشات</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-left">
                         <li class="breadcrumb-item"><a href="{{route('dashboard')}}">داشبورد</a></li>
-                        <li class="breadcrumb-item active">کاربران</li>
+                        <li class="breadcrumb-item active">سفارشات</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -30,53 +30,57 @@
                             <li>{{Session::get('message')}}</li>
                         </div>
                     @endif
-                    @if(session ('error'))
+                    @if(session ('warning'))
                         <div class="alert alert-danger col-sm-3">
-                            <li>{{Session::get('error')}}</li>
+                            <li>{{Session::get('warning')}}</li>
                         </div>
                     @endif
                 </div>
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title text-right">کاربران</h3>
+                            <h3 class="card-title text-right">سفارشات</h3>
                         </div>
 
                         {{--card header--}}
                         <div class="card-body">
-                            @if(\App\User::all()->count() > 0)
+                            @if(\App\Payment::where('status' , 'OK')->count() > 0)
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
                                         <th>ردیف</th>
-                                        <th>نام کاربر</th>
-                                        <th>شماره همراه</th>
-                                        <th>سطح دسترسی</th>
-                                        <th>تاریخ عضویت</th>
-                                        <th>آخرین کد تایید</th>
+                                        <th>نام سفارش دهنده</th>
+                                        <th>شماره سفارش</th>
+                                        <th>مبلغ سفارش</th>
+                                        <th>وضعیت پرداخت</th>
+                                        <th> تاریخ ثبت سفارش</th>
                                         <th>عملیات</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($allmembers as $member)
+                                    @foreach($orders as $order)
                                         <tr>
-                                            <td>{{$member->id}}</td>
-                                            <td>{{$member->name}}</td>
-                                            <td>{{$member->mobile}}</td>
-                                            <td>{{$member->role}}</td>
-                                            <td>{{$member->created_at}}</td>
-                                            <td>{{$member->verify_code}}</td>
-{{--                                            <td>--}}
-{{--                                                <a href="{{route('dashboard.productAttribiutes.edit', $member->id)}}"><i class="fa fa-pencil m-2" ></i></a>--}}
-{{--                                                <a href="{{route('dashboard.productAttribiutes.destroy' , $member->id)}}"><i class="fa fa-trash-o text-danger"></i></a>--}}
-{{--                                            </td>--}}
+                                            <td>{{$order->id}}</td>
+                                            <td>{{$order->user->name}}</td>
+                                            <td>{{$order->order->id }}
+                                            </td>
+                                            <td>{{number_format($order->amount)}}تومان</td>
+                                            <td>پرداخت موفق</td>
+                                            <td>{{$order->diffForHumans($order->order->created_at)}}</td>
+                                            <td>
+                                                <a href="{{route('dashboard.orders.show' , $order->id)}}">
+                                                    <i class="fa fa-check m-2" ></i></a>
+                                                <a href="{{route('dashboard.orders.destroy' , $order->id)}}">
+                                                    <i class="fa fa-trash-o text-danger"></i></a>
+                                            </td>
                                         </tr>
 
                                     @endforeach
                                     </tbody>
+                                    {!! $orders->links() !!}
                                 </table>
                             @else
-                                <h4>کاربری در سایت موجود نیست</h4>
+                                <h4>سفارشی در سایت موجود نیست</h4>
                             @endif
                         </div>
                     </div>
@@ -96,9 +100,9 @@
     <script !src="">
         $('.nav-link').removeClass('active');
 
-        $('#members').addClass('menu-open');
-        $('#members> a').addClass('active');
-        $('#allmembers').addClass('active');
+        $('#orders').addClass('menu-open');
+        $('#orders> a').addClass('active');
+        $('#allorders').addClass('active');
 
 
     </script>

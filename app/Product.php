@@ -58,6 +58,8 @@ class Product extends Model
         return $randomMoreProducts ;
     }
 
-
+    public function path(){
+        return "/product/$this->id";
+    }
 
 }

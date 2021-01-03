@@ -102,11 +102,13 @@ class checkOutController extends Controller
             $ids = [];
             $names = [];
             $counts = [];
+            $prices = [];
 
             foreach (Cart::content() as $item){
                 array_push($ids, '{' . $item->model->id . '}');
                 array_push($names, '{' .$item->model->title . '}');
                 array_push($counts, '{' .$item->qty . '}');
+                array_push($prices, '{' .$item->price . '}');
             }
 
             $new_order = '';
@@ -115,11 +117,12 @@ class checkOutController extends Controller
                 'product_id' => implode(',' , $ids),
                 'product_name' => implode(',' , $names),
                 'product_count' => implode(',' , $counts),
+                'product_price' => implode(',' ,$prices),
                 'amount' => $amount,
-                'description' => $request->get('description') ?? '',
+                'description' => $request->get('description')?? '',
                 'delivery_address_id' => $current_address_id->id ,
                 'postal_code' => $request->get('postal_code'),
-                'company_name' => $request->get('company_name') ?? '',
+                'company_name' => $request->get('company_name')?? '',
                 'discount' => 0
             ]);
 
@@ -127,6 +130,8 @@ class checkOutController extends Controller
 
             Payment::create([
                 'order_id' => $current_order_id,
+                'user_id' => $current_user_id,
+                'user_address_id' => $current_address_id->id ,
                 'status' => 'NOK',
                 'amount' => $amount,
                 'RefID' => '',

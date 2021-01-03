@@ -136,7 +136,7 @@
                                         <input type="email" class="form-control"
                                                value="{{ auth()->user()->email ?? '' }}">
                                         <label>توضیحات (اختیاری)</label>
-                                        <textarea class="form-control" cols="30" rows="4"
+                                        <textarea class="form-control" cols="30" rows="4" name="description"
                                                   placeholder="شما میتوانید توضیحات اضافی خود را اینجا بنویسید"></textarea>
                                     </div><!-- End .col-lg-9 -->
 

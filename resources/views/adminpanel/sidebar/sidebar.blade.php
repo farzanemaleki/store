@@ -129,38 +129,39 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('dashboard.productAttribiutes.create')}}" class="nav-link" id="newAttr">
+                                <a href="{{ route('dashboard.productAttribiutes.create')}}" class="nav-link"
+                                   id="newAttr">
                                     <i class="fa fa-circle nav-icon"></i>
                                     <p>افزودن ویژگی جدید</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
-                <!-----        blogs   ------>
-                <li class="nav-item has-treeview" id="blogs">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fa fa-th"></i>
-                        <p>
-                            نوشته ها
-                            <i class="right fa fa-angle-left"></i>
-                            <span class="badge badge-info right">{{ \App\Blog::all()->count()}}</span>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.blog.index')}}" id="allblog" class="nav-link">
-                                <i class="fa fa-circle-o nav-icon"></i>
-                                <p>لیست همه نوشته ها</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('dashboard.blog.create')}}" class="nav-link" id="newblog">
-                                <i class="fa fa-circle nav-icon"></i>
-                                <p>افزودن نوشته جدید</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                    <!-----        blogs   ------>
+                    <li class="nav-item has-treeview" id="blogs">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                نوشته ها
+                                <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\Blog::all()->count()}}</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.blog.index')}}" id="allblog" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>لیست همه نوشته ها</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.blog.create')}}" class="nav-link" id="newblog">
+                                    <i class="fa fa-circle nav-icon"></i>
+                                    <p>افزودن نوشته جدید</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <!-----        blogs category   ------>
                     <li class="nav-item has-treeview" id="blogCategory">
                         <a href="#" class="nav-link">
@@ -173,89 +174,141 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="{{ route('dashboard.blogCategory.index')}}" id="allBlogCategory" class="nav-link">
+                                <a href="{{ route('dashboard.blogCategory.index')}}" id="allBlogCategory"
+                                   class="nav-link">
                                     <i class="fa fa-circle-o nav-icon"></i>
                                     <p>لیست دسته بندی نوشته ها</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('dashboard.blogCategory.create')}}" class="nav-link" id="newBlogCategory">
+                                <a href="{{ route('dashboard.blogCategory.create')}}" class="nav-link"
+                                   id="newBlogCategory">
                                     <i class="fa fa-circle nav-icon"></i>
                                     <p>افزودن دسته بندی جدید</p>
                                 </a>
                             </li>
                         </ul>
                     </li>
+                    <!-----        Comments   ------>
+                    <li class="nav-item has-treeview" id="comments">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                 همه نظرات
+                                <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\Comment::all()->count()}}</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.comments.index')}}" id="allcomments" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>نظرات سایت
+                                        <i class="right fa fa-angle-left"></i>
+                                        <span class="badge badge-info right">{{ \App\Comment::where('confirmed', 1)->count()}}</span>
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.comments.unconfirmed')}}" id="allunconfirmed" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>نظرات تایید نشده
+                                        <span class="badge badge-danger right">{{ \App\Comment::where('confirmed', 0)->count()}}</span>
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-----        Comments   ------>
+                    <li class="nav-item has-treeview" id="orders">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                 همه سفارشات
+                                <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\Payment::where('status' , 'OK')->count()}}</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.orders.index')}}" id="allorders" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>سفارشات کاربران
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <!------------Exit ------------->
-                <li class="nav-item has-treeview">
-                    <a href="/logoutUser" class="nav-link">
-                        <i class="fa fa-sign-out right"></i>
-                        <p>
-                            خروج
-                        </p>
-                    </a>
-                </li>
-                {{--                    <li class="nav-item has-treeview">--}}
-                {{--                        <a href="#" class="nav-link">--}}
-                {{--                            <i class="nav-icon fa fa-plus-square-o"></i>--}}
-                {{--                            <p>--}}
-                {{--                                بیشتر--}}
-                {{--                                <i class="fa fa-angle-left right"></i>--}}
-                {{--                            </p>--}}
-                {{--                        </a>--}}
-                {{--                        <ul class="nav nav-treeview">--}}
-                {{--                            <li class="nav-item">--}}
-                {{--                                <a href="pages/examples/404.html" class="nav-link">--}}
-                {{--                                    <i class="fa fa-circle-o nav-icon"></i>--}}
-                {{--                                    <p>ارور 404</p>--}}
-                {{--                                </a>--}}
-                {{--                            </li>--}}
-                {{--                            <li class="nav-item">--}}
-                {{--                                <a href="pages/examples/500.html" class="nav-link">--}}
-                {{--                                    <i class="fa fa-circle-o nav-icon"></i>--}}
-                {{--                                    <p>ارور 500</p>--}}
-                {{--                                </a>--}}
-                {{--                            </li>--}}
-                {{--                            <li class="nav-item">--}}
-                {{--                                <a href="pages/examples/blank.html" class="nav-link">--}}
-                {{--                                    <i class="fa fa-circle-o nav-icon"></i>--}}
-                {{--                                    <p>صفحه خالی</p>--}}
-                {{--                                </a>--}}
-                {{--                            </li>--}}
-                {{--                            <li class="nav-item">--}}
-                {{--                                <a href="starter.html" class="nav-link">--}}
-                {{--                                    <i class="fa fa-circle-o nav-icon"></i>--}}
-                {{--                                    <p>صفحه شروع</p>--}}
-                {{--                                </a>--}}
-                {{--                            </li>--}}
-                {{--                        </ul>--}}
-                {{--                    </li>--}}
-                {{--                    <li class="nav-header">متفاوت</li>--}}
-                {{--                    <li class="nav-item">--}}
-                {{--                        <a href="#" class="nav-link">--}}
-                {{--                            <i class="nav-icon fa fa-file"></i>--}}
-                {{--                            <p>مستندات</p>--}}
-                {{--                        </a>--}}
-                {{--                    </li>--}}
-                {{--                    <li class="nav-header">برچسب‌ها</li>--}}
-                {{--                    <li class="nav-item">--}}
-                {{--                        <a href="#" class="nav-link">--}}
-                {{--                            <i class="nav-icon fa fa-circle-o text-danger"></i>--}}
-                {{--                            <p class="text">مهم</p>--}}
-                {{--                        </a>--}}
-                {{--                    </li>--}}
-                {{--                    <li class="nav-item">--}}
-                {{--                        <a href="#" class="nav-link">--}}
-                {{--                            <i class="nav-icon fa fa-circle-o text-warning"></i>--}}
-                {{--                            <p>هشدار</p>--}}
-                {{--                        </a>--}}
-                {{--                    </li>--}}
-                {{--                    <li class="nav-item">--}}
-                {{--                        <a href="#" class="nav-link">--}}
-                {{--                            <i class="nav-icon fa fa-circle-o text-info"></i>--}}
-                {{--                            <p>اطلاعات</p>--}}
-                {{--                        </a>--}}
-                {{--                    </li>--}}
+                    <li class="nav-item has-treeview">
+                        <a href="/logoutUser" class="nav-link">
+                            <i class="fa fa-sign-out right"></i>
+                            <p>
+                                خروج
+                            </p>
+                        </a>
+                    </li>
+                    {{--                    <li class="nav-item has-treeview">--}}
+                    {{--                        <a href="#" class="nav-link">--}}
+                    {{--                            <i class="nav-icon fa fa-plus-square-o"></i>--}}
+                    {{--                            <p>--}}
+                    {{--                                بیشتر--}}
+                    {{--                                <i class="fa fa-angle-left right"></i>--}}
+                    {{--                            </p>--}}
+                    {{--                        </a>--}}
+                    {{--                        <ul class="nav nav-treeview">--}}
+                    {{--                            <li class="nav-item">--}}
+                    {{--                                <a href="pages/examples/404.html" class="nav-link">--}}
+                    {{--                                    <i class="fa fa-circle-o nav-icon"></i>--}}
+                    {{--                                    <p>ارور 404</p>--}}
+                    {{--                                </a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li class="nav-item">--}}
+                    {{--                                <a href="pages/examples/500.html" class="nav-link">--}}
+                    {{--                                    <i class="fa fa-circle-o nav-icon"></i>--}}
+                    {{--                                    <p>ارور 500</p>--}}
+                    {{--                                </a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li class="nav-item">--}}
+                    {{--                                <a href="pages/examples/blank.html" class="nav-link">--}}
+                    {{--                                    <i class="fa fa-circle-o nav-icon"></i>--}}
+                    {{--                                    <p>صفحه خالی</p>--}}
+                    {{--                                </a>--}}
+                    {{--                            </li>--}}
+                    {{--                            <li class="nav-item">--}}
+                    {{--                                <a href="starter.html" class="nav-link">--}}
+                    {{--                                    <i class="fa fa-circle-o nav-icon"></i>--}}
+                    {{--                                    <p>صفحه شروع</p>--}}
+                    {{--                                </a>--}}
+                    {{--                            </li>--}}
+                    {{--                        </ul>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="nav-header">متفاوت</li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a href="#" class="nav-link">--}}
+                    {{--                            <i class="nav-icon fa fa-file"></i>--}}
+                    {{--                            <p>مستندات</p>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="nav-header">برچسب‌ها</li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a href="#" class="nav-link">--}}
+                    {{--                            <i class="nav-icon fa fa-circle-o text-danger"></i>--}}
+                    {{--                            <p class="text">مهم</p>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a href="#" class="nav-link">--}}
+                    {{--                            <i class="nav-icon fa fa-circle-o text-warning"></i>--}}
+                    {{--                            <p>هشدار</p>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
+                    {{--                    <li class="nav-item">--}}
+                    {{--                        <a href="#" class="nav-link">--}}
+                    {{--                            <i class="nav-icon fa fa-circle-o text-info"></i>--}}
+                    {{--                            <p>اطلاعات</p>--}}
+                    {{--                        </a>--}}
+                    {{--                    </li>--}}
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

@@ -36,6 +36,8 @@ class Blog extends Model
         $author = User::where('id', '=' , $id)->first();
         return $author->name;
     }
-
+    public function path(){
+        return "/blog/$this->id";
+    }
 
 }

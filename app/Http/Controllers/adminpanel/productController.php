@@ -206,4 +206,6 @@ class productController extends Controller
         return "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction( '$function_number' , '$url' , '$message' );</script>";
 
     }
+
+
 }

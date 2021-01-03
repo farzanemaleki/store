@@ -79,6 +79,23 @@ Route::group(['prefix' => '/dashboard', 'namespace' => 'adminpanel'], function (
         Route::get('/destroy/{id}', 'blogCategoryController@destroy')->name('dashboard.blogCategory.destroy');
         Route::post('/save_image', 'blogController@uploadImage');
     });
+
+    Route::group(['prefix' => '/comments'], function () {
+        Route::get('/', 'commentsController@index')->name('dashboard.comments.index');
+        Route::get('/UnConfirmedComments', 'commentsController@UnConfirmedComments')->name('dashboard.comments.unconfirmed');
+        Route::get('/UnConfirmedComments/{id}', 'commentsController@confirmedComments')->name('dashboard.comments.confirmed');
+        Route::get('/UnConfirmedComments/destroy/{id}', 'commentsController@destroy')->name('dashboard.comments.unconfirmed.destroy');
+        Route::get('/ConfirmedComments/destroy/{id}', 'commentsController@destroy2')->name('dashboard.comments.destroy2');
+    });
+
+    Route::group(['prefix' => '/orders'], function () {
+        Route::get('/', 'ordersController@index')->name('dashboard.orders.index');
+//        Route::get('/create', 'ordersController@create')->name('dashboard.orders.create');
+//        Route::post('/store', 'ordersController@store')->name('dashboard.orders.store');
+        Route::get('/show/{id}', 'ordersController@show')->name('dashboard.orders.show');
+//        Route::post('/update/{id}', 'ordersController@update')->name('dashboard.orders.update');
+        Route::get('/destroy/{id}', 'ordersController@destroy')->name('dashboard.orders.destroy');
+    });
 });
 //});
 //});
@@ -94,7 +111,6 @@ Route::group(['namespace'=>'site'] , function (){
     Route::get('/search' , 'productController@search')->name('site.product.search');
     Route::get('/productCategory/{id}' , 'productCategoryController@show')->name('site.productCategory.show');
     Route::post('/comment' , 'homepageController@comment')->name('site.comment');
-    Route::post('/comment/replay' , 'homepageController@comment')->name('site.comment.replay');
 
     Route::get('/cart' , 'cartController@index')->name('site.cart.index');
     Route::post('/cart/{product}' , 'cartController@store')->name('site.cart.store');

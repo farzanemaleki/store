@@ -19,6 +19,7 @@ class CreateOrderTable extends Migration
             $table->string('product_id');
             $table->string('product_name');
             $table->string('product_count');
+            $table->string('product_price');
             $table->integer('delivery_address_id');
             $table->double('amount');
             $table->integer('discount')->nullable();
