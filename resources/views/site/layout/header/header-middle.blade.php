@@ -7,7 +7,7 @@
             </button>
 
             <a href="{{route('homepage')}}" class="logo">
-                <img src="{{ url('site/assets/images/demos/demo-4/logo.png') }}" alt="Molla Logo" width="105" height="25">
+                <img src="{{ url('') }}{{$siteInfo->company_logo}}" alt="Molla Logo" width="80" height="25">
             </a>
         </div>
         <!-- End .header-left -->

@@ -5,9 +5,12 @@ namespace App\Providers;
 use App\Blog;
 use App\BlogCategory;
 use App\ProductCategory;
+use App\SiteInfo;
+use App\SocialMedia;
 use App\User;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\View\View;
+use Tests\Localization\DaDkTest;
 
 class AllCategoryServiceProvider extends ServiceProvider
 {
@@ -45,8 +48,17 @@ class AllCategoryServiceProvider extends ServiceProvider
             return $view->with('allBlog' , $allBlog);
         });
         view()->composer('*', function ($view) {
-            $adminPhone = User::where('role' , '=' , 'admin')->first();
-            return $view->with('adminPhone' , $adminPhone);
+
+            //both of those are true
+//            $siteInfo = SiteInfo::whereId(1)->first();
+            $siteInfo = SiteInfo::find(1);
+            return $view->with('siteInfo' , $siteInfo);
+
+        });
+
+        view()->composer('*', function ($view) {
+            $allsocialMedia = SocialMedia::all();
+            return $view->with('allsocialMedia' , $allsocialMedia);
         });
 
     }

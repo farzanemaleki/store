@@ -239,6 +239,78 @@
                             </li>
                         </ul>
                     </li>
+                    <!-----        Site Infos   ------>
+                    <li class="nav-item has-treeview" id="infos">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                 مدیریت اطلاعات سایت
+                                <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\SiteInfo::all()->count()}}</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.siteInfo.index')}}" id="allinfos" class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>اطلاعات
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-----         Electrical Symbol   ------>
+                    <li class="nav-item has-treeview" id="Elecs">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                نماد الکترونیکی
+                                <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\ElectricalSymbol::all()->count()}}</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.elecSymbol.index')}}" id="allElecs"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>لیست همه نمادها</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.elecSymbol.create')}}" class="nav-link" id="newElecs">
+                                    <i class="fa fa-circle nav-icon"></i>
+                                    <p>افزودن نماد جدید</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-----         social media   ------>
+                    <li class="nav-item has-treeview" id="medias">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                شبکه های اجتماعی
+                                <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\SocialMedia::all()->count()}}</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.socialMedia.index')}}" id="allmedias"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>لیست شبکه های اجتماعی</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.socialMedia.create')}}" class="nav-link" id="newmedia">
+                                    <i class="fa fa-circle nav-icon"></i>
+                                    <p>افزودن شبکه اجتماعی جدید</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <!------------Exit ------------->
                     <li class="nav-item has-treeview">
                         <a href="/logoutUser" class="nav-link">

@@ -3097,3 +3097,7 @@
         </div><!-- End .container -->
     </div><!-- End .icon-boxes-container -->
 @endsection
+
+@section('footerMiddle')
+    @include('site.layout.footer.footerMiddle')
+@endsection

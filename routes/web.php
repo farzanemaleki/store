@@ -10,16 +10,16 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/homepage', 'site\homepageController@index')->name('homepage');
+Route::get('/', 'site\homepageController@index')->name('homepage');
 //mitoni az middleware dakhele controller estefade koinm
 
 //Route::group([ 'middleware' => [ 'auth', 'admin' ]], function() {
@@ -95,6 +95,31 @@ Route::group(['prefix' => '/dashboard', 'namespace' => 'adminpanel'], function (
         Route::get('/show/{id}', 'ordersController@show')->name('dashboard.orders.show');
 //        Route::post('/update/{id}', 'ordersController@update')->name('dashboard.orders.update');
         Route::get('/destroy/{id}', 'ordersController@destroy')->name('dashboard.orders.destroy');
+    });
+
+    Route::group(['prefix' => '/siteInfo'], function () {
+        Route::get('/', 'SiteInfoController@index')->name('dashboard.siteInfo.index');
+        Route::get('/edit/{id}', 'SiteInfoController@edit')->name('dashboard.siteInfo.edit');
+        Route::post('/update/{id}', 'SiteInfoController@update')->name('dashboard.siteInfo.update');
+        Route::post('/save_image', 'SiteInfoController@uploadImage');
+    });
+
+    Route::group(['prefix' => '/elec'], function () {
+        Route::get('/', 'electricalSymbolController@index')->name('dashboard.elecSymbol.index');
+        Route::get('/create', 'electricalSymbolController@create')->name('dashboard.elecSymbol.create');
+        Route::post('/store', 'electricalSymbolController@store')->name('dashboard.elecSymbol.store');
+        Route::get('/edit/{id}', 'electricalSymbolController@edit')->name('dashboard.elecSymbol.edit');
+        Route::post('/update/{id}', 'electricalSymbolController@update')->name('dashboard.elecSymbol.update');
+        Route::get('/destroy/{id}', 'electricalSymbolController@destroy')->name('dashboard.elecSymbol.destroy');
+    });
+
+    Route::group(['prefix' => '/socialMedia'], function () {
+        Route::get('/', 'socialMediaController@index')->name('dashboard.socialMedia.index');
+        Route::get('/create', 'socialMediaController@create')->name('dashboard.socialMedia.create');
+        Route::post('/store', 'socialMediaController@store')->name('dashboard.socialMedia.store');
+        Route::get('/edit/{id}', 'socialMediaController@edit')->name('dashboard.socialMedia.edit');
+        Route::post('/update/{id}', 'socialMediaController@update')->name('dashboard.socialMedia.update');
+        Route::get('/destroy/{id}', 'socialMediaController@destroy')->name('dashboard.socialMedia.destroy');
     });
 });
 //});

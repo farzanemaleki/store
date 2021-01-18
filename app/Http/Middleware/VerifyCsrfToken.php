@@ -22,6 +22,7 @@ class VerifyCsrfToken extends Middleware
         '/dashboard/products/save_image',
         '/dashboard/productCategory/save_image',
         '/dashboard/blog/save_image',
-        '/dashboard/blogCategory/save_image'
+        '/dashboard/blogCategory/save_image',
+        '/dashboard/siteInfo/save_image'
     ];
 }

@@ -3967,7 +3967,7 @@ p {
 }
 
 .header-6 .header-top .social-icons a {
-    font-size: 1.4rem;
+    font-size: 2.4rem;
     font-weight: 500;
     color: #777
 }
@@ -6038,8 +6038,8 @@ p {
     margin-bottom: 1rem
 }
 
-.footer-bottom .social-icon {
-    font-size: 1.3rem
+.social-icon {
+    font-size: 2.3rem
 }
 
 .footer-newsletter {
@@ -10041,7 +10041,7 @@ p {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
+    font-size: 2.6rem;
     width: 4rem;
     height: 4rem;
     color: #777;
@@ -10065,11 +10065,11 @@ p {
     background-color: transparent
 }
 
-.social-icon.social-facebook {
-    color: #8f79ed
+.social-icon.social-whatsapp {
+    color: #24cf11
 }
 
-.social-icon.social-twitter {
+.social-icon.social-telegram {
     color: #79c8ed
 }
 

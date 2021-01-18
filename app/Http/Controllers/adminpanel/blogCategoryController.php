@@ -120,8 +120,8 @@ class blogCategoryController extends Controller
             'topic.min' => 'عنوان نوشته نمیتواند کمتر از سه کارکتر باشد',
             'topic.max' => 'عنوان نوشته نمیتواند بیشتر از 255 کارکتر باشد',
             'body.required' => 'توضیح کوتاه نوشته الزامی است',
-
         ]);
+
         $blogcategory = BlogCategory::findOrFail($id);
         if ($request->hasFile('image')) {
             $image = '';

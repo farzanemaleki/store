@@ -64,7 +64,7 @@
                                         <tbody>
                                         @foreach($allBlogCategory as $blogcat)
                                             <tr>
-                                                <td>{{$blogcat->id}}</td>
+                                                <td>{{$loop->iteration}}</td>
                                                 <td>{{$blogcat->topic}}</td>
                                                 <td>{{$blogcat->slug}}</td>
                                                 <td>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\site;
 
+use App\ElectricalSymbol;
 use App\Product;
 use App\ProductCategory;
+use App\SocialMedia;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -17,15 +19,16 @@ class homepageController extends Controller
 //       $allProducts = $product->publishedProduct();
 //       $allcategory = ProductCategory::all();
 
-
+       $allElecSymbol = ElectricalSymbol::all();
        $allcategory = ProductCategory::all();
+
        if(cache('allProducts')){
            $allProducts = cache('allProducts');
        }else{
            $allProducts = Product::latest()->take(8)->get();
            cache(['allProducts'=>$allProducts], carbon::now()->addMinute(5));
        }
-       return view('site.homePage.homePage', compact(['allProducts' , 'allcategory']));
+       return view('site.homePage.homePage', compact(['allProducts' , 'allcategory' , 'allElecSymbol']));
    }
 
    public function comment(Request $request)

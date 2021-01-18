@@ -1,7 +1,7 @@
 <div class="header-top">
     <div class="container">
         <div class="header-left">
-            <a href="tel:#"><i class="icon-phone"></i>تلفن تماس : {{$adminPhone->mobile}}</a>
+            <a href="tel:#"><i class="icon-phone"></i>تلفن تماس : {{$siteInfo->company_tell}}</a>
         </div>
         <!-- End .header-left -->
 

@@ -56,7 +56,10 @@
 
 @include('site.layout.widgets.signInSignUpModal')
 
-@include('site.layout.footer.footer')
+@include('site.layout.footer.footerTop')
+@yield('footerMiddle')
+@include('site.layout.footer.footerBottom')
+
 {{--<div class="container newsletter-popup-container mfp-hide" id="newsletter-popup-form">--}}
 {{--    <div class="row justify-content-center">--}}
 {{--        <div class="col-10">--}}
