@@ -96,7 +96,7 @@
 
                     <div class="dropdown-cart-action">
                         <a href="{{ route('site.cart.index')  }}" class="btn btn-primary">مشاهده سبد خرید</a>
-                        <a href="#" class="btn btn-outline-primary-2"><span>پرداخت</span><i
+                        <a href="{{route('site.checkout.index')}}" class="btn btn-outline-primary-2"><span>پرداخت</span><i
                                 class="icon-long-arrow-left"></i></a>
                     </div>
                     <!-- End .dropdown-cart-total -->

@@ -311,6 +311,52 @@
                             </li>
                         </ul>
                     </li>
+                    <!-----         Partner   ------>
+                    <li class="nav-item has-treeview" id="partners">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                همکاران
+                                <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\Partner::all()->count()}}</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.partner.index')}}" id="allpartners"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>لیست همکاران</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.partner.create')}}" class="nav-link" id="new_partner">
+                                    <i class="fa fa-circle nav-icon"></i>
+                                    <p>افزودن همکار جدید</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-----         Link   ------>
+                    <li class="nav-item has-treeview" id="links">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fa fa-th"></i>
+                            <p>
+                                لینک ها
+                                <i class="right fa fa-angle-left"></i>
+                                <span class="badge badge-info right">{{ \App\Link::all()->count()}}</span>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="{{ route('dashboard.link.index')}}" id="allLinks"
+                                   class="nav-link">
+                                    <i class="fa fa-circle-o nav-icon"></i>
+                                    <p>لیست لینک ها </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                     <!------------Exit ------------->
                     <li class="nav-item has-treeview">
                         <a href="/logoutUser" class="nav-link">

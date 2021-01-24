@@ -11,8 +11,8 @@
     <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
         <div class="container">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">خانه</a></li>
-                <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
+                <li class="breadcrumb-item"><a href="{{route('homepage')}}">خانه</a></li>
+                <li class="breadcrumb-item"><a href="{{route('site.shop.index')}}">فروشگاه</a></li>
                 <li class="breadcrumb-item active" aria-current="page">نتیجه جستجو : {{ $text }}</li>
             </ol>
         </div><!-- End .container -->

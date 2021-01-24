@@ -49,9 +49,9 @@
                     <!------------------parent_id----------->
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <lable> انتخاب دسته بندی</lable>
+                            <lable> انتخاب شاخه دسته بندی</lable>
                             <select class="form-control" name="parent_id">
-                                <option value=""><span class=" text-darkwhite">انتخاب دسته بندی...</span></option>
+                                <option value=""><span class=" text-darkwhite">انتخاب شاخه دسته بندی...</span></option>
                                 <option value="0">دسته بندی مادر</option>
                                 @foreach($allcategories as $category)
                                     <option value="{{$category->id}}">{{$category->title}}</option>

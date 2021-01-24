@@ -13,7 +13,6 @@
             <div class="container">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('homepage')}}">خانه</a></li>
-                    {{--                    <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>--}}
                     <li class="breadcrumb-item active" aria-current="page">فروشگاه{{' '.$category->title}}</li>
                 </ol>
             </div><!-- End .container -->
@@ -46,8 +45,16 @@
                                                          class="product-image">
                                                 </a>
                                                 <div class="product-action">
-                                                    <a href="#" class="btn-product btn-cart"><span>افزودن به
-                                                            سبد خرید</span></a>
+                                                    <form action="{{route('site.cart.store' , $product)}}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="name" value="{{$product->title}}">
+                                                        <input type="hidden" name="id" value="{{$product->id}}">
+                                                        <input type="hidden" name="price" value="{{$product->price}}">
+                                                        <input type="hidden" name="count" value="1">
+                                                        <button type="submit" class="btn-product btn-cart px-2 border-0"
+                                                                title="افزودن به سبد خرید">افزودن به سبد خرید
+                                                        </button>
+                                                    </form>
                                                 </div><!-- End .product-action -->
                                             </figure><!-- End .product-media -->
 

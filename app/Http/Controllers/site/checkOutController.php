@@ -10,11 +10,12 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use http\Header;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use SoapClient;
 
 class checkOutController extends Controller
 {
-    protected $Merchant_ID = 'f43b1d86-cd4d-11e7-aef7-005056a205be'; //Required
+    protected $Merchant_ID = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'; //Required
 
 
     /**
@@ -71,7 +72,8 @@ class checkOutController extends Controller
         $Mobile = auth()->user()->mobile; // Optional
         $CallbackURL = 'http://localhost:8000/checkout/verify'; // Required
 
-        $client = new SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
+//        $client = new SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
+        $client = new SoapClient('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
 
         $result = $client->PaymentRequest(
             [
@@ -88,12 +90,14 @@ class checkOutController extends Controller
 
             if ($request->get('address_choose_id') == 0) {
                 //new user
-                Address::create([
+                $new_address =Address::create([
                     'user_id' => $current_user_id,
                     'user_address' => 'نام موسسه یا شرکت: ' . $request->get('company_name') . ' آدرس: ' . $request->get('city')
                         . ' - ' . $request->get('state') . ' - ' . $request->get('address')
                 ]);
-                $current_address_id = Address::where('user_id', $current_user_id)->first();
+
+//                $current_address_id = Address::where('user_id', $current_user_id)->first();
+                $current_address_id = $new_address;
             }
             else {
                 $current_address_id = Address::where('id' , $request->get('address_choose_id') )->first();
@@ -138,7 +142,8 @@ class checkOutController extends Controller
                 'card_pan' => '',
             ]);
 
-            return redirect('https://www.zarinpal.com/pg/StartPay/'.$result->Authority);
+//            return redirect('https://www.zarinpal.com/pg/StartPay/'.$result->Authority);
+            return redirect('https://sandbox.zarinpal.com/pg/StartPay/'.$result->Authority);
 
         } else {
             echo'ERR: '.$result->Status;
@@ -148,12 +153,17 @@ class checkOutController extends Controller
 
     public function verifycheck(Request $request)
     {
+        if (Auth::check()){
+        $id = Auth::user()->id;
         $Authority = $request->get('Authority');
-        $order =Order::where('user_id' , auth()->user()->id)->latest(1);
+        $order =Order::where('user_id' , '=' , $id )->latest()->first();
         $payment = Payment::where('order_id' , $order->id)->first();
         $Amount = $payment->amount;
+
         if ($request->get('Status')  == 'OK') {
-            $client = new SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
+
+//            $client = new SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
+            $client = new SoapClient('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
             $result = $client->PaymentVerification(
                 [
                     'MerchantID' => $this->Merchant_ID,
@@ -172,12 +182,15 @@ class checkOutController extends Controller
                 ]);
                 Cart::destroy();
 
-                echo 'Transaction success. RefID:'.$result->RefID;
+                echo 'پرداخت با موفقیت انجام شد . RefID:'.$result->RefID . '    '. '  <a style="background:lightblue" href="'.route('homepage').' ">بازگشت به سایت</a>';
             } else {
-                echo 'Transaction failed. Status:'.$result->Status;
+                echo 'پرداخت ناموفق بود. Status:'.$result->Status;
             }
         } else {
-            echo 'Transaction canceled by user';
+            echo 'پرداخت توسط کاربر لغو شد.';
+        }
+    }else{
+            return redirect(route('login'))->with('message' , 'از ورود شما مدت زیادی میگذرد لطفا دوباره وارد شوید.');
         }
     }
 

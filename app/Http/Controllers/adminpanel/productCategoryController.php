@@ -42,11 +42,17 @@ class productCategoryController extends Controller
     {
         $this-> validate($request,[
             'title'=>['required','min:3','max:255'],
+            'status'=>'required',
+            'parent_id'=>'required',
+            'image'=>'required',
 
         ],[
             'title.required' => 'عنوان دسته بندی الزامی است',
             'title.min'=>'عنوان دسته بندی نمیتواند کمتر از سه کارکتر باشد',
             'title.max'=>'عنوان دسته بندی نمیتواند بیشتر از 255 کارکتر باشد',
+            'status.required' => 'وضعیت دسته بندی الزامی است',
+            'parent_id.required' => 'شاخه دسته بندی الزامی است',
+            'image.required' => 'تصویر دسته بندی الزامی است',
         ]);
         if ($request->hasFile('image')){
 
@@ -120,11 +126,15 @@ class productCategoryController extends Controller
     {
         $this-> validate($request,[
             'title'=>['required','min:3','max:255'],
+            'status'=>'required',
+            'parent_id'=>'required',
 
         ],[
             'title.required' => 'عنوان دسته بندی الزامی است',
             'title.min'=>'عنوان دسته بندی نمیتواند کمتر از سه کارکتر باشد',
             'title.max'=>'عنوان دسته بندی نمیتواند بیشتر از 255 کارکتر باشد',
+            'status.required' => 'وضعیت دسته بندی الزامی است',
+            'parent_id.required' => 'شاخه دسته بندی الزامی است',
 
         ]);
         $productcategory = ProductCategory::findorfail($id);

@@ -17,7 +17,7 @@ class shopController extends Controller
     public function index()
     {
 
-        $allproduct = Product::latest()->paginate(2);
+        $allproduct = Product::latest()->paginate(6);
         $allproductCount = Product::all()->count();
         $allcategory = ProductCategory::all();
         return view('site.shop.shop',compact(['allproduct' , 'allcategory' , 'allproductCount']));

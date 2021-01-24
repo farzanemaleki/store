@@ -41,44 +41,25 @@
                                         </button>
 
                                         <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="remember" name="remember">
-                                            <label class="custom-control-label" for="signin-remember">مرا به خاطر
-                                                بسپار</label>
-                                        </div>
-                                        <!-- End .custom-checkbox -->
-
-                                        <a href="#" class="forgot-link">فراموشی رمز عبور؟</a>
+                                            <input type="checkbox" class="custom-control-input" id="signin-remember-2"
+                                                   name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                            <label class="custom-control-label" for="signin-remember-2">مرا به خاطر
+                                                بسپار؟</label>
+                                        </div><!-- End .custom-checkbox -->
+                                        @if (Route::has('password.request'))
+                                            <a class="forgot-link" href="{{ route('password.request') }}">
+                                                {{ __('رمز عبور خود را فراموش کرده اید؟') }}
+                                            </a>
+                                        @endif
                                     </div>
                                     <!-- End .form-footer -->
                                 </form>
-                                <div class="form-choice">
-                                    <p class="text-center">یا ورود با</p>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <a href="#" class="btn btn-login btn-g">
-                                                <i class="icon-google"></i> حساب گوگل
-                                            </a>
-                                        </div>
-                                        <!-- End .col-6 -->
-                                        <div class="col-sm-6">
-                                            <a href="#" class="btn btn-login btn-f">
-                                                <i class="icon-facebook-f"></i> حساب فیسبوک
-                                            </a>
-                                        </div>
-                                        <!-- End .col-6 -->
-                                    </div>
-                                    <!-- End .row -->
-                                </div>
                                 <!-- End .form-choice -->
                             </div>
                             <!-- .End .tab-pane -->
 
                             <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                                <div class="text-danger">
-                                    @foreach($errors->all() as $error)
-                                        {{ $error  }}
-                                    @endforeach
-                                </div>
+
                                 <form action="{{ route('register') }}" method="POST">
                                     @csrf
                                     <div class="form-group">
@@ -113,24 +94,6 @@
                                     </div>
                                     <!-- End .form-footer -->
                                 </form>
-                                <div class="form-choice">
-                                    <p class="text-center">یا عضویت با</p>
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <a href="#" class="btn btn-login btn-g">
-                                                <i class="icon-google"></i> حساب گوگل
-                                            </a>
-                                        </div>
-                                        <!-- End .col-6 -->
-                                        <div class="col-sm-6">
-                                            <a href="#" class="btn btn-login  btn-f">
-                                                <i class="icon-facebook-f"></i> حساب فیسبوک
-                                            </a>
-                                        </div>
-                                        <!-- End .col-6 -->
-                                    </div>
-                                    <!-- End .row -->
-                                </div>
                                 <!-- End .form-choice -->
                             </div>
                             <!-- .End .tab-pane -->

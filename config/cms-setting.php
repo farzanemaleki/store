@@ -7,6 +7,7 @@ return [
     'url_blog_category_image'=>'/blog_category_image',
     'url_logo' => '/logo',
     'url_elecSymbol' => '/elecSymbol',
-    'url_socialMedia' => '/socialMedia'
+    'url_socialMedia' => '/socialMedia',
+    'url_partner' => '/partner'
 
 ];

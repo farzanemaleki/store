@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\userpanel;
 
+use App\Address;
+use App\Order;
+use App\Payment;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class dashboardController extends Controller
 {
@@ -14,7 +20,15 @@ class dashboardController extends Controller
      */
     public function index()
     {
-       return view('userpanel.dashboard');
+        if (Auth::check()){
+        $userId = Auth::user()->id;
+        $allAddress = Address::where('user_id' , '=' , $userId)->get();
+        $allOrders = Payment::where('user_id' , '=' , $userId)->where('status' , '=' , 'OK')->with('address' , 'order')->latest()->get();
+//        $userOrder =
+       return view('userpanel.dashboard' , compact(['allOrders' , 'allAddress']));
+        }else{
+            return redirect(route('login'));
+        }
     }
 
     /**
@@ -69,7 +83,23 @@ class dashboardController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request , [
+            'name' => 'required',
+            'password' => 'required'
+        ],[
+            'name.required' => 'نام خود را وارد کنید.',
+            'password.required' => 'رمز عبور قبلی خود یا رمز عبور جدید وارد کنید.'
+        ]);
+        $user = Auth::user();
+        $mobile = $user->mobile;
+        $user->update([
+            'name' => $request->get('name'),
+            'mobile' => $mobile,
+            'password' => Hash::make($request->get('password')),
+            'email' => $request->get('email')
+        ]);
+        $user->save();
+        return redirect(route('user.account.index'))->with('message','اطلاعات شما با موفقیت به روز رسانی شد.');
     }
 
     /**

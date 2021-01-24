@@ -36,7 +36,7 @@
                             <div class="row justify-content-center">
                                 @if($allproductCount >0)
                                     @foreach($allproduct as $product)
-                                        <div class="col-6 col-md-4 col-lg-4 col-xl-3">
+                                        <div class="col-6 col-md-4 col-lg-4 col-xl-4">
                                             <div class="product product-7 text-center">
                                                 <figure class="product-media">
                                                     <span class="product-label label-new">جدید</span>
@@ -45,8 +45,16 @@
                                                              class="product-image">
                                                     </a>
                                                     <div class="product-action">
-                                                        <a href="#" class="btn-product btn-cart"><span>افزودن به
-                                                            سبد خرید</span></a>
+                                                        <form action="{{route('site.cart.store' , $product)}}" method="post">
+                                                            @csrf
+                                                            <input type="hidden" name="name" value="{{$product->title}}">
+                                                            <input type="hidden" name="id" value="{{$product->id}}">
+                                                            <input type="hidden" name="price" value="{{$product->price}}">
+                                                            <input type="hidden" name="count" value="1">
+                                                            <button type="submit" class="btn-product btn-cart px-2 border-0"
+                                                                    title="افزودن به سبد خرید">افزودن به سبد خرید
+                                                            </button>
+                                                        </form>
                                                     </div><!-- End .product-action -->
                                                 </figure><!-- End .product-media -->
 

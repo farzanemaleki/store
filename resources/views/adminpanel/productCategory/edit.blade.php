@@ -49,23 +49,11 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <lable> انتخاب دسته بندی</lable>
-{{--                            <select class="form-control" name="parent_id">--}}
-{{--                                <option value="">--}}
-{{--                                @if(!$productcategory->parent_id)--}}
-{{--                                        دسته بندی مادر--}}
-{{--                                    @else--}}
-{{--                                    {{$productcategory->title}}--}}
-{{--                                    @endif--}}
-{{--                                </option>--}}
-{{--                                @foreach($allcategories as $category)--}}
-{{--                                    <option value="0">دسته بندی مادر</option>--}}
-{{--                                    <option value="{{$category->id}}">{{$category->title}}</option>--}}
-{{--                                @endforeach--}}
-{{--                            </select>--}}
                             <select class="form-control js-example-basic-single" name="parent_id">
-                                <option value="0">دسته بندی مادر</option>
+                                <option value="0">دسته بندی مادر </option>
                                 @foreach($allcategories as $category)
-                                    @if($category->id == $productcategory->id)
+
+                                    @if($category->id == $productcategory->parent_id)
                                         <option value="{{ $category->id }}" selected>{{ $category->title }}</option>
                                     @else
                                         <option value="{{ $category->id }}">{{ $category->title }}</option>

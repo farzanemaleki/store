@@ -19,7 +19,7 @@ class CreateProductCategoryTable extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->integer('parent_id')->default(0);
-            $table->string('image')->nullable();
+            $table->string('image');
             $table->integer('status');
             $table->timestamps();
 
