@@ -40,7 +40,7 @@
                                         <div class="product product-7 text-center">
                                             <figure class="product-media">
                                                 <span class="product-label label-new">جدید</span>
-                                                <a href="{{ route('site.product.show' , $product->id ) }}}}">
+                                                <a href="{{ route('site.product.show' , $product->id ) }}">
                                                     <img src="{{url('')}}{{$product->image}}" alt="{{$product->title}}"
                                                          class="product-image">
                                                 </a>

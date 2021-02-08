@@ -22,30 +22,24 @@
             </div><!-- End .container -->
         </nav><!-- End .breadcrumb-nav -->
 
-
-        {{--        <div class="filter-item">--}}
-        {{--            <div class="custom-control">--}}
-        {{--                <a href="{{route('site.productCategory.show' , $category->id)}}" >{{$category->title}}</a>--}}
-        {{--            </div><!-- End .custom-checkbox -->--}}
-        {{--        </div><!-- End .filter-item -->--}}
-
-
-        @if(session('message'))
-            <div class="alert alert-success col-sm-9 rtl">
-                <li>{{Session::get('message')}}</li>
-            </div>
-        @endif
-        @if(session ('error'))
-            <div class="alert alert-danger col-sm-9">
-                <li>{{Session::get('error')}}</li>
-            </div>
-        @endif
-        @if(session ('warning'))
-            <div class="alert alert-warning col-sm-9">
-                <li>{{Session::get('warning')}}</li>
-            </div>
-        @endif
         <div class="container">
+            <div class="row">
+                @if(session('message'))
+                    <div class="alert alert-success col-sm-9 flex-column mx-auto rtl">
+                        <li>{{Session::get('message')}}</li>
+                    </div>
+                @endif
+                @if(session ('error'))
+                    <div class="alert alert-danger col-sm-9">
+                        <li>{{Session::get('error')}}</li>
+                    </div>
+                @endif
+                @if(session ('warning'))
+                    <div class="alert alert-warning col-sm-9">
+                        <li>{{Session::get('warning')}}</li>
+                    </div>
+                @endif
+                </div>
             <div class="row">
 
                 <div class="nav nav-tabs   d-inline-block col-sm-3 mx-0 px-0" id="tabs-7" role="tablist">
@@ -101,6 +95,7 @@
                                                 نمایش جزییات سفارش
                                             </button>
                                             <!-- Modal -->
+
                                             <div class="modal fade" id="exampleModal{{$order->order_id}}" tabindex="-1"
                                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -113,30 +108,37 @@
                                                             <div class="summary">
                                                                 <h3 class="summary-title">سفارش شما</h3>
                                                                 <!-- End .summary-title -->
-
-                                                                    <table class="table table-summary">
-                                                                        <thead>
+                                                                <table class="table table-bordered table-hover">
+                                                                    <thead>
                                                                         <tr>
-                                                                            <th>محصول</th>
-                                                                            <th>تعداد</th>
-                                                                            <th class="text-left">جمع</th>
+                                                                            <th class="text-center">محصول</th>
+                                                                            <th class="text-center">تعداد</th>
+                                                                            <th class="text-center">قیمت واحد</th>
                                                                         </tr>
-                                                                        </thead>
-                                                                        <tbody>
-                                                                        <tr>
-                                                                            <td>
-                                                                                {{$order->order->product_name}}
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <tr >
+                                                                            <td class="text-center">
+                                                                                @foreach(  explode(',', str_replace(['{' , '}'] , '' , $order->order->product_name)) as $singleName)
+                                                                                    {{ $singleName }}</br>
+                                                                                    <hr/>
+                                                                                @endforeach
                                                                             </td>
-                                                                            <td>{{ $order->order->product_count }}</td>
-                                                                            <td class="text-left">{{$order->order->product_price}}
-                                                                                ریال
+                                                                            <td class="text-center">
+                                                                                @foreach(explode(',', str_replace(['{' , '}'] , '' , $order->order->product_count)) as $singleCount)
+                                                                                    {{ $singleCount }}</br>
+                                                                                    <hr/>
+                                                                                @endforeach
                                                                             </td>
-
+                                                                            <td class="text-center">
+                                                                                @foreach(explode(',', str_replace(['{' , '}'] , '' , $order->order->product_price)) as $singlePrice)
+                                                                                    {{ $singlePrice }}</br>
+                                                                                    <hr/>
+                                                                                @endforeach
+                                                                            </td>
                                                                         </tr>
-
-
-                                                                        </tbody>
-                                                                    </table><!-- End .table table-summary -->
+                                                                    </tbody>
+                                                                </table>
                                                                     <div>
                                                                         <p>مبلغ پرداختی :</p>
                                                                         <p class="text-left">{{$order->order->amount}}
@@ -225,8 +227,8 @@
                                     <div class="form-group">
                                         <lable> پسورد</lable>
                                         <input type="password" class="form-control" name="password"
-                                               placeholder="رمز عبور قبلی خود یا رمز عبور جدید وارد کنید."
-                                               value="{{Auth::user()->password}}"/>
+                                               placeholder="میتوانید رمز عبور جدید وارد کنید..."
+                                            />
 
                                     </div>
                                 </div>

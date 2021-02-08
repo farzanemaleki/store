@@ -123,9 +123,10 @@ Route::group(['middleware' => ['auth', 'admin']], function () {
     });
 });
 
-Route::group(['prefix' => '/account', 'namespace' => 'userpanel'], function () {
-    Route::get('/', 'dashboardController@index')->name('user.account.index');
-    Route::post('/update/{id}', 'dashboardController@update')->name('user.account.update');
+Route::group(['prefix' => '/account'], function () {
+    Route::get('/', 'userpanel\dashboardController@index')->name('user.account.index');
+    Route::post('/update/{id}', 'userpanel\dashboardController@update')->name('user.account.update');
+    Route::post('/show/{id}', 'userpanel\dashboardController@show')->name('user.account.show');
 });
 
 Route::group(['namespace' => 'site'], function () {

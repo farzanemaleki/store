@@ -11,7 +11,7 @@ use App\ProductCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ProductController extends Controller
+class productController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -98,6 +98,7 @@ class ProductController extends Controller
     public function search(Request $request){
         $text = $request->get('q');
         $result = Product::where('title' , 'LIKE' , '%' .$text. '%' )->get();
+
         return view('site.search.search', compact(['result' , 'text']));
     }
 }

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>فروشگاه | @yield('page-title')</title>
     <meta name="keywords" content="HTML5 Template">
-    <meta name="description" content="Molla - Bootstrap eCommerce Template">
+    <meta name="description" content="idealgerayan - Bootstrap eCommerce Template">
     <meta name="author" content="p-themes">
     <!-- Favicon -->
 {{--    <link rel="apple-touch-icon" sizes="180x180" href="{{url('site/assets/images/icons/apple-touch-icon.png')}}">--}}

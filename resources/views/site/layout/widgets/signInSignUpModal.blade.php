@@ -46,11 +46,11 @@
                                             <label class="custom-control-label" for="signin-remember-2">مرا به خاطر
                                                 بسپار؟</label>
                                         </div><!-- End .custom-checkbox -->
-                                        @if (Route::has('password.request'))
+                                        {{-- @if (Route::has('password.request'))
                                             <a class="forgot-link" href="{{ route('password.request') }}">
                                                 {{ __('رمز عبور خود را فراموش کرده اید؟') }}
                                             </a>
-                                        @endif
+                                        @endif --}}
                                     </div>
                                     <!-- End .form-footer -->
                                 </form>

@@ -154,7 +154,7 @@
                                         {{$product->title}}
                                     </a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    {{$product->price}}
+                                    {{number_format(intdiv($product->price , 10))}}
                                 </div><!-- End .product-price -->
                                 <div class="ratings-container">
                                     <div class="ratings">
@@ -250,7 +250,7 @@
                                             {{$product->title}}
                                         </a></h3><!-- End .product-title -->
                                     <div class="product-price">
-                                        {{$product->price}}
+                                        {{number_format(intdiv($product->price , 10))}}
                                     </div><!-- End .product-price -->
                                     <div class="ratings-container">
                                         <div class="ratings">
@@ -379,7 +379,7 @@
                                         {{$product->title}}
                                     </a></h3><!-- End .product-title -->
                                 <div class="product-price">
-                                    {{$product->price}}
+                                    {{number_format(intdiv($product->price , 10))}}
                                 </div><!-- End .product-price -->
                                 <div class="ratings-container">
                                     <div class="ratings">

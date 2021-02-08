@@ -59,7 +59,7 @@
 
                                             <div class="product-body">
                                                 <div class="product-cat text-center">
-                                                    <a href="{{ route('site.productCategory.show' , $item->category) }}">{{ $item->category_name($item->id) }}</a>
+                                                    <a href="{{ route('site.productCategory.show' , $item->category) }}">{{ $item->category_name($item->category) }}</a>
                                                 </div><!-- End .product-cat -->
                                                 <h3 class="product-title text-center">
                                                     <a href="{{ route('site.product.show' , $item->id) }}">{{ $item->title }}</a>

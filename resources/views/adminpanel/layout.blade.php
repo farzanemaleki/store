@@ -37,11 +37,11 @@
 <div class="wrapper">
 
     <!-- Navbar -->
-    @include('adminPanel.navbar.navbar')
+    @include('adminpanel.navbar.navbar')
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    @include('adminPanel.sidebar.sidebar')
+    @include('adminpanel.sidebar.sidebar')
 
     <!-- Content Wrapper. Contains page content -->
 

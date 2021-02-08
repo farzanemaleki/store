@@ -68,9 +68,10 @@ class checkOutController extends Controller
 //        $MerchantID = 'test'; //Required
         $MerchantID = $this->Merchant_ID; // Required
         $Amount = $amount; //Amount will be based on Toman - Required
-        $Description = 'خرید از فروشگاه ایرانیان' . auth()->user()->name . ' به شماره موبایل' . auth()->user()->mobile; // Required
+        $Description = ' خرید از فروشگاه ایده آل گرایان' . auth()->user()->name . ' به شماره موبایل' . auth()->user()->mobile; // Required
         $Mobile = auth()->user()->mobile; // Optional
         $CallbackURL = 'http://localhost:8000/checkout/verify'; // Required
+        // $CallbackURL = 'http://idealgerayen.ir/checkout/verify'; // Required
 
 //        $client = new SoapClient('https://www.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
         $client = new SoapClient('https://sandbox.zarinpal.com/pg/services/WebGate/wsdl', ['encoding' => 'UTF-8']);
@@ -179,15 +180,19 @@ class checkOutController extends Controller
                     'RefID' => $result->RefID,
                     'card_pan' => '',
                     'updated_at'=> Carbon::now()
-                ]);
-                Cart::destroy();
 
-                echo 'پرداخت با موفقیت انجام شد . RefID:'.$result->RefID . '    '. '  <a style="background:lightblue" href="'.route('homepage').' ">بازگشت به سایت</a>';
+                ]);
+                $final = 'کد پیگیری' . $result->RefID . '        پرداخت شما با موفقیت انجام شد.' ;
+                Cart::destroy();
+                    return view('site.checkout.checkoutFinal' , compact('final') );
             } else {
-                echo 'پرداخت ناموفق بود. Status:'.$result->Status;
+                $final = 'پرداخت ناموفق بود لطفا دوباره سعی کنید.' ;
+                return view('site.checkout.checkoutFinal' , compact('final') );
+                // echo 'پرداخت ناموفق بود. Status:'.$result->Status;
             }
         } else {
-            echo 'پرداخت توسط کاربر لغو شد.';
+            $final = 'پرداخت توسط کاربر لغو شد.' ;
+                return view('site.checkout.checkoutFinal' , compact('final') );
         }
     }else{
             return redirect(route('login'))->with('message' , 'از ورود شما مدت زیادی میگذرد لطفا دوباره وارد شوید.');

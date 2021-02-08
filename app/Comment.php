@@ -59,7 +59,7 @@ class Comment extends Model
         if ($str == 'App\Product'){
             return str_replace('App\Product' , 'دسته محصولات' , 'App\Product');
         }else{
-            return str_replace('App\Blog' , 'دسته بلاگ' , 'App\Product');
+            return str_replace('App\Blog' , 'دسته بلاگ' , 'App\Blog');
         }
     }
 }

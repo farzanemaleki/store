@@ -13179,7 +13179,7 @@ button:focus {
 }
 
 .product-desc-content ul li:before {
-    content: '•';
+   
     position: absolute;
     display: block;
     top: 0;

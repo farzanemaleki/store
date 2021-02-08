@@ -44,7 +44,7 @@ class cartController extends Controller
      */
     public function store(Request $request)
     {
-        Cart::add($request->id , $request->name , 1 , $request->price)->associate('App\product');
+        Cart::add($request->id , $request->name , 1 , $request->price)->associate('App\Product');
         return redirect()->route('site.cart.index')->with('success-message' , 'محصول شما با موفقیت به سبد خرید اضافه شد.');
     }
 
