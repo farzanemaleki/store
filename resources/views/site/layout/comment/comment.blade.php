@@ -133,8 +133,8 @@
             </div><!-- End .review -->
         @endforeach
     @else
-        <div style="margin: 30px">
-            هیچ نظری تا به حال درباره این محصول ثبت نشده است.
+        <div style="margin: 30px; float=right">
+            هیچ نظری تا به حال ثبت نشده است.
         </div>
     @endif
 </div><!-- End .نظر -->

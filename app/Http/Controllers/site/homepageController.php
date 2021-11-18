@@ -33,6 +33,9 @@ class homepageController extends Controller
        return view('site.homePage.homePage', compact(['allProducts' , 'allcategory' , 'allElecSymbol' , 'allpartners']));
    }
 
+
+   
+
    public function comment(Request $request)
    {
         $this->validate($request , [

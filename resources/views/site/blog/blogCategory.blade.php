@@ -43,7 +43,6 @@
                                                 <span class="meta-separator">|</span>
                                                 <a href="#">{{$blog->created_at}}</a>
                                                 <span class="meta-separator">|</span>
-                                                <a href="#">2 دیدگاه</a>
                                             </div><!-- End .entry-meta -->
 
                                             <h2 class="entry-title">
@@ -58,8 +57,8 @@
                                                 <p>
                                                     {!! str_limit($blog->description , 120) !!}
                                                 </p>
+                                                <a href="{{ route('site.blog.single.index' , $blog->id) }}" class="read-more">ادامه...</a>
 
-                                                <a href="single.html" class="read-more">ادامه...</a>
                                             </div><!-- End .entry-content -->
                                         </div><!-- End .entry-body -->
                                     </div><!-- End .col-md-7 -->

@@ -14,7 +14,7 @@ class Blog extends Model
     ];
     public function comments()
     {
-        return $this->morphMany(comment::class , 'commentable');
+        return $this->morphMany(Comment::class , 'commentable');
     }
 
     public function sluggable()

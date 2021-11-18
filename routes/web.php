@@ -133,6 +133,7 @@ Route::group(['namespace' => 'site'], function () {
     Route::get('/product/{id}', 'productController@show')->name('site.product.show');
     Route::get('/search', 'productController@search')->name('site.product.search');
     Route::get('/productCategory/{id}', 'productCategoryController@show')->name('site.productCategory.show');
+
     Route::post('/comment', 'homepageController@comment')->name('site.comment');
 
     Route::get('/cart', 'cartController@index')->name('site.cart.index');
@@ -145,6 +146,7 @@ Route::group(['namespace' => 'site'], function () {
 
     Route::get('/blog', 'blogController@index')->name('site.blog.index');
     Route::get('/blog/{id}', 'blogController@show')->name('site.blog.category.index');
+    Route::get('/singleblog/{id}', 'singleBlogController@show')->name('site.blog.single.index');
 
     Route::get('/contactUs', 'siteInfoController@index')->name('site.contactUs.index');
 
